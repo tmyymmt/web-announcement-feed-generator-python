@@ -59,4 +59,6 @@
 
 ## テスト
 
-- 対象のURLは https://firebase.google.com/support/releases で実行すること
+- 対象のURLは以下とする
+    - https://firebase.google.com/support/releases
+- 全ての対象のURLについて、正常動作するまでテストとデバッグを実施すること
