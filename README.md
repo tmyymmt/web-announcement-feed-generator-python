@@ -9,6 +9,8 @@ A CLI tool to extract feed data from web pages that don't provide RSS/Atom feeds
 - Allows filtering by date range and category
 - Outputs both RSS feed file and CSV file
 - Automatically detects categories based on content keywords
+- Supports differential mode to extract only new items since the last run
+- Automatically generates filenames based on URL and current date
 
 ## Requirements
 
@@ -39,8 +41,9 @@ Options:
 - `--since YYYY-MM-DD`: Filter items published on or after this date
 - `--until YYYY-MM-DD`: Filter items published on or before this date
 - `--category CATEGORY`: Filter items by category
-- `--feed-output PATH`: Specify the output path for the RSS feed file (default: feed.xml)
-- `--csv-output PATH`: Specify the output path for the CSV file (default: data.csv)
+- `--feed-output PATH`: Specify the output path for the RSS feed file (default: auto-generated based on URL and date)
+- `--csv-output PATH`: Specify the output path for the CSV file (default: auto-generated based on URL and date)
+- `--diff-mode`: Extract only items newer than the most recent date in the existing feed file
 
 ## Example
 
@@ -53,6 +56,21 @@ Filter for important updates since January 1, 2024:
 ```
 python src/main.py https://firebase.google.com/support/releases --since 2024-01-01 --category Important
 ```
+
+Extract only new items since the last run:
+```
+python src/main.py https://firebase.google.com/support/releases --diff-mode
+```
+
+## Output Files
+
+By default, the tool generates two output files:
+1. An RSS feed file (XML format) containing all extracted items
+2. A CSV file with the same items in a tabular format
+
+Default filenames are based on the URL and current date (e.g., `firebase_google_com_support_releases_20250414.xml` and corresponding `.csv` file).
+
+In differential mode, if files already exist, the tool creates new files with incremental numbers appended (e.g., `firebase_google_com_support_releases_20250414_1.xml`).
 
 ## Extending
 

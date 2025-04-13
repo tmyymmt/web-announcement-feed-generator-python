@@ -9,6 +9,8 @@ RSS/Atomフィードを提供していないウェブページからお知らせ
 - 日付範囲とカテゴリによるフィルタリングが可能
 - RSSフィードファイルとCSVファイルの両方を出力
 - コンテンツのキーワードに基づいて自動的にカテゴリを検出
+- 差分モードをサポートし、前回実行時以降の新しい項目のみを抽出
+- URLと現在の日付に基づいて自動的にファイル名を生成
 
 ## 要件
 
@@ -39,8 +41,9 @@ python src/main.py URL [オプション]
 - `--since YYYY-MM-DD`: この日付以降に公開された項目のみを抽出
 - `--until YYYY-MM-DD`: この日付以前に公開された項目のみを抽出
 - `--category CATEGORY`: 指定したカテゴリの項目のみを抽出
-- `--feed-output PATH`: RSSフィードファイルの出力パスを指定 (デフォルト: feed.xml)
-- `--csv-output PATH`: CSVファイルの出力パスを指定 (デフォルト: data.csv)
+- `--feed-output PATH`: RSSフィードファイルの出力パスを指定 (デフォルト: URLと日付に基づいて自動生成)
+- `--csv-output PATH`: CSVファイルの出力パスを指定 (デフォルト: URLと日付に基づいて自動生成)
+- `--diff-mode`: 既存のフィードファイルに含まれる最新の日時以降の項目のみを抽出
 
 ## 使用例
 
@@ -53,6 +56,21 @@ python src/main.py https://firebase.google.com/support/releases
 ```
 python src/main.py https://firebase.google.com/support/releases --since 2024-01-01 --category Important
 ```
+
+前回実行時以降の新しい項目のみを抽出:
+```
+python src/main.py https://firebase.google.com/support/releases --diff-mode
+```
+
+## 出力ファイル
+
+デフォルトでは、ツールは2つの出力ファイルを生成します：
+1. 抽出したすべての項目を含むRSSフィードファイル（XML形式）
+2. 同じ項目を表形式で含むCSVファイル
+
+デフォルトのファイル名はURLと現在の日付に基づいています（例：`firebase_google_com_support_releases_20250414.xml`とそれに対応する`.csv`ファイル）。
+
+差分モードでは、既にファイルが存在する場合、ツールは連番を付加した新しいファイルを作成します（例：`firebase_google_com_support_releases_20250414_1.xml`）。
 
 ## 拡張方法
 

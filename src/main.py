@@ -6,6 +6,8 @@ import datetime
 import os
 import importlib
 import urllib.parse
+import xml.etree.ElementTree as ET
+import re
 from typing import Optional, List, Dict, Any
 
 def parse_args():
@@ -17,6 +19,7 @@ def parse_args():
     parser.add_argument('--category', help='指定したカテゴリの情報のみを抽出')
     parser.add_argument('--feed-output', help='フィードデータの出力ファイルパス')
     parser.add_argument('--csv-output', help='CSVデータの出力ファイルパス')
+    parser.add_argument('--diff-mode', action='store_true', help='差分モード: 既存フィードデータの最新日時以降の項目のみを出力')
     
     return parser.parse_args()
 
@@ -144,6 +147,76 @@ def generate_csv(items: List[Dict[str, Any]]) -> str:
     
     return csv_data
 
+def generate_default_filename(url: str, extension: str) -> str:
+    """URLと日付に基づくデフォルトのファイル名を生成する"""
+    # URLの無効な文字を削除し、ファイル名に適した形式に変換
+    parsed_url = urllib.parse.urlparse(url)
+    hostname = parsed_url.netloc
+    path = parsed_url.path.replace('/', '_')
+    if path and path.startswith('_'):
+        path = path[1:]
+    if path and path.endswith('_'):
+        path = path[:-1]
+    
+    # ファイル名の基本部分を作成
+    base_name = f"{hostname}{('_' + path) if path else ''}"
+    
+    # ファイル名に無効な文字が含まれている場合は置換
+    base_name = re.sub(r'[<>:"/\\|?*]', '_', base_name)
+    
+    # 現在の日付を追加
+    today = datetime.datetime.now().strftime('%Y%m%d')
+    
+    return f"{base_name}_{today}.{extension}"
+
+def get_next_available_filename(filename: str) -> str:
+    """ファイル名が既に存在する場合、連番を付加した新しいファイル名を返す"""
+    if not os.path.exists(filename):
+        return filename
+    
+    base_name, extension = os.path.splitext(filename)
+    counter = 1
+    
+    while True:
+        new_filename = f"{base_name}_{counter}{extension}"
+        if not os.path.exists(new_filename):
+            return new_filename
+        counter += 1
+
+def get_latest_date_from_feed(feed_file: str) -> Optional[datetime.datetime]:
+    """既存のフィードファイルから最新の日付を取得する"""
+    if not os.path.exists(feed_file):
+        return None
+    
+    try:
+        tree = ET.parse(feed_file)
+        root = tree.getroot()
+        
+        # すべてのitem要素を取得
+        items = root.findall('.//item')
+        
+        # 日付を格納するリスト
+        dates = []
+        
+        for item in items:
+            pub_date = item.find('pubDate')
+            if pub_date is not None and pub_date.text:
+                try:
+                    # RFC822形式の日付文字列をパース
+                    date = datetime.datetime.strptime(pub_date.text, '%a, %d %b %Y %H:%M:%S %z')
+                    dates.append(date)
+                except ValueError:
+                    pass
+        
+        # 日付が見つかった場合は最新の日付を返す
+        if dates:
+            return max(dates)
+        
+        return None
+    except Exception as e:
+        print(f"フィードファイルの解析中にエラーが発生しました: {e}")
+        return None
+
 def main():
     args = parse_args()
     
@@ -168,10 +241,33 @@ def main():
         print(f"スクレイピング中にエラーが発生しました: {e}")
         return 1
     
+    # デフォルトのファイル名を生成
+    default_feed_output = generate_default_filename(args.url, "xml")
+    default_csv_output = default_feed_output.replace(".xml", ".csv")
+    
+    # 出力ファイルのパスを決定
+    feed_output = args.feed_output or default_feed_output
+    csv_output = args.csv_output or default_csv_output
+    
+    # 差分モードの処理
+    since_date = None
+    if args.diff_mode:
+        # 既存のフィードファイルが存在する場合
+        if os.path.exists(feed_output):
+            latest_date = get_latest_date_from_feed(feed_output)
+            if latest_date:
+                # 最新の日付をフィルタの条件に設定
+                since_date = latest_date.strftime('%Y-%m-%d')
+                print(f"差分モード: {since_date} 以降の項目のみを取得します")
+                
+                # 出力ファイル名を変更（重複しないようにする）
+                feed_output = get_next_available_filename(feed_output)
+                csv_output = feed_output.replace(".xml", ".csv")
+    
     # フィルタリング
     filtered_items = filter_items(
         items,
-        args.since,
+        args.since or since_date,  # 差分モードの場合は最新日付を使用
         args.until,
         args.category
     )
@@ -181,10 +277,6 @@ def main():
     
     # CSVデータの生成
     csv_data = generate_csv(filtered_items)
-    
-    # デフォルトのファイル名
-    feed_output = args.feed_output or "feed.xml"
-    csv_output = args.csv_output or "data.csv"
     
     # ファイルに書き込み
     with open(feed_output, 'w', encoding='utf-8') as f:
