@@ -1,0 +1,3236 @@
+[
+  {
+    "title": "Latest versions of Firebase SDKs and versioned tooling",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "To see detailed release notes for a specific SDK or tool, visit the associated\nlink in the following..."
+  },
+  {
+    "title": "App Hosting",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "We&#39;re excited to announce that Firebase App Hosting is now\nGenerally Available (GA) and can be u..."
+  },
+  {
+    "title": "App Distribution",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "Introducing the Firebase App Testing agent, now available in\nPreview. You can use the power of AI to..."
+  },
+  {
+    "title": "Gemini in Firebase",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "Gemini in Firebase AI assistance is now integrated within the\nfollowing Firebase products and featur..."
+  },
+  {
+    "title": "Test Lab",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-05-03",
+    "content": ""
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "The\nFirebase Apple SDK (v11.11.0)\nis now available. For more details, see the\nFirebase Apple SDK rel..."
+  },
+  {
+    "title": "Gemini API",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "All Gemini&nbsp;1.5 models and\nGemini&nbsp;1.0 models are deprecated and will be discontinued soon\n(..."
+  },
+  {
+    "title": "March 04, 2025",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-03",
+    "content": "The following devices have been deprecated and will\nbe removed on 2025-04-03:"
+  },
+  {
+    "title": "Test Lab",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-03",
+    "content": "The following devices have been deprecated and will\nbe removed on 2025-04-03:"
+  },
+  {
+    "title": "February 28, 2025",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "If you are currently using these devices, please move to a different device."
+  },
+  {
+    "title": "Test Lab",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-03-25",
+    "content": ""
+  },
+  {
+    "title": "February 18, 2025",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-03-31",
+    "content": "The following devices have been deprecated and will be removed\non 2025-03-31:"
+  },
+  {
+    "title": "Test Lab",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-03-31",
+    "content": "The following devices have been deprecated and will be removed\non 2025-03-31:"
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "The Firebase Admin Go SDK (v4.15.2)\nis now available. This release includes dependency updates in\nCl..."
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "The Firebase SDK for Flutter\n(v3.6.0) is now available.\nThis release includes changes in Firebase Da..."
+  },
+  {
+    "title": "January 06, 2025",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-02-05",
+    "content": ""
+  },
+  {
+    "title": "Test Lab",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-02-05",
+    "content": ""
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "The\nFirebase JavaScript SDK (v11.1.0)\nis now available. For more details, see the\nFirebase JavaScrip..."
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2024-12-05",
+    "content": ""
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2024-11-15",
+    "content": ""
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "The\nFirebase JavaScript SDK (v11.0.2)\nis now available. For more details, see the\nFirebase JavaScrip..."
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "The Firebase Admin Python SDK (v6.6.0)\nis now available. This release comes with improvements to the..."
+  },
+  {
+    "title": "Cloud Storage for Firebase",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "Learn more about the Cloud Storage for Firebase changes for pricing plan\nrequirements and default bu..."
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "The Firebase Admin Go SDK (v4.15.0)\nis now available. The Admin SDK for Go now requires Go 1.21 or h..."
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "The\nFirebase Apple SDK (v11.4.2)\nis now available. For more details, see the\nFirebase Apple SDK rele..."
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "The\nFirebase Apple SDK (v11.4.1)\nis now available. For more details, see the\nFirebase Apple SDK rele..."
+  },
+  {
+    "title": "October 21, 2024",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "Vertex&nbsp;AI in Firebase is now Generally Available (GA) and can be\nused in production apps."
+  },
+  {
+    "title": "Vertex AI in Firebase",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "Vertex&nbsp;AI in Firebase is now Generally Available (GA) and can be\nused in production apps."
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "The\nFirebase Apple SDK (v11.4.0)\nis now available. For more details, see the\nFirebase Apple SDK rele..."
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "The Firebase SDK for Unity\n(v12.3.0) is now available. This\nrelease includes bug fixes in FCM and Re..."
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2024-09-12",
+    "content": ""
+  },
+  {
+    "title": "September 09, 2024",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "Version v6.0.0 of the\nFirebase SDK for Cloud Functions contains breaking changes that may affect som..."
+  },
+  {
+    "title": "Cloud Functions",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "Version v6.0.0 of the\nFirebase SDK for Cloud Functions contains breaking changes that may affect som..."
+  },
+  {
+    "title": "August 23, 2024",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2024-09-30",
+    "content": ""
+  },
+  {
+    "title": "Test Lab",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2024-09-30",
+    "content": ""
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2024-08-22",
+    "content": ""
+  },
+  {
+    "title": "August 02, 2024",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "App Hosting now supports Nx-based monorepo apps in the\nbackend setup flow. See\nUse monorepos with Ap..."
+  },
+  {
+    "title": "App Hosting",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "App Hosting now supports Nx-based monorepo apps in the\nbackend setup flow. See\nUse monorepos with Ap..."
+  },
+  {
+    "title": "August 01, 2024",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2024-08-01",
+    "content": ""
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2024-08-01",
+    "content": "The Firebase Android SDK for\nVertex&nbsp;AI in Firebase\nhas been updated. For more details, check ou..."
+  },
+  {
+    "title": "July 30, 2024",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "The following devices have been deprecated and will be\nremoved at a later date:"
+  },
+  {
+    "title": "Test Lab",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "The following devices have been deprecated and will be\nremoved at a later date:"
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2024-07-11",
+    "content": ""
+  },
+  {
+    "title": "June 11, 2024",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2024-06-11",
+    "content": "The Firebase Flutter SDK (BoM v2.1.0) \nis available."
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2024-06-11",
+    "content": "The Firebase Flutter SDK (BoM v2.1.0) \nis available."
+  },
+  {
+    "title": "June 04, 2024",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2024-06-04",
+    "content": "The Firebase Flutter SDK (BoM v2.0.0) \nis available."
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2024-06-04",
+    "content": "The Firebase Flutter SDK (BoM v2.0.0) \nis available."
+  },
+  {
+    "title": "FCM",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "For apps using Android Q+ and Google Play\nservices version 19054000 and later,\nsome notifications se..."
+  },
+  {
+    "title": "May 28, 2024",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2024-05-28",
+    "content": "The Firebase Flutter SDK (BoM v1.1.0) \nis available."
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2024-05-28",
+    "content": "The Firebase Flutter SDK (BoM v1.1.0) \nis available."
+  },
+  {
+    "title": "May 21, 2024",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2024-05-21",
+    "content": "The Firebase Flutter SDK (BoM v1.0.1)\nis now available."
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2024-05-21",
+    "content": "The Firebase Flutter SDK (BoM v1.0.1)\nis now available."
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "The\nFirebase Apple SDK (v10.26.0)\nis now available. For more details, see the\nFirebase Apple SDK rel..."
+  },
+  {
+    "title": "May 07, 2024",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "The Firebase Flutter SDK is now versioned using a\nbill-of-materials (BoM) scheme. Each BoM version g..."
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "The Firebase Flutter SDK is now versioned using a\nbill-of-materials (BoM) scheme. Each BoM version g..."
+  },
+  {
+    "title": "April 23, 2024",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2024-04-23",
+    "content": "A new release of the\nFirebase Flutter SDK \nis available."
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2024-04-23",
+    "content": "A new release of the\nFirebase Flutter SDK \nis available."
+  },
+  {
+    "title": "Test Lab",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "On April 23 2024, the logcat output from Android tests\nwill follow the adb threadtime format. This c..."
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "The Firebase Admin Node.js SDK (v12.1.0)\nis now available. This release comes with\nserver-side Remot..."
+  },
+  {
+    "title": "April 02, 2024",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2024-04-02",
+    "content": "A new release of the\nFirebase Flutter SDK \nis available."
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2024-04-02",
+    "content": "A new release of the\nFirebase Flutter SDK \nis available."
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "The\nFirebase Apple SDK (v10.23.1)\nis now available. For more details, see the\nFirebase Apple SDK rel..."
+  },
+  {
+    "title": "Cloud Firestore",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "Query Explain allows you to submit Cloud Firestore queries and\nreceive detailed query plan, billing ..."
+  },
+  {
+    "title": "March 26, 2024",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2024-03-26",
+    "content": "A new release of the\nFirebase Flutter SDK \nis available."
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2024-03-26",
+    "content": "A new release of the\nFirebase Flutter SDK \nis available."
+  },
+  {
+    "title": "March 13, 2024",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "The Firebase SDK for C++\n(v11.9.0) is now available.\nThis release includes changes to Authentication..."
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "The Firebase SDK for C++\n(v11.9.0) is now available.\nThis release includes changes to Authentication..."
+  },
+  {
+    "title": "March 12, 2024",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2024-03-12",
+    "content": "A new release of the\nFirebase Flutter SDK \nis available."
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2024-03-12",
+    "content": "A new release of the\nFirebase Flutter SDK \nis available."
+  },
+  {
+    "title": "March 8, 2024",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2024-04-07",
+    "content": ""
+  },
+  {
+    "title": "Test Lab",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2024-04-07",
+    "content": ""
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "The\nFirebase Apple SDK (v10.22.1)\nis now available. For more details, see the\nFirebase Apple SDK rel..."
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "The\nFirebase JavaScript SDK (v10.8.1)\nis now available. For more details, see the\nFirebase JavaScrip..."
+  },
+  {
+    "title": "February 19, 2024",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2024-02-19",
+    "content": "A new release of the\nFirebase Flutter SDK \nis available."
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2024-02-19",
+    "content": "A new release of the\nFirebase Flutter SDK \nis available."
+  },
+  {
+    "title": "February 02, 2024",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2024-03-03",
+    "content": ""
+  },
+  {
+    "title": "Test Lab",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2024-03-03",
+    "content": ""
+  },
+  {
+    "title": "Crashlytics",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "We&#39;ve improved Crashlytics to provide more and better\ncrash-free metrics:"
+  },
+  {
+    "title": "January 31, 2024",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2024-01-31",
+    "content": "A new release of the\nFirebase Flutter SDK \nis available."
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2024-01-31",
+    "content": "A new release of the\nFirebase Flutter SDK \nis available."
+  },
+  {
+    "title": "Test Lab",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "The following devices have been deprecated and will be\nremoved at a later date:"
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "The Firebase SDK for C++\n(v11.8.0) is now available.\nThis release includes a bug fix in FCM on Andro..."
+  },
+  {
+    "title": "January 04, 2024",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2024-01-04",
+    "content": "A new release of the\nFirebase Flutter SDK \nis available."
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2024-01-04",
+    "content": "A new release of the\nFirebase Flutter SDK \nis available."
+  },
+  {
+    "title": "Test Lab",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2024-02-05",
+    "content": ""
+  },
+  {
+    "title": "December 07, 2023",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2023-12-07",
+    "content": ""
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2023-12-07",
+    "content": ""
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "The\nFirebase Apple SDK (v10.19.0)\nis now available. For more details, see the\nFirebase Apple SDK rel..."
+  },
+  {
+    "title": "November 28, 2023",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2023-11-28",
+    "content": "A new release of the\nFirebase Flutter SDK \nis available."
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2023-11-28",
+    "content": "A new release of the\nFirebase Flutter SDK \nis available."
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "The\nFirebase Apple SDK (v10.18.0)\nis now available. For more details, see the\nFirebase Apple SDK rel..."
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "The\nFirebase JavaScript SDK (v10.5.2)\nis now available. For more details, see the\nFirebase JavaScrip..."
+  },
+  {
+    "title": "October 24, 2023",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2023-10-24",
+    "content": "A new release of the\nFirebase Flutter SDK \nis available."
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2023-10-24",
+    "content": "A new release of the\nFirebase Flutter SDK \nis available."
+  },
+  {
+    "title": "Remote Config",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "A/B Testing experiments no longer depend on Google Optimize. They\nnow use frequentist inference to c..."
+  },
+  {
+    "title": "October 19, 2023",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "The Firebase SDK for Unity\n(v11.6.0) is now available. This\nrelease includes a bug fix in App Check ..."
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2023-10-19",
+    "content": "The Firebase SDK for Unity\n(v11.6.0) is now available. This\nrelease includes a bug fix in App Check ..."
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "The Firebase SDK for C++\n(v11.6.0) is now available.\nThis release includes the User Messaging Platfo..."
+  },
+  {
+    "title": "October 01, 2023",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "Firebase now offers more support for\nTerraform,\nincluding the following:"
+  },
+  {
+    "title": "Firebase project management",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "Firebase now offers more support for\nTerraform,\nincluding the following:"
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "The Firebase SDK for C++\n(v11.5.0) is now available.\nThis release includes Authentication Emulator s..."
+  },
+  {
+    "title": "September 15, 2023",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "Windows support for Authentication."
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2023-09-14",
+    "content": ""
+  },
+  {
+    "title": "August 30, 2023",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2023-08-30",
+    "content": "A new release of the\nFirebase Flutter SDK \nis available."
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2023-08-30",
+    "content": "A new release of the\nFirebase Flutter SDK \nis available."
+  },
+  {
+    "title": "August 28, 2023",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2023-9-25",
+    "content": ""
+  },
+  {
+    "title": "Test Lab",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2023-9-25",
+    "content": ""
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2023-08-23",
+    "content": "A new release of the\nFirebase Flutter SDK \nis available."
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "The\nFirebase Apple SDK (v10.14.0)\nis now available. For more details, see the\nFirebase Apple SDK rel..."
+  },
+  {
+    "title": "Test Lab",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2023-9-14",
+    "content": ""
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "The Firebase SDK for Unity\n(v11.4.0) is now available. This\nrelease includes a bug fix in Authentica..."
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2023-08-16",
+    "content": "A new release of the\nFirebase Flutter SDK \nis available."
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "The\nFirebase JavaScript SDK (v10.1.0)\nis now available. For more details, see the\nFirebase JavaScrip..."
+  },
+  {
+    "title": "July 14, 2023",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2023-07-14",
+    "content": "A new release of the\nFirebase Flutter SDK \nis available."
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2023-07-14",
+    "content": "A new release of the\nFirebase Flutter SDK \nis available."
+  },
+  {
+    "title": "June 26, 2023",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2023-06-26",
+    "content": "A new release of the\nFirebase Flutter SDK \nis available."
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2023-06-26",
+    "content": "A new release of the\nFirebase Flutter SDK \nis available."
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "The Firebase Admin Python SDK (v6.2.0)\nis now available. This release comes with changes in the FCM ..."
+  },
+  {
+    "title": "June 16, 2023",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "You can now filter Android app events by device category. Use the\ndevice filter in the Crashlytics d..."
+  },
+  {
+    "title": "Crashlytics",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "You can now filter Android app events by device category. Use the\ndevice filter in the Crashlytics d..."
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2023-06-15",
+    "content": ""
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "The Firebase Admin Node.js SDK (v11.9.0)\nis now available. This release comes with improvements in t..."
+  },
+  {
+    "title": "May 25, 2023",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "This release adds debug logging for Cloud Firestore."
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "The\nFirebase JavaScript SDK (v9.22.1)\nis now available. For more details, see the\nFirebase JavaScrip..."
+  },
+  {
+    "title": "May 11, 2023",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2023-05-11",
+    "content": "A new release of the\nFirebase Flutter SDK \nis available."
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2023-05-11",
+    "content": "A new release of the\nFirebase Flutter SDK \nis available."
+  },
+  {
+    "title": "May 03, 2023",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "This release adds an upload button widget for Storage to Firebase UI."
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "The\nFirebase JavaScript SDK (v9.20.0)\nis now available. For more details, see the\nFirebase JavaScrip..."
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "The\nFirebase Apple SDK (v10.8.1)\nis now available. For more details, see the\nFirebase Apple SDK rele..."
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "The Firebase Admin Go SDK (v4.11.0)\nis now available. This release adds support for TOTP as a multif..."
+  },
+  {
+    "title": "Crashlytics",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "For Android apps, Crashlytics can now help you debug crashes\ncaused by native memory errors by colle..."
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "The\nFirebase JavaScript SDK (v9.19.0)\nis now available. For more details, see the\nFirebase JavaScrip..."
+  },
+  {
+    "title": "March 28, 2023",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2023-03-28",
+    "content": ""
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2023-03-28",
+    "content": "The Firebase Android SDKs for\nAuthentication\nhave been updated. For more details, check out the late..."
+  },
+  {
+    "title": "March 23, 2023",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "On Android tests, the following output files have been renamed as\nfollows:"
+  },
+  {
+    "title": "Test Lab",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "On Android tests, the following output files have been renamed as\nfollows:"
+  },
+  {
+    "title": "February 16, 2023",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "The Firebase SDK for Unity\n(v10.5.0) is now available. This\nrelease includes miscellaneous changes."
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2023-02-16",
+    "content": "The Firebase SDK for Unity\n(v10.5.0) is now available. This\nrelease includes miscellaneous changes."
+  },
+  {
+    "title": "February 15, 2023",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2023-02-15",
+    "content": ""
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2023-02-15",
+    "content": ""
+  },
+  {
+    "title": "February 14, 2023",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "The Firebase SDK for C++\n(v10.5.0) is now available.\nThis release includes miscellaneous changes."
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2023-02-14",
+    "content": "The Firebase SDK for C++\n(v10.5.0) is now available.\nThis release includes miscellaneous changes."
+  },
+  {
+    "title": "February 10, 2023",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2023-02-10",
+    "content": ""
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2023-02-10",
+    "content": ""
+  },
+  {
+    "title": "February 08, 2023",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2023-02-08",
+    "content": ""
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2023-02-08",
+    "content": ""
+  },
+  {
+    "title": "January 12, 2023",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2023-01-12",
+    "content": ""
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2023-01-12",
+    "content": ""
+  },
+  {
+    "title": "December 08, 2022",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2022-12-08",
+    "content": ""
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2022-12-08",
+    "content": "The Firebase Android SDKs for\nCloud Messaging\nhave been updated. For more details, check out the lat..."
+  },
+  {
+    "title": "November 11, 2022",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2022-11-11",
+    "content": ""
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2022-11-11",
+    "content": ""
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "The\nFirebase JavaScript SDK (v9.14.0)\nis now available. For more details, see the\nFirebase JavaScrip..."
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "The\nFirebase Apple SDK (v10.1.0)\nis now available. For more details, see the\nFirebase Apple SDK rele..."
+  },
+  {
+    "title": "October 20, 2022",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2022-10-20",
+    "content": ""
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2022-10-20",
+    "content": ""
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "The Firebase Admin Node.js SDK (v11.1.0)\nis now available. This release includes dependency updates ..."
+  },
+  {
+    "title": "September 22, 2022",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "The Firebase SDK for C++\n(v9.6.0) is now available.\nThis release includes changes to Google Mobile A..."
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "The Firebase SDK for C++\n(v9.6.0) is now available.\nThis release includes changes to Google Mobile A..."
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2022-09-15",
+    "content": ""
+  },
+  {
+    "title": "September 06, 2022",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2022-09-06",
+    "content": ""
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2022-09-06",
+    "content": "The Firebase Android SDKs for\nApp Check\nhave been updated. For more details, check out the latest\nAn..."
+  },
+  {
+    "title": "Remote Config",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "You can now download and publish Remote Config templates\ndirectly from the\nFirebase console."
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2022-07-25",
+    "content": ""
+  },
+  {
+    "title": "A/B Testing",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "You can now view your A/B Testing experiments in a\ncompact, paginated\nlist view.\nIn addition to filt..."
+  },
+  {
+    "title": "Authentication",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "Firebase Authentication with Identity Platform is a new, optional, upgrade that adds several feature..."
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2022-07-15",
+    "content": ""
+  },
+  {
+    "title": "Firebase CLI v11.2.0",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "Cloud Functions deployment now stores container images on\nGoogle Cloud Artifact Registry instead of ..."
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "The Firebase Admin Node.js SDK (v10.3.0)\nis now available. This release deprecates support for Node...."
+  },
+  {
+    "title": "May 19, 2022",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2022-05-19",
+    "content": ""
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2022-05-19",
+    "content": "The Firebase Android SDKs for\nCloud Messaging\nhave been updated. For more details, check out the lat..."
+  },
+  {
+    "title": "Firebase CLI v11.0.0",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "Breaking: Drops support for running the Firebase CLI on\nNode.js 12."
+  },
+  {
+    "title": "May 12, 2022",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2022-05-12",
+    "content": ""
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2022-05-12",
+    "content": "The Firebase Android SDKs for\nAuthentication\nhave been updated. For more details, check out the late..."
+  },
+  {
+    "title": "Cloud Functions for Firebase",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "You can now\nenqueue functions with Cloud Tasks\nto help your app run time-consuming, resource-intensi..."
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "The\nFirebase JavaScript SDK (v9.8.0)\nis now available. For more details, see the\nFirebase JavaScript..."
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "The\nFirebase iOS SDK (v9.0.0)\nis now available. For more details, see the\nFirebase iOS SDK release n..."
+  },
+  {
+    "title": "April 27, 2022",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2022-04-27",
+    "content": ""
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2022-04-27",
+    "content": ""
+  },
+  {
+    "title": "April 21, 2022",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "The Firebase SDK for C++\n(v8.11.0) is now available.\nThis release includes changes to Realtime Datab..."
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "The Firebase SDK for C++\n(v8.11.0) is now available.\nThis release includes changes to Realtime Datab..."
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2022-04-14",
+    "content": ""
+  },
+  {
+    "title": "April 11, 2022",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2022-04-11",
+    "content": ""
+  },
+  {
+    "title": "Release Notes Roundup",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2022-04-11",
+    "content": ""
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "The Firebase Admin Go SDK (v4.8.0)\nis now available. The Admin SDK for Go now requires Go 1.15 or hi..."
+  },
+  {
+    "title": "March 25, 2022",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2022-03-25",
+    "content": ""
+  },
+  {
+    "title": "Release Notes Roundup",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2022-03-25",
+    "content": ""
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2022-03-24",
+    "content": ""
+  },
+  {
+    "title": "March 17, 2022",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2022-03-17",
+    "content": ""
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2022-03-17",
+    "content": ""
+  },
+  {
+    "title": "Performance Monitoring",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "Performance Monitoring has been updated to include powerful new alerts. You\ncan easily set up and cu..."
+  },
+  {
+    "title": "March 11, 2022",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2022-03-11",
+    "content": ""
+  },
+  {
+    "title": "Release Notes Roundup",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2022-03-11",
+    "content": ""
+  },
+  {
+    "title": "February 25, 2022",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2022-02-25",
+    "content": ""
+  },
+  {
+    "title": "Release Notes Roundup",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2022-02-25",
+    "content": ""
+  },
+  {
+    "title": "February 10, 2022",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "Improved the experience for firebase login --no-localhost.\n(GitHub #4147)"
+  },
+  {
+    "title": "Firebase CLI v10.2.0",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "Improved the experience for firebase login --no-localhost.\n(GitHub #4147)"
+  },
+  {
+    "title": "January 28, 2022",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2022-01-28",
+    "content": ""
+  },
+  {
+    "title": "Release Notes Roundup",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2022-01-28",
+    "content": ""
+  },
+  {
+    "title": "January 24, 2022",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "Test Lab now offers a unified view of test matrix results to\nsave you time debugging test failures. ..."
+  },
+  {
+    "title": "Test Lab",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "Test Lab now offers a unified view of test matrix results to\nsave you time debugging test failures. ..."
+  },
+  {
+    "title": "January 19, 2022",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "Performance Monitoring now supports even more email alerts for your app&#39;s\nperformance metrics. I..."
+  },
+  {
+    "title": "Performance Monitoring",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "Performance Monitoring now supports even more email alerts for your app&#39;s\nperformance metrics. I..."
+  },
+  {
+    "title": "January 14, 2022",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2022-01-14",
+    "content": ""
+  },
+  {
+    "title": "Release Notes Roundup",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2022-01-14",
+    "content": ""
+  },
+  {
+    "title": "December 24, 2021",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2021-12-24",
+    "content": ""
+  },
+  {
+    "title": "Release Notes Roundup",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2021-12-24",
+    "content": ""
+  },
+  {
+    "title": "December 16, 2021",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2021-12-16",
+    "content": ""
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2021-12-16",
+    "content": "The Firebase Android SDK for\nAnalytics\nhas been updated. For more details, check out the latest\nAndr..."
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "The Firebase Admin Go SDK (v4.7.0)\nis now available. This release comes with support for using the\na..."
+  },
+  {
+    "title": "Firebase CLI v10.0.0",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "BREAKING Drops support for running the Firebase CLI on\nNode 10."
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2021-12-10",
+    "content": ""
+  },
+  {
+    "title": "November 26, 2021",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2021-11-26",
+    "content": ""
+  },
+  {
+    "title": "Release Notes Roundup",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2021-11-26",
+    "content": ""
+  },
+  {
+    "title": "November 12, 2021",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2021-11-12",
+    "content": ""
+  },
+  {
+    "title": "Release Notes Roundup",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2021-11-12",
+    "content": ""
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "The Firebase SDK for C++\n(v8.7.0) is now available. This\nrelease includes Cloud Firestore iOS and An..."
+  },
+  {
+    "title": "October 29, 2021",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2021-10-29",
+    "content": ""
+  },
+  {
+    "title": "Release Notes Roundup",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2021-10-29",
+    "content": ""
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "The\nFirebase iOS SDK (v8.9.0)\nis now available. For more details, see the\nFirebase iOS SDK release n..."
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "The Firebase Admin Node.js SDK (v10.0.0)\nis now available. This release drops support for Node.js 10..."
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2021-10-08",
+    "content": ""
+  },
+  {
+    "title": "October 8, 2021",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2021-10-08",
+    "content": ""
+  },
+  {
+    "title": "Release Notes Roundup",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2021-10-08",
+    "content": ""
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "The\nFirebase iOS SDK (v8.8.0)\nis now available. For more details, see the\nFirebase iOS SDK release n..."
+  },
+  {
+    "title": "Firebase project management",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "You now have more granular control over Firebase links to Google\nPlay. Before this change, all apps ..."
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "The Firebase Admin Java SDK (v8.1.0)\nis now available. This release comes with Parameter value data ..."
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2021-09-13",
+    "content": ""
+  },
+  {
+    "title": "September 10, 2021",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2021-09-10",
+    "content": ""
+  },
+  {
+    "title": "Release Notes Roundup",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2021-09-10",
+    "content": ""
+  },
+  {
+    "title": "August 27, 2021",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2021-08-27",
+    "content": ""
+  },
+  {
+    "title": "Release Notes Roundup",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2021-08-27",
+    "content": ""
+  },
+  {
+    "title": "August 20, 2021",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2021-08-20",
+    "content": ""
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2021-08-20",
+    "content": ""
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "The\nFirebase JavaScript SDK (v8.10.0)\nis now available. For more details, see the\nFirebase JavaScrip..."
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "The Firebase Admin Python SDK (v5.0.2)\nis now available. This release comes with fixes in the Cloud ..."
+  },
+  {
+    "title": "August 06, 2021",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2021-08-06",
+    "content": ""
+  },
+  {
+    "title": "Release Notes Roundup",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2021-08-06",
+    "content": ""
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2021-08-05",
+    "content": ""
+  },
+  {
+    "title": "August 02, 2021",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "Published two new solution guides to help you optimize your app&#39;s\nad revenue using AdMob and Fir..."
+  },
+  {
+    "title": "AdMob documentation",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "Published two new solution guides to help you optimize your app&#39;s\nad revenue using AdMob and Fir..."
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2021-07-09",
+    "content": ""
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "The\nFirebase iOS SDK (v8.3.0)\nis now available. For more details, see the\nFirebase iOS SDK release n..."
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "The Firebase Admin Java SDK (v8.0.0)\nis now available. This release updates Cloud Firestore and\nClou..."
+  },
+  {
+    "title": "June 25, 2021",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2021-06-25",
+    "content": ""
+  },
+  {
+    "title": "Firebase Weekly Roundup",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2021-06-25",
+    "content": ""
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "The Firebase Admin Node.js SDK (v9.10.0)\nis now available. This release comes with a new API for del..."
+  },
+  {
+    "title": "Firebase CLI v9.12.1",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "Fixes a regression where timeZone for scheduled\nCloud Functions was always America/Los_Angeles.\n(Git..."
+  },
+  {
+    "title": "May 28, 2021",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2021-05-28",
+    "content": ""
+  },
+  {
+    "title": "Firebase Weekly Roundup",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2021-05-28",
+    "content": ""
+  },
+  {
+    "title": "Firebase CLI v9.12.0",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "Enable running functions in multiple regions in the emulator.\n(GitHub #3364)"
+  },
+  {
+    "title": "May 17, 2021",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "Added support for the Cloud Storage for Firebase emulator.\n(GitHub #1738)"
+  },
+  {
+    "title": "Firebase CLI v9.11.0",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "Added support for the Cloud Storage for Firebase emulator.\n(GitHub #1738)"
+  },
+  {
+    "title": "May 13, 2021",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2021-05-13",
+    "content": ""
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2021-05-13",
+    "content": ""
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "The\nFirebase iOS SDK (v8.0.0)\nis now available. For more details, see the\nFirebase iOS SDK release n..."
+  },
+  {
+    "title": "May 07, 2021",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2021-05-07",
+    "content": ""
+  },
+  {
+    "title": "Firebase Weekly Roundup",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2021-05-07",
+    "content": ""
+  },
+  {
+    "title": "Firebase CLI v9.10.1",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "Included appId in the web app configuration when using the\nHosting emulator.\n(GitHub #2798)"
+  },
+  {
+    "title": "Documentation",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "Check out the new &quot;Understand billing&quot; section in our\ndocumentation:"
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "The Firebase Admin Java SDK (v7.2.0)\nis now available. This release comes with emulator support and ..."
+  },
+  {
+    "title": "April 23, 2021",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2021-04-23",
+    "content": "While we&#39;re in the final approach for Google I/O (May 16-18), we&#39;ve released\nquite a few upd..."
+  },
+  {
+    "title": "Firebase Weekly Roundup",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2021-04-23",
+    "content": "While we&#39;re in the final approach for Google I/O (May 16-18), we&#39;ve released\nquite a few upd..."
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "The\nFirebase iOS SDK (v7.11.0)\nis now available. For more details, see the\nFirebase iOS SDK release ..."
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "The Firebase Admin .NET SDK (v2.1.0)\nis now available. This release comes with emulator support for ..."
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2021-04-08",
+    "content": ""
+  },
+  {
+    "title": "Firebase CLI v9.9.0",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "Added support for multiple accounts via new commands login:use,\nlogin:add, and login:list."
+  },
+  {
+    "title": "April 02, 2021",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2021-04-02",
+    "content": "We had lots of updates in the past two weeks. Here are some highlights:"
+  },
+  {
+    "title": "Firebase Weekly Roundup",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2021-04-02",
+    "content": "We had lots of updates in the past two weeks. Here are some highlights:"
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "The Firebase Admin Go SDK (v4.3.0)\nis now available. This release comes with new Authentication APIs..."
+  },
+  {
+    "title": "Firebase CLI v9.7.0",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "Added support for reading/writing mfaInfo field in the\nFirebase Authentication emulator.\n(GitHub Iss..."
+  },
+  {
+    "title": "March 19, 2021",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2021-03-19",
+    "content": "Many developers want to programmatically manage their Firebase projects, and\nthis week we released t..."
+  },
+  {
+    "title": "Firebase Weekly Roundup",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2021-03-19",
+    "content": "Many developers want to programmatically manage their Firebase projects, and\nthis week we released t..."
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "The Firebase Admin Python SDK (v4.5.3)\nis now available. This release includes a fix in Authenticati..."
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2021-03-11",
+    "content": ""
+  },
+  {
+    "title": "Firebase CLI v9.6.1",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "Added firebase hosting:sites:&lt;create|get|list|delete&gt; commands\nto allow management of Firebase..."
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "The Firebase Admin Java SDK (v7.1.1)\nis now available. This release contains some improvements to er..."
+  },
+  {
+    "title": "Documentation",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "The Firebase documentation has been reorganized to replace the\nprevious Guides section with four new..."
+  },
+  {
+    "title": "Firebase CLI v9.6.0",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "Fixed issue where proxied requests to dynamic content through the\nHosting emulator would return unex..."
+  },
+  {
+    "title": "Firebase CLI v9.5.0",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "Added firebase setup:emulators:ui command to download the\nEmulator Suite UI.\n(GitHub PR #3152)"
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "The Firebase Admin Python SDK (v4.5.2)\nis now available. This release includes a fix to an issue tha..."
+  },
+  {
+    "title": "February 16, 2021",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "Released and documented REST APIs for the following Hosting\nfeatures:"
+  },
+  {
+    "title": "Hosting",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "Released and documented REST APIs for the following Hosting\nfeatures:"
+  },
+  {
+    "title": "Firebase CLI v9.4.0",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "Fixed issue where proxied requests to dynamic content through the\nHosting emulator would return unex..."
+  },
+  {
+    "title": "Firebase CLI v9.3.0",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "Added support for batchDelete in Authentication emulator.\n(GitHub Issue #3091)"
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "The Firebase Admin Go SDK (v4.2.0)\nis now available. This release adds support for connecting to the..."
+  },
+  {
+    "title": "Firebase CLI v9.2.1",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "Fixed issue where authorized domains were not being correctly\nupdated when deploying to Hosting chan..."
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2021-01-14",
+    "content": ""
+  },
+  {
+    "title": "January 12, 2021",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "Added warning if developer is using yarn@2 PnP.\n(GitHub Issue #2198)"
+  },
+  {
+    "title": "Firebase CLI v9.2.0",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "Added warning if developer is using yarn@2 PnP.\n(GitHub Issue #2198)"
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "The Firebase Admin Python SDK (v4.5.1)\nis now available. This release adds support for connecting to..."
+  },
+  {
+    "title": "January 07, 2021",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "Fixed firebase init error when no arguments passed.\n(GitHub\nIssue #3000)"
+  },
+  {
+    "title": "Firebase CLI v9.1.2",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "Fixed firebase init error when no arguments passed.\n(GitHub\nIssue #3000)"
+  },
+  {
+    "title": "January 06, 2021",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "Added support for allowing more than 100 concurrent connections to\nthe Realtime Database emulator."
+  },
+  {
+    "title": "Firebase CLI v9.1.1",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "Added support for allowing more than 100 concurrent connections to\nthe Realtime Database emulator."
+  },
+  {
+    "title": "Firebase CLI v9.1.0",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "Improved error handling for firestore:delete when deleting very\nlarge documents."
+  },
+  {
+    "title": "Firebase CLI v9.0.0",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "A new release of the Firebase CLI is now available (v9.0.0) and includes\nthe following changes:"
+  },
+  {
+    "title": "Firebase CLI v8.20.0",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "A new release of the Firebase CLI is now available (v8.20.0) and includes\nthe following changes:"
+  },
+  {
+    "title": "December 11, 2020",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "A new release of the Firebase CLI is now available (v8.19.0) and includes\nthe following changes:"
+  },
+  {
+    "title": "Firebase CLI v8.19.0",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "A new release of the Firebase CLI is now available (v8.19.0) and includes\nthe following changes:"
+  },
+  {
+    "title": "December 09, 2020",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "A new release of the Firebase CLI is now available (v8.18.1) and includes\nthe following changes:"
+  },
+  {
+    "title": "Firebase CLI v8.18.1",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "A new release of the Firebase CLI is now available (v8.18.1) and includes\nthe following changes:"
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "The Firebase Admin Node.js SDK (v9.4.2)\nis now available. This release comes with several Realtime D..."
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "The\nFirebase iOS SDK (v7.3.0)\nis now available. For more details, see the\nFirebase iOS SDK release n..."
+  },
+  {
+    "title": "December 07, 2020",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "A new release of the Firebase CLI is now available (v8.18.0) and includes\nthe following changes:"
+  },
+  {
+    "title": "Firebase CLI v8.18.0",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "A new release of the Firebase CLI is now available (v8.18.0) and includes\nthe following changes:"
+  },
+  {
+    "title": "December 03, 2020",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2020-12-03",
+    "content": ""
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2020-12-03",
+    "content": "The Firebase Android SDK for\nRemote Config\nhas been updated. For more details, check out the latest\n..."
+  },
+  {
+    "title": "December 02, 2020",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "A new release of the Firebase CLI is now available (v8.17.0) and includes\nthe following changes:"
+  },
+  {
+    "title": "Firebase CLI v8.17.0",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "A new release of the Firebase CLI is now available (v8.17.0) and includes\nthe following changes:"
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "The\nFirebase iOS SDK (v7.2.0)\nis now available. For more details, see the\nFirebase iOS SDK release n..."
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "The\nFirebase JavaScript SDK (v8.1.1)\nis now available. For more details, see the\nFirebase JavaScript..."
+  },
+  {
+    "title": "November 13, 2020",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "A new release of the Firebase CLI is now available (v8.16.2) and includes\nthe following changes:"
+  },
+  {
+    "title": "Firebase CLI v8.16.2",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "A new release of the Firebase CLI is now available (v8.16.2) and includes\nthe following changes:"
+  },
+  {
+    "title": "November 12, 2020",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "Launched a new region for the Realtime Database, in Belgium, in\naddition to the existing region in t..."
+  },
+  {
+    "title": "Realtime Database",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "Launched a new region for the Realtime Database, in Belgium, in\naddition to the existing region in t..."
+  },
+  {
+    "title": "Firebase CLI v8.16.1",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "A new release of the Firebase CLI is now available (v8.16.1) and includes\nthe following changes:"
+  },
+  {
+    "title": "November 11, 2020",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "A new release of the Firebase CLI is now available (v8.16.0) and includes\nthe following changes:"
+  },
+  {
+    "title": "Firebase CLI v8.16.0",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "A new release of the Firebase CLI is now available (v8.16.0) and includes\nthe following changes:"
+  },
+  {
+    "title": "November 05, 2020",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "A new release of the Firebase CLI is now available (v8.15.1) and includes\nthe following changes:"
+  },
+  {
+    "title": "Firebase CLI v8.15.1",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "A new release of the Firebase CLI is now available (v8.15.1) and includes\nthe following changes:"
+  },
+  {
+    "title": "November 04, 2020",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "A new release of the Firebase CLI is now available (v8.15.0) and includes\nthe following changes:"
+  },
+  {
+    "title": "Firebase CLI v8.15.0",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "A new release of the Firebase CLI is now available (v8.15.0) and includes\nthe following changes:"
+  },
+  {
+    "title": "October 26, 2020",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "A new release of the Firebase CLI is now available (v8.14.0) and includes\nthe following changes:"
+  },
+  {
+    "title": "Firebase CLI v8.14.0",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "A new release of the Firebase CLI is now available (v8.14.0) and includes\nthe following changes:"
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "The\nFirebase iOS SDK (v7.0.0)\nis now available. This release includes several breaking changes and t..."
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "The\nFirebase iOS SDK (v6.34.0 patch release)\nis now available. For more details, see the\nFirebase iO..."
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "The Firebase Admin Go SDK (v4.1.0)\nis now available. This release comes with improvements to the Aut..."
+  },
+  {
+    "title": "October 20, 2020",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "The Firebase SDK for C++\n(v6.16.1) is now available.\nThis release fixes issues with Realtime Databas..."
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "The Firebase SDK for C++\n(v6.16.1) is now available.\nThis release fixes issues with Realtime Databas..."
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "The\nFirebase iOS SDK (v6.34.0 patch release)\nis now available. For more details, see the\nFirebase iO..."
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "The\nFirebase iOS SDK (v6.33.0)\nis now available. For more details, see the\nFirebase iOS SDK release ..."
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "The Firebase Admin Python SDK (v4.4.0)\nis now available. This release adds support for managing Auto..."
+  },
+  {
+    "title": "September 11, 2020",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2020-09-1",
+    "content": ""
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2020-09-11",
+    "content": ""
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "The Firebase Admin Node.js SDK (v9.1.1)\nis now available. This release comes with bug fixes in the\nF..."
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2020-07-30",
+    "content": ""
+  },
+  {
+    "title": "July 23, 2020",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "The Firebase Admin Java SDK (v6.15.0)\nis now available. This release comes with new APIs for tenant ..."
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "The Firebase Admin Java SDK (v6.15.0)\nis now available. This release comes with new APIs for tenant ..."
+  },
+  {
+    "title": "July 17, 2020",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2020-07-17",
+    "content": ""
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2020-07-17",
+    "content": "The Firebase Android SDK for\nPerformance Monitoring\nhas been updated. For more details, check out th..."
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "The\nFirebase iOS SDK (v6.28.1)\nis now available. For more details, see the\nFirebase iOS SDK release ..."
+  },
+  {
+    "title": "July 08, 2020",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2020-07-08",
+    "content": ""
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2020-07-08",
+    "content": "The Firebase Android SDKs for\nCloud Messaging and Instance IDs\nhave been updated. For more details, ..."
+  },
+  {
+    "title": "June 17, 2020",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "The Firebase Admin .NET SDK (v1.14.0)\nis now available. This release contains a new API for importin..."
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "The Firebase Admin .NET SDK (v1.14.0)\nis now available. This release contains a new API for importin..."
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "The Firebase Admin Go SDK (v4.0.0)\nis now available. This release comes with Go modules support and ..."
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "The\nFirebase iOS SDK (v6.26.0)\nis now available. For more details, see the\nFirebase iOS SDK release ..."
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "The Firebase Admin .NET SDK (v1.13.0)\nis now available. This release comes with new APIs for retriev..."
+  },
+  {
+    "title": "May 18, 2020",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "The Firebase SDK for Unity\n(v6.14.1) is now available.  This\nrelease includes Auth support for an up..."
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "The Firebase SDK for Unity\n(v6.14.1) is now available.  This\nrelease includes Auth support for an up..."
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "The Firebase Admin Java SDK (v6.13.0)\nis now available. This release comes with new APIs for fetchin..."
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "The Firebase Admin Node.js SDK (v8.12.0)\nis now available. This release comes with new APIs for fetc..."
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "The Firebase Admin Python SDK (v4.1.0)\nis now available. This release contains a new ml module to ma..."
+  },
+  {
+    "title": "April 03, 2020",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2020-04-03",
+    "content": ""
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2020-04-03",
+    "content": ""
+  },
+  {
+    "title": "March 12, 2020",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2020-03-12",
+    "content": ""
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2020-03-12",
+    "content": "The Firebase Android SDK for\nAuthentication\nhas been updated. For more details, check out the latest..."
+  },
+  {
+    "title": "March 05, 2020",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "The Firebase SDK for C++\n(v6.12.0) adds experimental\nsupport for Cloud Firestore, available on all s..."
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "The Firebase SDK for C++\n(v6.12.0) adds experimental\nsupport for Cloud Firestore, available on all s..."
+  },
+  {
+    "title": "March 03, 2020",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2020-03-03",
+    "content": ""
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2020-03-03",
+    "content": "The Firebase Android SDKs Instance IDs and\nCloud Messaging\nhave been updated. For more details, chec..."
+  },
+  {
+    "title": "February 20, 2020",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "The Firebase SDK for C++\n(v6.11.0) updated the minimum\nsupported Xcode version and fixed an issue wi..."
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "The Firebase SDK for C++\n(v6.11.0) updated the minimum\nsupported Xcode version and fixed an issue wi..."
+  },
+  {
+    "title": "February 14, 2020",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2020-02-14",
+    "content": ""
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2020-02-14",
+    "content": "The Firebase Android SDKs for\nDynamic Links\nhave been updated. For more details, check out the lates..."
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "The\nFirebase iOS SDK (v6.17.0)\nis now available. For more details, see the\nFirebase iOS SDK release ..."
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "The Firebase Admin Node.js SDK (v8.9.2)\nis now available. This release contains a fix for an issue t..."
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "The\nFirebase iOS SDK (v6.15.0)\nis now available. For more details, see the\nFirebase iOS SDK release ..."
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "The Firebase SDK for C++\n(v6.9.0) added support for Apple\nSign-in and for sign-in using 3rd party we..."
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2019-12-18",
+    "content": ""
+  },
+  {
+    "title": "FCM",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "FCM has removed ongoing support for delivery receipts via the\nXMPP protocol. In place of XMPP delive..."
+  },
+  {
+    "title": "December 03, 2019",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "The Firebase SDK for C++\n(v6.8.0) includes fixes for issues\nin AdMob and resource generation from go..."
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "The Firebase SDK for C++\n(v6.8.0) includes fixes for issues\nin AdMob and resource generation from go..."
+  },
+  {
+    "title": "November 22, 2019",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2019-11-22",
+    "content": ""
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2019-11-22",
+    "content": "The Firebase Android SDK for\nAuthentication\nhas been updated. For more details, check out the latest..."
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "The\nFirebase iOS SDK (v6.13.0)\nis now available. For more details, see the\nFirebase iOS SDK release ..."
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "The Firebase SDK for C++\n(v6.7.0) includes fixes for issues\nin Analytics, Realtime Database, Cloud S..."
+  },
+  {
+    "title": "October 25, 2019",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2019-10-25",
+    "content": ""
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2019-10-25",
+    "content": ""
+  },
+  {
+    "title": "Firebase Predictions",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "The next version of Firebase Predictions is available in beta.\nThis new version provides greater tar..."
+  },
+  {
+    "title": "Firebase console",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "Web apps can now have Analytics data streams created for\nthem. This data will then be included in th..."
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "The Firebase Android SDKs for\nAuthentication, Cloud Storage, In-App Messaging, ML Kit for Firebase, ..."
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "The Firebase Admin Node.js SDK (v8.6.0)\nis now available. This release comes with a new API for mana..."
+  },
+  {
+    "title": "September 13, 2019",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2019-09-13",
+    "content": ""
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2019-09-13",
+    "content": "The Firebase Android SDK for Cloud Firestore\nhas been updated to v21.1.1. For more details, check ou..."
+  },
+  {
+    "title": "September 11, 2019",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "The Firebase Admin Python SDK (v3.0.0)\nis now available. This major release includes improvements in..."
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "The Firebase Admin Python SDK (v3.0.0)\nis now available. This major release includes improvements in..."
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "The\nFirebase iOS SDK (v6.8.1)\nis now available. For more details, see the\nFirebase iOS SDK release n..."
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2019-09-09",
+    "content": ""
+  },
+  {
+    "title": "September 06, 2019",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2019-09-06",
+    "content": ""
+  },
+  {
+    "title": "September 05, 2019",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2019-09-06",
+    "content": "The Firebase Admin Node.js SDK (v8.5.0)\nis now available. This release adds multi-tenancy support to..."
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "The Firebase Admin Node.js SDK (v8.5.0)\nis now available. This release adds multi-tenancy support to..."
+  },
+  {
+    "title": "August 28, 2019",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2019-08-28",
+    "content": ""
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2019-08-28",
+    "content": ""
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "The Firebase SDK for C++\n(v6.4.0) includes bug fixes for\nAuthentication, and Realtime Database. To i..."
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "The\nFirebase JavaScript SDK (v6.4.2) fixes a bug\nin Performance Monitoring and updates an rxFire API..."
+  },
+  {
+    "title": "August 21, 2019",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2019-08-22",
+    "content": ""
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "The\nFirebase iOS SDK (v6.7.0)\nis now available. For more details, see the\nFirebase iOS SDK release n..."
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2019-08-16",
+    "content": ""
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "The Firebase SDK for C++\n(v6.3.0) includes bug fixes for\nAuthentication, and Realtime Database. To i..."
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "The Firebase Admin Go SDK (v3.9.0)\nis now available. This release comes with a new API for sending\nC..."
+  },
+  {
+    "title": "Firebase Gradle Plugins",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2019-08-01",
+    "content": ""
+  },
+  {
+    "title": "July 31, 2019",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2019-08-01",
+    "content": ""
+  },
+  {
+    "title": "July 26, 2019",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "The\nFirebase JavaScript SDK (v6.3.3) fixes\na regression in Realtime Database introduced in v6.3.2.\nT..."
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "The\nFirebase JavaScript SDK (v6.3.3) fixes\na regression in Realtime Database introduced in v6.3.2.\nT..."
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2019-07-24",
+    "content": ""
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "The\nFirebase iOS SDK (v6.5.0)\nis now available. For more details, see the\nFirebase iOS SDK release n..."
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2019-07-12",
+    "content": ""
+  },
+  {
+    "title": "July 11, 2019",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "The Firebase Crashlytics SDK for iOS (v3.13.4) is now\navailable. This release includes:"
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "The Firebase Crashlytics SDK for iOS (v3.13.4) is now\navailable. This release includes:"
+  },
+  {
+    "title": "July 10, 2019",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2019-07-10",
+    "content": ""
+  },
+  {
+    "title": "Firebase Gradle Plugins",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2019-07-10",
+    "content": ""
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2019-07-10",
+    "content": ""
+  },
+  {
+    "title": "July 9, 2019",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "The Firebase Crashlytics SDK for iOS (v3.13.3) is now\navailable. This release includes:"
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "The Firebase Crashlytics SDK for iOS (v3.13.3) is now\navailable. This release includes:"
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "The Firebase SDK for C++\n(v6.2.0) is now available with\nsupport for custom domains in Dynamic Links,..."
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2019-06-27",
+    "content": "The Firebase Admin .NET SDK (v1.7.0)\nis now available. This release comes with a set of new user\nman..."
+  },
+  {
+    "title": "June 20, 2019",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "The Firebase Android SDKs for\nIn-App Messaging\nhave been updated. To get started with Firebase in An..."
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "The Firebase Android SDKs for\nIn-App Messaging\nhave been updated. To get started with Firebase in An..."
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "The Firebase Admin Node.js SDK (v8.2.0)\nis now available. This release fixes an issue that hindered ..."
+  },
+  {
+    "title": "June 13, 2019",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2019-06-17",
+    "content": ""
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "The Firebase Admin Node.js SDK (v8.1.0)\nis now available. This release comes with some new project-s..."
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "The Firebase Admin .NET SDK (v1.6.0)\nis now available. This release comes with new APIs for retrievi..."
+  },
+  {
+    "title": "May 31, 2019",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "The Firebase Android SDK for Cloud Firestore\nhas been updated. To get started with Firebase in Andro..."
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "The Firebase Android SDK for Cloud Firestore\nhas been updated. To get started with Firebase in Andro..."
+  },
+  {
+    "title": "May 30, 2019",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2019-05-31",
+    "content": ""
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "The Firebase Admin Go SDK (v3.8.0)\nis now available. This release comes with a new API for generatin..."
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2019-05-28",
+    "content": ""
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "The Firebase Admin Node.js SDK (v8.0.0)\nis now available. This release drops support for Node 6, and..."
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "The Firebase Admin Node.js SDK (v7.4.0)\nis now available. This release deprecates support for Node 6..."
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "The Firebase Crashlytics SDK for iOS (v3.13.0) is now\navailable. This release includes no changes to..."
+  },
+  {
+    "title": "May 7, 2019",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "The\nFirebase iOS SDK (v6.0.0)\nis now available. For more details, see the\nFirebase iOS SDK release n..."
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "The\nFirebase iOS SDK (v6.0.0)\nis now available. For more details, see the\nFirebase iOS SDK release n..."
+  },
+  {
+    "title": "Firebase Gradle Plugins",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2019-05-07",
+    "content": ""
+  },
+  {
+    "title": "Firebase console",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2019-05-07",
+    "content": ""
+  },
+  {
+    "title": "May 03, 2019",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2019-05-03",
+    "content": ""
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2019-05-03",
+    "content": ""
+  },
+  {
+    "title": "April 25, 2019",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "Supported by the Firebase CLI starting with v6.8.0."
+  },
+  {
+    "title": "April 19, 2019",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "The Firebase SDK for C++ (v5.7.0)\nis now available with changes to Remote Config.\nTo install this SD..."
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "The Firebase SDK for C++ (v5.7.0)\nis now available with changes to Remote Config.\nTo install this SD..."
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "The Firebase Admin .NET SDK (v1.4.0)\nis now available. This release comes with new API that enables\n..."
+  },
+  {
+    "title": "April 5, 2019",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2019-04-05",
+    "content": "The beta release of a Cloud Firestore Android library\nwith Kotlin extensions is now available. For m..."
+  },
+  {
+    "title": "SDK Release",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2019-04-05",
+    "content": "The beta release of a Cloud Firestore Android library\nwith Kotlin extensions is now available. For m..."
+  },
+  {
+    "title": "April 2, 2019",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2019-04-02",
+    "content": ""
+  },
+  {
+    "title": "SDK Release",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2019-04-02",
+    "content": ""
+  },
+  {
+    "title": "March 28, 2019",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "The Firebase Admin Node.js SDK (v7.2.0)\nis now available. This release comes with a new version of t..."
+  },
+  {
+    "title": "SDK Release",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "The Firebase Admin Node.js SDK (v7.2.0)\nis now available. This release comes with a new version of t..."
+  },
+  {
+    "title": "Firebase Gradle Plugins",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2019-03-27",
+    "content": ""
+  },
+  {
+    "title": "March 21, 2019",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2019-03-27",
+    "content": ""
+  },
+  {
+    "title": "March 20, 2019",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "The Firebase Admin Node.js SDK (v7.1.1)\nis now available. This release comes with a bug fix in the\nF..."
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "The Firebase Admin Node.js SDK (v7.1.1)\nis now available. This release comes with a bug fix in the\nF..."
+  },
+  {
+    "title": "March 15, 2019",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2019-03-15",
+    "content": ""
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2019-03-15",
+    "content": ""
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "The Firebase Admin Node.js SDK (v7.1.0)\nis now available. This release comes with a new API for send..."
+  },
+  {
+    "title": "March 13, 2019",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2019-03-13",
+    "content": ""
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2019-03-13",
+    "content": ""
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2019-03-11",
+    "content": ""
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "The\nFirebase JavaScript SDK (v5.8.6) is\nnow available. It improves performance when querying over do..."
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2019-02-26",
+    "content": ""
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "The Firebase Admin .NET SDK (v1.2.0)\nis now available. This release comes with a new API for sending..."
+  },
+  {
+    "title": "February 08, 2019",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2019-02-08",
+    "content": ""
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2019-02-08",
+    "content": ""
+  },
+  {
+    "title": "January 31, 2019",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "The\nFirebase JavaScript SDK (v5.8.2) is\nnow available. It updates the gRPC version and includes some..."
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "The\nFirebase JavaScript SDK (v5.8.2) is\nnow available. It updates the gRPC version and includes some..."
+  },
+  {
+    "title": "January 30, 2019",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2019-01-30",
+    "content": ""
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2019-01-30",
+    "content": ""
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2019-01-25",
+    "content": ""
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "The Firebase Admin .NET SDK (v1.1.0)\nis now available. This release comes with a new API for setting..."
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "The Firebase Admin Node.js SDK (v6.5.1)\nis now available. This release comes with improvements to ho..."
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "The Firebase Admin Python SDK (v2.15.0)\nis now available. This release comes with APNs critical aler..."
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "The Firebase Admin Node.js SDK (v6.5.0)\nis now available. This release comes with a new function for..."
+  },
+  {
+    "title": "December 22, 2018",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2018-12-22",
+    "content": ""
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2018-12-22",
+    "content": ""
+  },
+  {
+    "title": "December 19, 2018",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2018-12-19",
+    "content": ""
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2018-12-19",
+    "content": ""
+  },
+  {
+    "title": "December 6, 2018",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2018-12-06",
+    "content": ""
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2018-12-06",
+    "content": ""
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "The Firebase iOS SDK (v5.14.0)\nis now available. For more details, see the\nFirebase iOS SDK release ..."
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "The\nFirebase JavaScript SDK (v5.6.0) is\nnow available. It adds the ability to customize the dynamic ..."
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "The Firebase Admin Node.js SDK (v6.3.0)\nis now available. This release comes with a new Firebase pro..."
+  },
+  {
+    "title": "October 3, 2018",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "The Firebase SDK for C++ (v5.3.1)\nis now available with fixes in Invites.\nTo install this SDK, see A..."
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "The Firebase SDK for C++ (v5.3.1)\nis now available with fixes in Invites.\nTo install this SDK, see A..."
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "The Firebase iOS SDK (v5.8.1) is now\navailable. This release resolves a dependency error. For more d..."
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "The Firebase iOS SDK (v5.8.0) is now\navailable. For more details, see the Firebase iOS SDK release n..."
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "The\nFirebase JavaScript SDK (v5.4.1) is\nnow available. It contains some bug fixes for Authentication..."
+  },
+  {
+    "title": "July 20, 2018",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "The Firebase iOS SDK (v5.4.1) is now\navailable. It includes a fix for Cloud Firestore.\nTo install th..."
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "The Firebase iOS SDK (v5.4.1) is now\navailable. It includes a fix for Cloud Firestore.\nTo install th..."
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "The Firebase Android SDKs for Cloud Firestore and\nCloud Functions for Firebase have been updated. Fo..."
+  },
+  {
+    "title": "June 27, 2018",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "The Firebase SDK for C++ (v5.1.1)\nis now available with updated Android and iOS dependencies.\nTo ins..."
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "The Firebase SDK for C++ (v5.1.1)\nis now available with updated Android and iOS dependencies.\nTo ins..."
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "The Firebase Admin Python SDK (v2.10.0)\nis now available. This release contains new APIs for managin..."
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "The Firebase Admin Node.js SDK (v5.10.0)\nis now available. This release contains updates to the Real..."
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "The Firebase Admin Go SDK (v2.6.0)\nis now available. This release contains a new API for accessing\nR..."
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "The Firebase SDK for C++ (v4.4.1)\nis now available with bug fixes for Realtime Database and Instance..."
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "The Firebase JavaScript SDK (v4.9.0) is now\navailable. This release includes several updates/bugfixe..."
+  },
+  {
+    "title": "Firebase Dynamic Links",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "You can now specify a custom short link suffix when you create a\nDynamic Link in the Firebase consol..."
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "The Firebase JavaScript SDK (v4.8.2) is now\navailable. It contains several NPM package bugfixes, as ..."
+  },
+  {
+    "title": "January 3, 2018",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "The Firebase SDK for C++ (v4.4.0)\nis now available with support for Instance ID.\nTo install this SDK..."
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "The Firebase SDK for C++ (v4.4.0)\nis now available with support for Instance ID.\nTo install this SDK..."
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "The Firebase Admin Go SDK (v2.2.0)\nis now available. This release includes a new user management API..."
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "The Firebase SDK for C++ (v4.3.0)\nis now available with bug fixes for Remote Config and a feature in..."
+  },
+  {
+    "title": "November 8, 2017",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "The Firebase console has been updated with a new visual design. This includes\nupdated navigation wit..."
+  },
+  {
+    "title": "Firebase console",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "The Firebase console has been updated with a new visual design. This includes\nupdated navigation wit..."
+  },
+  {
+    "title": "November 7, 2017",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "Version 5.5.0 of the Firebase\nAdmin Java SDK introduces support for Cloud Firestore. To install this..."
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "Version 5.5.0 of the Firebase\nAdmin Java SDK introduces support for Cloud Firestore. To install this..."
+  },
+  {
+    "title": "Firebase Gradle Plugins",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "Version 1.1.4 of the Firebase Gradle Plugin for Android Studio 3.0 is now\navailable. This release re..."
+  },
+  {
+    "title": "Firebase Gradle Plugins",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "Version 1.1.3 of the Firebase Gradle Plugin now accepts implementation\nconfigurations in place of co..."
+  },
+  {
+    "title": "Authentication",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "The Firebase JS Authentication SDK has been officially open sourced. Take a look at\nthe source on\nGi..."
+  },
+  {
+    "title": "Firebase Gradle Plugins",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "Version 1.1.2 of the Firebase Gradle Plugin is available. This version adds\nsupport for Android Stud..."
+  },
+  {
+    "title": "September 21 2017",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "The Firebase JavaScript SDK (v4.4.0) is now\navailable. It introduces database multi-resource support..."
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "The Firebase JavaScript SDK (v4.4.0) is now\navailable. It introduces database multi-resource support..."
+  },
+  {
+    "title": "September 13, 2017",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "The Firebase Admin Go SDK (v1.0.2)\nis now available. This release includes improvements to the custo..."
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "The Firebase Admin Go SDK (v1.0.2)\nis now available. This release includes improvements to the custo..."
+  },
+  {
+    "title": "September 7, 2017",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "The Firebase Admin Go SDK (v1.0.1)\nis now available. This release includes improvements to the ID to..."
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "The Firebase Admin Go SDK (v1.0.1)\nis now available. This release includes improvements to the ID to..."
+  },
+  {
+    "title": "Aug 14, 2017",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "The Firebase Admin Node.js SDK (v5.2.0)\nis now available. This includes a new Cloud Storage API."
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "The Firebase Admin Node.js SDK (v5.2.0)\nis now available. This includes a new Cloud Storage API."
+  },
+  {
+    "title": "Jul 25, 2017",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "The Firebase Admin Node.js SDK (v5.1.0)\nis now available. This release includes new features in Auth..."
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "The Firebase Admin Node.js SDK (v5.1.0)\nis now available. This release includes new features in Auth..."
+  },
+  {
+    "title": "Jul 12, 2017",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "The Firebase Admin Node.js SDK (v5.0.1)\nis now available. This includes improvements for Authenticat..."
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "The Firebase Admin Node.js SDK (v5.0.1)\nis now available. This includes improvements for Authenticat..."
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "The Firebase iOS SDK (v4.0.3) is now\navailable. It includes bug fixes and updates in Analytics, AdMo..."
+  },
+  {
+    "title": "April 25, 2017",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "The Firebase iOS SDK (v3.17.0) is now\navailable. It includes updates to Analytics, Invites, and\nDyna..."
+  },
+  {
+    "title": "April 14, 2017",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "The Firebase JavaScript SDK (v3.7.8) is\nnow available. To install this SDK, see\nAdd Firebase to your..."
+  },
+  {
+    "title": "April 04, 2017",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "The Firebase Admin Python SDK (v1.0.0)\nis now available. This initial release comes with Authenticat..."
+  },
+  {
+    "title": "March 28, 2017",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "The Firebase JavaScript SDK (v3.7.4) is\nnow available. To install this SDK, see\nAdd Firebase to your..."
+  },
+  {
+    "title": "March 7, 2017",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "The Firebase Admin Node.js SDK (v4.1.3)\nis now available. It includes TypeScript improvements and be..."
+  },
+  {
+    "title": "January 24, 2017",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "The Firebase Admin Node.js SDK (v4.0.6)\nis now available. It fixes broken support for the ES2015 imp..."
+  },
+  {
+    "title": "January 17, 2017",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "The Firebase JavaScript SDK (v3.6.6) is now\navailable. To install this SDK, see\nAdd Firebase to your..."
+  },
+  {
+    "title": "December 13, 2016",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "The Firebase JavaScript SDK (v3.6.4) is now\navailable. It includes updates to Realtime Database, Clo..."
+  },
+  {
+    "title": "December 6, 2016",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "The Firebase JavaScript SDK (v3.6.3) is now\navailable. To install this SDK, see\nAdd Firebase to your..."
+  },
+  {
+    "title": "November 15, 2016",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "The Firebase JavaScript SDK (v3.6.1) is now\navailable. To install this SDK, see\nAdd Firebase to your..."
+  },
+  {
+    "title": "November 8, 2016",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "The Firebase JavaScript SDK (v3.6.0) is now\navailable. To install this SDK, see\nAdd Firebase to your..."
+  },
+  {
+    "title": "Firebase console",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "Project owners and editors can now create app &quot;nicknames&quot; that are\ndisplayed throughout th..."
+  },
+  {
+    "title": "August 1, 2016",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "The Firebase iOS SDK (v3.4.0) is now\navailable. To install\nthis SDK, see Add Firebase to your iOS Pr..."
+  },
+  {
+    "title": "SDK Releases",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "The Firebase iOS SDK (v3.4.0) is now\navailable. To install\nthis SDK, see Add Firebase to your iOS Pr..."
+  },
+  {
+    "title": "May 18, 2016",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "Version 3.2.0 of the Firebase SDK for Apple platforms is now available, and version 9.0.0 of the\nFir..."
+  },
+  {
+    "title": "FCM",
+    "link": "https://firebase.google.com/support/releases",
+    "date": "2025-04-13",
+    "content": "Initial release of Cloud Messaging."
+  }
+]

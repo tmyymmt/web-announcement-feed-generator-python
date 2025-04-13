@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <id>https://firebase.google.com/support/releases</id>
+  <title>Release Notes  |  Firebase</title>
+  <subtitle/>
+  <updated>2025-04-13T23:12:54.106954</updated>
+  <author>
+    <name>Feed Generator</name>
+  </author>
+  <link href="https://firebase.google.com/support/releases" rel="alternate"/>
+  <entry>
+    <id>https://firebase.google.com/support/release-notes/ios</id>
+    <title>不明</title>
+    <updated>2025-04-13T23:12:54.103401</updated>
+    <link href="https://firebase.google.com/support/release-notes/ios"/>
+    <published>2025-04-13T23:12:54.103401</published>
+    <content type="text">不明</content>
+  </entry>
+  <entry>
+    <id>https://firebase.google.com/support/release-notes/android</id>
+    <title>不明</title>
+    <updated>2025-04-13T23:12:54.104112</updated>
+    <link href="https://firebase.google.com/support/release-notes/android"/>
+    <published>2025-04-13T23:12:54.104112</published>
+    <content type="text">不明</content>
+  </entry>
+  <entry>
+    <id>https://firebase.google.com/support/release-notes/js</id>
+    <title>不明</title>
+    <updated>2025-04-13T23:12:54.104463</updated>
+    <link href="https://firebase.google.com/support/release-notes/js"/>
+    <published>2025-04-13T23:12:54.104463</published>
+    <content type="text">不明</content>
+  </entry>
+  <entry>
+    <id>https://firebase.google.com/support/release-notes/flutter</id>
+    <title>不明</title>
+    <updated>2025-04-13T23:12:54.104723</updated>
+    <link href="https://firebase.google.com/support/release-notes/flutter"/>
+    <published>2025-04-13T23:12:54.104723</published>
+    <content type="text">不明</content>
+  </entry>
+  <entry>
+    <id>https://firebase.google.com/support/release-notes/cpp-relnotes</id>
+    <title>不明</title>
+    <updated>2025-04-13T23:12:54.104959</updated>
+    <link href="https://firebase.google.com/support/release-notes/cpp-relnotes"/>
+    <published>2025-04-13T23:12:54.104959</published>
+    <content type="text">不明</content>
+  </entry>
+  <entry>
+    <id>https://firebase.google.com/support/release-notes/unity</id>
+    <title>不明</title>
+    <updated>2025-04-13T23:12:54.105173</updated>
+    <link href="https://firebase.google.com/support/release-notes/unity"/>
+    <published>2025-04-13T23:12:54.105173</published>
+    <content type="text">不明</content>
+  </entry>
+  <entry>
+    <id>https://firebase.google.com/support/release-notes/admin/node</id>
+    <title>不明</title>
+    <updated>2025-04-13T23:12:54.105419</updated>
+    <link href="https://firebase.google.com/support/release-notes/admin/node"/>
+    <published>2025-04-13T23:12:54.105419</published>
+    <content type="text">不明</content>
+  </entry>
+  <entry>
+    <id>https://firebase.google.com/support/release-notes/admin/java</id>
+    <title>不明</title>
+    <updated>2025-04-13T23:12:54.105647</updated>
+    <link href="https://firebase.google.com/support/release-notes/admin/java"/>
+    <published>2025-04-13T23:12:54.105647</published>
+    <content type="text">不明</content>
+  </entry>
+  <entry>
+    <id>https://firebase.google.com/support/release-notes/admin/python</id>
+    <title>不明</title>
+    <updated>2025-04-13T23:12:54.105876</updated>
+    <link href="https://firebase.google.com/support/release-notes/admin/python"/>
+    <published>2025-04-13T23:12:54.105876</published>
+    <content type="text">不明</content>
+  </entry>
+  <entry>
+    <id>https://firebase.google.com/support/release-notes/admin/go</id>
+    <title>不明</title>
+    <updated>2025-04-13T23:12:54.106169</updated>
+    <link href="https://firebase.google.com/support/release-notes/admin/go"/>
+    <published>2025-04-13T23:12:54.106169</published>
+    <content type="text">不明</content>
+  </entry>
+  <entry>
+    <id>https://firebase.google.com/support/release-notes/admin/dotnet</id>
+    <title>不明</title>
+    <updated>2025-04-13T23:12:54.106425</updated>
+    <link href="https://firebase.google.com/support/release-notes/admin/dotnet"/>
+    <published>2025-04-13T23:12:54.106425</published>
+    <content type="text">不明</content>
+  </entry>
+  <entry>
+    <id>https://firebase.google.com/support/release-notes/cli</id>
+    <title>不明</title>
+    <updated>2025-04-13T23:12:54.106652</updated>
+    <link href="https://firebase.google.com/support/release-notes/cli"/>
+    <published>2025-04-13T23:12:54.106652</published>
+    <content type="text">不明</content>
+  </entry>
+</feed>
