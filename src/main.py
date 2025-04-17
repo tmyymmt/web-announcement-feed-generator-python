@@ -13,13 +13,16 @@ from typing import Optional, List, Dict, Any
 def parse_args():
     """コマンドライン引数を解析する"""
     parser = argparse.ArgumentParser(description='指定されたURLのWebページからお知らせ情報を取得し、フィードデータとCSVを出力します')
-    parser.add_argument('url', help='スクレイピング対象のURL')
+    parser.add_argument('url', help='スクレイピング対象のURL、または"all"を指定して全ての対象URLに対して実行')
     parser.add_argument('--since', help='指定した日付以降の情報のみを抽出 (YYYY-MM-DD形式)')
     parser.add_argument('--until', help='指定した日付以前の情報のみを抽出 (YYYY-MM-DD形式)')
-    parser.add_argument('--category', help='指定したカテゴリの情報のみを抽出')
+    parser.add_argument('--category', help='指定したカテゴリを含む情報のみを抽出')
+    parser.add_argument('--exclude-category', help='指定したカテゴリを含まない情報のみを抽出')
     parser.add_argument('--feed-output', help='フィードデータの出力ファイルパス')
     parser.add_argument('--csv-output', help='CSVデータの出力ファイルパス')
     parser.add_argument('--diff-mode', action='store_true', help='差分モード: 既存フィードデータの最新日時以降の項目のみを出力')
+    parser.add_argument('--with-date', action='store_true', help='出力ファイル名に日付を付加する')
+    parser.add_argument('--debug', action='store_true', help='デバッグモード: 詳細なログを出力')
     
     return parser.parse_args()
 
@@ -32,7 +35,8 @@ def get_scraper_module_name(url: str) -> str:
     module_name = hostname.replace('.', '_').replace('-', '_')
     return module_name
 
-def filter_items(items: List[Dict[str, Any]], since: Optional[str], until: Optional[str], category: Optional[str]) -> List[Dict[str, Any]]:
+def filter_items(items: List[Dict[str, Any]], since: Optional[str], until: Optional[str], 
+                category: Optional[str], exclude_category: Optional[str]) -> List[Dict[str, Any]]:
     """フィルタ条件に基づいてアイテムをフィルタリングする"""
     filtered_items = []
     
@@ -61,9 +65,14 @@ def filter_items(items: List[Dict[str, Any]], since: Optional[str], until: Optio
                 if item_date.date() > until_date.date():
                     include = False
         
-        # カテゴリフィルタリング
+        # カテゴリを含むフィルタリング
         if include and category and 'categories' in item:
             if category.lower() not in [c.lower() for c in item['categories']]:
+                include = False
+        
+        # カテゴリを除外するフィルタリング
+        if include and exclude_category and 'categories' in item:
+            if exclude_category.lower() in [c.lower() for c in item['categories']]:
                 include = False
         
         if include:
@@ -127,9 +136,15 @@ def generate_csv(items: List[Dict[str, Any]]) -> str:
         date = "不明"
         if 'pubDate' in item and item['pubDate']:
             if isinstance(item['pubDate'], datetime.datetime):
-                date = item['pubDate'].strftime('%Y-%m-%d')
+                date = item['pubDate'].strftime('%Y/%m/%d')
             else:
-                date = item['pubDate']
+                try:
+                    # RFC822形式の日付文字列をパース
+                    parsed_date = datetime.datetime.strptime(item['pubDate'], '%a, %d %b %Y %H:%M:%S %z')
+                    date = parsed_date.strftime('%Y/%m/%d')
+                except ValueError:
+                    # 他の形式の場合はそのまま使用
+                    date = item['pubDate']
         
         title = "不明"
         if 'title' in item and item['title']:
@@ -147,7 +162,7 @@ def generate_csv(items: List[Dict[str, Any]]) -> str:
     
     return csv_data
 
-def generate_default_filename(url: str, extension: str) -> str:
+def generate_default_filename(url: str, extension: str, with_date: bool = False) -> str:
     """URLと日付に基づくデフォルトのファイル名を生成する"""
     # URLの無効な文字を削除し、ファイル名に適した形式に変換
     parsed_url = urllib.parse.urlparse(url)
@@ -167,7 +182,11 @@ def generate_default_filename(url: str, extension: str) -> str:
     # 現在の日付を追加
     today = datetime.datetime.now().strftime('%Y%m%d')
     
-    return f"{base_name}_{today}.{extension}"
+    # --with-dateオプションが指定された場合のみ日付を付加
+    if with_date:
+        return f"{base_name}_{today}.{extension}"
+    else:
+        return f"{base_name}.{extension}"
 
 def get_next_available_filename(filename: str) -> str:
     """ファイル名が既に存在する場合、連番を付加した新しいファイル名を返す"""
@@ -217,75 +236,117 @@ def get_latest_date_from_feed(feed_file: str) -> Optional[datetime.datetime]:
         print(f"フィードファイルの解析中にエラーが発生しました: {e}")
         return None
 
+def get_target_urls() -> List[str]:
+    """サポートされている対象ページのURLリストを返す"""
+    return [
+        'https://firebase.google.com/support/releases',
+        'https://ja.monaca.io/headline/'
+    ]
+
 def main():
     args = parse_args()
     
-    # URLからスクレイパーモジュール名を取得
-    scraper_module_name = get_scraper_module_name(args.url)
+    # デバッグモードのログ設定
+    debug = args.debug
     
-    try:
-        # スクレイパーモジュールを動的にインポート
-        scraper_module = importlib.import_module(f'scrapers.{scraper_module_name}')
-    except ImportError:
-        # 特定のURLに対応するスクレイパーが見つからない場合は汎用スクレイパーを使用
+    # 「all」が指定された場合は、全ての対象URLに対して実行
+    if args.url.lower() == 'all':
+        target_urls = get_target_urls()
+        if debug:
+            print(f"全対象URL ({len(target_urls)}件) に対して実行します")
+    else:
+        target_urls = [args.url]
+    
+    # 各URLに対して処理を実行
+    for url in target_urls:
+        if debug:
+            print(f"\n=== URLの処理を開始: {url} ===")
+        
+        # URLからスクレイパーモジュール名を取得
+        scraper_module_name = get_scraper_module_name(url)
+        
         try:
-            scraper_module = importlib.import_module('scrapers.generic')
+            # スクレイパーモジュールを動的にインポート
+            scraper_module = importlib.import_module(f'scrapers.{scraper_module_name}')
+            if debug:
+                print(f"スクレイパーモジュール '{scraper_module_name}' を読み込みました")
         except ImportError:
-            print(f"エラー: '{args.url}'に対応するスクレイパーが見つかりません。")
-            return 1
-    
-    # スクレイピングを実行
-    try:
-        items = scraper_module.scrape(args.url)
-    except Exception as e:
-        print(f"スクレイピング中にエラーが発生しました: {e}")
-        return 1
-    
-    # デフォルトのファイル名を生成
-    default_feed_output = generate_default_filename(args.url, "xml")
-    default_csv_output = default_feed_output.replace(".xml", ".csv")
-    
-    # 出力ファイルのパスを決定
-    feed_output = args.feed_output or default_feed_output
-    csv_output = args.csv_output or default_csv_output
-    
-    # 差分モードの処理
-    since_date = None
-    if args.diff_mode:
-        # 既存のフィードファイルが存在する場合
-        if os.path.exists(feed_output):
-            latest_date = get_latest_date_from_feed(feed_output)
-            if latest_date:
-                # 最新の日付をフィルタの条件に設定
-                since_date = latest_date.strftime('%Y-%m-%d')
-                print(f"差分モード: {since_date} 以降の項目のみを取得します")
-                
-                # 出力ファイル名を変更（重複しないようにする）
-                feed_output = get_next_available_filename(feed_output)
-                csv_output = feed_output.replace(".xml", ".csv")
-    
-    # フィルタリング
-    filtered_items = filter_items(
-        items,
-        args.since or since_date,  # 差分モードの場合は最新日付を使用
-        args.until,
-        args.category
-    )
-    
-    # RSSフィードの生成
-    rss_data = generate_rss(filtered_items, args.url)
-    
-    # CSVデータの生成
-    csv_data = generate_csv(filtered_items)
-    
-    # ファイルに書き込み
-    with open(feed_output, 'w', encoding='utf-8') as f:
-        f.write(rss_data)
-    print(f"フィードデータを '{feed_output}' に出力しました。")
-    
-    with open(csv_output, 'w', encoding='utf-8') as f:
-        f.write(csv_data)
-    print(f"CSVデータを '{csv_output}' に出力しました。")
+            # 特定のURLに対応するスクレイパーが見つからない場合は汎用スクレイパーを使用
+            try:
+                scraper_module = importlib.import_module('scrapers.generic')
+                if debug:
+                    print(f"'{url}'に対応するスクレイパーが見つからないため、汎用スクレイパーを使用します")
+            except ImportError:
+                print(f"エラー: '{url}'に対応するスクレイパーが見つかりません。")
+                continue
+        
+        # スクレイピングを実行
+        try:
+            items = scraper_module.scrape(url)
+            if debug:
+                print(f"スクレイピングが完了しました。{len(items)}件のアイテムを取得しました")
+        except Exception as e:
+            print(f"スクレイピング中にエラーが発生しました: {e}")
+            continue
+        
+        # デフォルトのファイル名を生成
+        default_feed_output = generate_default_filename(url, "xml", args.with_date)
+        default_csv_output = default_feed_output.replace(".xml", ".csv")
+        
+        # 出力ファイルのパスを決定
+        feed_output = args.feed_output or default_feed_output
+        csv_output = args.csv_output or default_csv_output
+        
+        # 複数URLの場合でユーザー指定の出力ファイル名がある場合、URLごとに異なるファイル名を生成
+        if len(target_urls) > 1 and args.feed_output:
+            base_name, extension = os.path.splitext(args.feed_output)
+            parsed_url = urllib.parse.urlparse(url)
+            hostname = parsed_url.netloc.replace('.', '_')
+            feed_output = f"{base_name}_{hostname}{extension}"
+            csv_output = feed_output.replace(extension, ".csv")
+        
+        # 差分モードの処理
+        since_date = None
+        if args.diff_mode:
+            # 既存のフィードファイルが存在する場合
+            if os.path.exists(feed_output):
+                latest_date = get_latest_date_from_feed(feed_output)
+                if latest_date:
+                    # 最新の日付をフィルタの条件に設定
+                    since_date = latest_date.strftime('%Y-%m-%d')
+                    if debug:
+                        print(f"差分モード: {since_date} 以降の項目のみを取得します")
+                    
+                    # 出力ファイル名を変更（重複しないようにする）
+                    feed_output = get_next_available_filename(feed_output)
+                    csv_output = feed_output.replace(".xml", ".csv")
+        
+        # フィルタリング
+        filtered_items = filter_items(
+            items,
+            args.since or since_date,  # 差分モードの場合は最新日付を使用
+            args.until,
+            args.category,
+            args.exclude_category
+        )
+        
+        if debug:
+            print(f"フィルタリング後のアイテム数: {len(filtered_items)}")
+        
+        # RSSフィードの生成
+        rss_data = generate_rss(filtered_items, url)
+        
+        # CSVデータの生成
+        csv_data = generate_csv(filtered_items)
+        
+        # ファイルに書き込み
+        with open(feed_output, 'w', encoding='utf-8') as f:
+            f.write(rss_data)
+        print(f"フィードデータを '{feed_output}' に出力しました。")
+        
+        with open(csv_output, 'w', encoding='utf-8') as f:
+            f.write(csv_data)
+        print(f"CSVデータを '{csv_output}' に出力しました。")
     
     return 0
 

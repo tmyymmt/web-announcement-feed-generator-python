@@ -1,85 +1,81 @@
-# Web Page Feed Extractor
+# Web Announcement Feed Generator
 
-A CLI tool to extract feed data from web pages that don't provide RSS/Atom feeds, and output them as RSS feed and CSV.
+A CLI tool that scrapes announcement information from specified web pages, outputs RSS feed files, and generates CSV lists of items that match filter conditions.
 
 ## Features
 
-- Extracts announcements/news information from specified web pages
-- Converts the extracted information into RSS 2.0 feed format
-- Allows filtering by date range and category
-- Outputs both RSS feed file and CSV file
-- Automatically detects categories based on content keywords
-- Supports differential mode to extract only new items since the last run
-- Automatically generates filenames based on URL and current date
+- Scrapes announcements from web pages without existing RSS feeds
+- Extracts date, title, content, and category information from announcements
+- Outputs RSS 2.0 formatted feed files
+- Generates CSV lists filtered by various conditions
+- Supports multiple websites with specialized scrapers
+- Differential mode to only process new items
 
 ## Requirements
 
-- Python 3.8+
-- Required packages: requests, beautifulsoup4
+- Python 3.x
+- Required packages:
+  - requests
+  - beautifulsoup4
 
 ## Installation
 
-1. Clone the repository:
-```
-git clone https://github.com/yourusername/get-info-from-no-feed-page.git
-cd get-info-from-no-feed-page
-```
+1. Clone the repository
+2. Install required packages:
 
-2. Install the required packages:
-```
+```sh
 pip install -r requirements.txt
 ```
 
 ## Usage
 
-Basic usage:
 ```
-python src/main.py URL [options]
+python src/main.py [URL] [options]
 ```
 
-Options:
-- `--since YYYY-MM-DD`: Filter items published on or after this date
-- `--until YYYY-MM-DD`: Filter items published on or before this date
-- `--category CATEGORY`: Filter items by category
-- `--feed-output PATH`: Specify the output path for the RSS feed file (default: auto-generated based on URL and date)
-- `--csv-output PATH`: Specify the output path for the CSV file (default: auto-generated based on URL and date)
-- `--diff-mode`: Extract only items newer than the most recent date in the existing feed file
+### Arguments
 
-## Example
+- `URL`: Target webpage URL to scrape, or "all" to scrape all supported URLs
 
-Extract feed data from Firebase release notes:
-```
+### Options
+
+- `--since YYYY-MM-DD`: Only include items published on or after the specified date
+- `--until YYYY-MM-DD`: Only include items published on or before the specified date
+- `--category CATEGORY`: Only include items containing the specified category
+- `--exclude-category CATEGORY`: Exclude items containing the specified category
+- `--feed-output PATH`: Specify output path for the RSS feed file
+- `--csv-output PATH`: Specify output path for the CSV file
+- `--diff-mode`: Only output items newer than the latest item in the existing feed file
+- `--with-date`: Add current date to output filenames (_YYYYMMDD format)
+- `--debug`: Enable detailed debugging output
+
+### Example Commands
+
+```sh
+# Scrape announcements from Firebase releases page
 python src/main.py https://firebase.google.com/support/releases
-```
 
-Filter for important updates since January 1, 2024:
-```
-python src/main.py https://firebase.google.com/support/releases --since 2024-01-01 --category Important
-```
+# Scrape all supported websites
+python src/main.py all --with-date
 
-Extract only new items since the last run:
-```
+# Get only important announcements from Firebase
+python src/main.py https://firebase.google.com/support/releases --category important
+
+# Get all announcements except deprecated ones
+python src/main.py https://firebase.google.com/support/releases --exclude-category deprecated
+
+# Get announcements published after Jan 1, 2025
+python src/main.py https://firebase.google.com/support/releases --since 2025-01-01
+
+# Differential mode: only get new items since last run
 python src/main.py https://firebase.google.com/support/releases --diff-mode
 ```
 
-## Output Files
+## Supported Websites
 
-By default, the tool generates two output files:
-1. An RSS feed file (XML format) containing all extracted items
-2. A CSV file with the same items in a tabular format
+- Firebase Release Notes: https://firebase.google.com/support/releases
+- Monaca Headline: https://ja.monaca.io/headline/
 
-Default filenames are based on the URL and current date (e.g., `firebase_google_com_support_releases_20250414.xml` and corresponding `.csv` file).
+## License
 
-In differential mode, if files already exist, the tool creates new files with incremental numbers appended (e.g., `firebase_google_com_support_releases_20250414_1.xml`).
-
-## Extending
-
-To add support for a specific website, create a new Python script in the `src/scrapers` directory. The filename should follow the pattern `domain_name.py` (with dots replaced by underscores).
-
-For example, to add support for `example.com`, create a file `src/scrapers/example_com.py` with a `scrape(url)` function that returns a list of dictionaries with the following keys:
-- `title`: Title of the announcement
-- `description`: Content of the announcement
-- `link`: URL of the announcement
-- `pubDate`: Publication date
-- `categories`: List of categories
-- `guid`: Globally unique identifier
+See [LICENSE](LICENSE) file for details.

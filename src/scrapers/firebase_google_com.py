@@ -42,28 +42,54 @@ def extract_date(date_str: str) -> datetime.datetime:
     # パターンにマッチしない場合は現在の日時を返す
     return datetime.datetime.now()
 
-def detect_categories(title: str, description: str) -> List[str]:
-    """タイトルと説明文からカテゴリを検出する"""
+def extract_category_from_class(class_name: str) -> str:
+    """release-* 形式のクラス名からカテゴリ名を抽出する"""
+    if class_name and class_name.startswith('release-'):
+        # release- プレフィックスを削除
+        return class_name.replace('release-', '')
+    return 'other'
+
+def detect_categories(title: str, description: str, class_names: List[str] = None) -> List[str]:
+    """タイトル、説明文、クラス名からカテゴリを検出する"""
     categories = []
+    
+    # クラス名からカテゴリを抽出
+    if class_names:
+        for class_name in class_names:
+            if class_name.startswith('release-'):
+                category = extract_category_from_class(class_name)
+                if category:
+                    categories.append(category)
     
     # 特定のキーワードに基づいてカテゴリを検出
     keywords = {
-        'deprecated': 'Deprecated',
-        'deprecation': 'Deprecated',
-        'important': 'Important',
-        'shutdown': 'Shutdown',
-        'update': 'Update',
-        'new': 'New',
-        'feature': 'Feature',
-        'release': 'Release',
-        'beta': 'Beta',
-        'alpha': 'Alpha',
-        'preview': 'Preview',
-        'bug': 'Bugfix',
-        'fix': 'Bugfix',
-        'security': 'Security',
-        'removed': 'Removed',
-        'changed': 'Changed'
+        'deprecated': 'deprecated',
+        'deprecation': 'deprecated',
+        'important': 'important',
+        'shutdown': 'shutdown',
+        'update': 'changed',
+        'new': 'feature',
+        'feature': 'feature',
+        'release': 'release',
+        'beta': 'beta',
+        'alpha': 'alpha',
+        'preview': 'preview',
+        'bug': 'fixed',
+        'fix': 'fixed',
+        'security': 'security',
+        'removed': 'removed',
+        'changed': 'changed',
+        'admin': 'admin',
+        'android': 'android',
+        'cli': 'cli',
+        'cpp': 'cpp',
+        'flutter': 'flutter',
+        'functions': 'functions',
+        'ios': 'ios',
+        'javascript': 'javascript',
+        'rules': 'rules',
+        'unity': 'unity',
+        'issue': 'issue'
     }
     
     text = (title + ' ' + description).lower()
@@ -74,7 +100,7 @@ def detect_categories(title: str, description: str) -> List[str]:
     
     # カテゴリが検出されなかった場合は「その他」を追加
     if not categories:
-        categories.append('Other')
+        categories.append('other')
     
     return list(set(categories))  # 重複を削除
 
@@ -136,7 +162,14 @@ def scrape(url: str) -> List[Dict[str, Any]]:
                     for list_item in next_elem.select('li'):
                         # リリースタイプ (feature, fixed, deprecated など)を検出
                         release_type_span = list_item.select_one('span[class*="release-"]')
-                        release_type = release_type_span.get('class')[0].replace('release-', '') if release_type_span else 'other'
+                        
+                        # クラス名を取得してカテゴリに変換
+                        release_classes = []
+                        if release_type_span:
+                            release_classes = release_type_span.get('class', [])
+                            release_type = extract_category_from_class(release_classes[0]) if release_classes else 'other'
+                        else:
+                            release_type = 'other'
                         
                         # リリース内容を取得
                         content = list_item.get_text(strip=True)
@@ -153,10 +186,8 @@ def scrape(url: str) -> List[Dict[str, Any]]:
                         else:
                             formatted_pub_date = "不明"
                         
-                        # カテゴリを検出 (リリースタイプに基づく)
-                        categories = [release_type.capitalize()]
-                        additional_categories = detect_categories(title, content)
-                        categories.extend(additional_categories)
+                        # カテゴリを検出
+                        categories = detect_categories(title, content, release_classes)
                         
                         # 項目を追加
                         item = {
@@ -164,12 +195,12 @@ def scrape(url: str) -> List[Dict[str, Any]]:
                             'description': content,
                             'link': f"{url}#{header_id}",
                             'pubDate': formatted_pub_date,
-                            'categories': list(set(categories)),  # 重複を削除
+                            'categories': categories,
                             'guid': f"{url}#{header_id}-{title}"
                         }
                         
                         items.append(item)
-                        print(f"アイテムを追加しました: {title}")
+                        print(f"アイテムを追加しました: {title} (カテゴリ: {', '.join(categories)})")
     
     # 見出しが見つからない場合、別のアプローチを試す
     if not items:
@@ -184,7 +215,14 @@ def scrape(url: str) -> List[Dict[str, Any]]:
             for section in release_sections:
                 # リリースタイプ (feature, fixed, deprecated など)を検出
                 release_type_span = section.select_one('span[class*="release-"]')
-                release_type = release_type_span.get('class')[0].replace('release-', '') if release_type_span else 'other'
+                
+                # クラス名を取得してカテゴリに変換
+                release_classes = []
+                if release_type_span:
+                    release_classes = release_type_span.get('class', [])
+                    release_type = extract_category_from_class(release_classes[0]) if release_classes else 'other'
+                else:
+                    release_type = 'other'
                 
                 # リリース内容を取得
                 content = section.get_text(strip=True)
@@ -208,10 +246,8 @@ def scrape(url: str) -> List[Dict[str, Any]]:
                 except Exception:
                     formatted_pub_date = datetime.datetime.now().strftime('%a, %d %b %Y %H:%M:%S +0000')
                 
-                # カテゴリを検出
-                categories = [release_type.capitalize()]
-                additional_categories = detect_categories(title, content)
-                categories.extend(additional_categories)
+                # カテゴリを検出（クラス名を含む）
+                categories = detect_categories(title, content, release_classes)
                 
                 # 項目を追加
                 item = {
@@ -219,12 +255,12 @@ def scrape(url: str) -> List[Dict[str, Any]]:
                     'description': content,
                     'link': url,
                     'pubDate': formatted_pub_date,
-                    'categories': list(set(categories)),  # 重複を削除
+                    'categories': categories,
                     'guid': f"{url}#{content[:50]}"
                 }
                 
                 items.append(item)
-                print(f"代替方法でアイテムを追加しました: {title}")
+                print(f"代替方法でアイテムを追加しました: {title} (カテゴリ: {', '.join(categories)})")
     
     print(f"合計 {len(items)} 個のアイテムを取得しました。")
     return items
