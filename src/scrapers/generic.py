@@ -3,9 +3,13 @@
 import re
 import datetime
 import requests
+import logging
 from bs4 import BeautifulSoup
 from typing import List, Dict, Any
 import urllib.parse
+
+# ロガーの設定
+logger = logging.getLogger(__name__)
 
 def extract_date(text: str) -> str:
     """テキストから日付パターンを抽出する"""
@@ -67,8 +71,15 @@ def scrape(url: str) -> List[Dict[str, Any]]:
     headers = {
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'
     }
-    response = requests.get(url, headers=headers)
-    response.raise_for_status()
+    
+    logger.debug(f"汎用スクレイパーを使用してURLにアクセス: {url}")
+    
+    try:
+        response = requests.get(url, headers=headers)
+        response.raise_for_status()
+    except requests.exceptions.RequestException as e:
+        logger.error(f"URLへのアクセス中にエラーが発生しました: {e}")
+        raise
     
     # HTMLをパース
     soup = BeautifulSoup(response.text, 'html.parser')
@@ -79,22 +90,28 @@ def scrape(url: str) -> List[Dict[str, Any]]:
     # 一般的なお知らせセクションのパターン
     # 1. ニュース/お知らせリスト
     news_elements = soup.select('article, .news-item, .notice, .announcement, .post, .entry, div[class*="news"], div[class*="notice"], div[class*="announcement"]')
+    logger.debug(f"ニュース項目パターン1で検出した要素数: {len(news_elements)}")
     
     # 2. 日付とタイトルのペアを含む要素
     if not news_elements:
         news_elements = soup.select('ul li, div.row, div.list-item')
+        logger.debug(f"ニュース項目パターン2で検出した要素数: {len(news_elements)}")
     
     # 3. 要素が見つからない場合は、テキスト内容で判断
     if not news_elements:
         # すべての段落要素を取得
         paragraphs = soup.select('p')
         
+        temp_elements = []
         for p in paragraphs:
             text = p.get_text(strip=True)
             
             # 日付パターンを含み、最低限の長さがある段落を取得
             if extract_date(text) != "不明" and len(text) > 50:
-                news_elements.append(p)
+                temp_elements.append(p)
+        
+        news_elements = temp_elements
+        logger.debug(f"ニュース項目パターン3で検出した要素数: {len(news_elements)}")
     
     # ベースURLの取得
     parsed_url = urllib.parse.urlparse(url)
@@ -120,6 +137,8 @@ def scrape(url: str) -> List[Dict[str, Any]]:
         # カテゴリを検出
         categories = detect_categories(title + ' ' + content)
         
+        logger.debug(f"検出したお知らせ項目: タイトル={title[:30]}..., 日付={date_str}, カテゴリ={categories}")
+        
         # 項目を追加
         item = {
             'title': title,
@@ -132,4 +151,5 @@ def scrape(url: str) -> List[Dict[str, Any]]:
         
         items.append(item)
     
+    logger.info(f"汎用スクレイパーで{len(items)}件のお知らせ項目を検出しました")
     return items

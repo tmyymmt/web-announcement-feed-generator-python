@@ -8,7 +8,31 @@ import importlib
 import urllib.parse
 import xml.etree.ElementTree as ET
 import re
+import logging
 from typing import Optional, List, Dict, Any
+
+# ロガーの設定
+logger = logging.getLogger(__name__)
+
+def setup_logger(debug=False, silent=False):
+    """ロガーの設定を行う"""
+    # ロガーのレベルを設定
+    if silent:
+        logger.setLevel(logging.ERROR)  # サイレントモードではエラーのみ出力
+    elif debug:
+        logger.setLevel(logging.DEBUG)  # デバッグモードでは詳細なログを出力
+    else:
+        logger.setLevel(logging.INFO)   # 通常モードでは情報レベル以上を出力
+
+    # 既存のハンドラがある場合はクリア
+    if logger.handlers:
+        logger.handlers.clear()
+
+    # ハンドラの作成
+    handler = logging.StreamHandler()
+    formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+    handler.setFormatter(formatter)
+    logger.addHandler(handler)
 
 def parse_args():
     """コマンドライン引数を解析する"""
@@ -23,6 +47,7 @@ def parse_args():
     parser.add_argument('--diff-mode', action='store_true', help='差分モード: 既存フィードデータの最新日時以降の項目のみを出力')
     parser.add_argument('--with-date', action='store_true', help='出力ファイル名に日付を付加する')
     parser.add_argument('--debug', action='store_true', help='デバッグモード: 詳細なログを出力')
+    parser.add_argument('--silent', action='store_true', help='サイレントモード: ログ出力を抑制する')
     
     return parser.parse_args()
 
@@ -30,9 +55,26 @@ def get_scraper_module_name(url: str) -> str:
     """URLからスクレイパーのモジュール名を取得する"""
     parsed_url = urllib.parse.urlparse(url)
     hostname = parsed_url.netloc
+    path = parsed_url.path
     
-    # ドメイン名をスネークケースに変換してモジュール名として使用
+    # パスの先頭と末尾のスラッシュを削除
+    if path:
+        path = path.strip('/')
+        # パスの区切り文字をアンダースコアに変換
+        path = path.replace('/', '_')
+    
+    # モジュール名の生成（ドメイン名+パス）
     module_name = hostname.replace('.', '_').replace('-', '_')
+    if path:
+        module_name += f"_{path}".replace('-', '_')
+    
+    # モジュール名が長すぎる場合は短縮（Pythonのモジュール名制限を考慮）
+    if len(module_name) > 100:  # 一般的に安全な長さ
+        module_name = module_name[:100]
+    
+    # ファイル名に無効な文字があれば置換
+    module_name = re.sub(r'[<>:"/\\|?*]', '_', module_name)
+    
     return module_name
 
 def filter_items(items: List[Dict[str, Any]], since: Optional[str], until: Optional[str], 
@@ -67,13 +109,32 @@ def filter_items(items: List[Dict[str, Any]], since: Optional[str], until: Optio
         
         # カテゴリを含むフィルタリング
         if include and category and 'categories' in item:
-            if category.lower() not in [c.lower() for c in item['categories']]:
-                include = False
+            # カテゴリがリストの場合
+            if isinstance(item['categories'], list):
+                found = False
+                for item_category in item['categories']:
+                    if category.lower() in item_category.lower():
+                        found = True
+                        break
+                if not found:
+                    include = False
+            # カテゴリが文字列の場合
+            elif isinstance(item['categories'], str):
+                if category.lower() not in item['categories'].lower():
+                    include = False
         
         # カテゴリを除外するフィルタリング
         if include and exclude_category and 'categories' in item:
-            if exclude_category.lower() in [c.lower() for c in item['categories']]:
-                include = False
+            # カテゴリがリストの場合
+            if isinstance(item['categories'], list):
+                for item_category in item['categories']:
+                    if exclude_category.lower() in item_category.lower():
+                        include = False
+                        break
+            # カテゴリが文字列の場合
+            elif isinstance(item['categories'], str):
+                if exclude_category.lower() in item['categories'].lower():
+                    include = False
         
         if include:
             filtered_items.append(item)
@@ -179,7 +240,7 @@ def generate_default_filename(url: str, extension: str, with_date: bool = False)
     # ファイル名に無効な文字が含まれている場合は置換
     base_name = re.sub(r'[<>:"/\\|?*]', '_', base_name)
     
-    # 現在の日付を追加
+    # 現在の日付
     today = datetime.datetime.now().strftime('%Y%m%d')
     
     # --with-dateオプションが指定された場合のみ日付を付加
@@ -233,7 +294,7 @@ def get_latest_date_from_feed(feed_file: str) -> Optional[datetime.datetime]:
         
         return None
     except Exception as e:
-        print(f"フィードファイルの解析中にエラーが発生しました: {e}")
+        logger.error(f"フィードファイルの解析中にエラーが発生しました: {e}")
         return None
 
 def get_target_urls() -> List[str]:
@@ -246,21 +307,22 @@ def get_target_urls() -> List[str]:
 def main():
     args = parse_args()
     
-    # デバッグモードのログ設定
-    debug = args.debug
+    # ロガーの設定
+    setup_logger(debug=args.debug, silent=args.silent)
     
     # 「all」が指定された場合は、全ての対象URLに対して実行
     if args.url.lower() == 'all':
         target_urls = get_target_urls()
-        if debug:
-            print(f"全対象URL ({len(target_urls)}件) に対して実行します")
+        logger.info(f"全対象URL ({len(target_urls)}件) に対して実行します")
     else:
         target_urls = [args.url]
     
+    # 処理結果のステータスコード（0:成功、1:エラー）
+    return_code = 0
+    
     # 各URLに対して処理を実行
     for url in target_urls:
-        if debug:
-            print(f"\n=== URLの処理を開始: {url} ===")
+        logger.debug(f"\n=== URLの処理を開始: {url} ===")
         
         # URLからスクレイパーモジュール名を取得
         scraper_module_name = get_scraper_module_name(url)
@@ -268,25 +330,24 @@ def main():
         try:
             # スクレイパーモジュールを動的にインポート
             scraper_module = importlib.import_module(f'scrapers.{scraper_module_name}')
-            if debug:
-                print(f"スクレイパーモジュール '{scraper_module_name}' を読み込みました")
+            logger.debug(f"スクレイパーモジュール '{scraper_module_name}' を読み込みました")
         except ImportError:
             # 特定のURLに対応するスクレイパーが見つからない場合は汎用スクレイパーを使用
             try:
                 scraper_module = importlib.import_module('scrapers.generic')
-                if debug:
-                    print(f"'{url}'に対応するスクレイパーが見つからないため、汎用スクレイパーを使用します")
+                logger.debug(f"'{url}'に対応するスクレイパーが見つからないため、汎用スクレイパーを使用します")
             except ImportError:
-                print(f"エラー: '{url}'に対応するスクレイパーが見つかりません。")
+                logger.error(f"エラー: '{url}'に対応するスクレイパーが見つかりません。")
+                return_code = 1
                 continue
         
         # スクレイピングを実行
         try:
             items = scraper_module.scrape(url)
-            if debug:
-                print(f"スクレイピングが完了しました。{len(items)}件のアイテムを取得しました")
+            logger.debug(f"スクレイピングが完了しました。{len(items)}件のアイテムを取得しました")
         except Exception as e:
-            print(f"スクレイピング中にエラーが発生しました: {e}")
+            logger.error(f"スクレイピング中にエラーが発生しました: {e}")
+            return_code = 1
             continue
         
         # デフォルトのファイル名を生成
@@ -314,8 +375,7 @@ def main():
                 if latest_date:
                     # 最新の日付をフィルタの条件に設定
                     since_date = latest_date.strftime('%Y-%m-%d')
-                    if debug:
-                        print(f"差分モード: {since_date} 以降の項目のみを取得します")
+                    logger.debug(f"差分モード: {since_date} 以降の項目のみを取得します")
                     
                     # 出力ファイル名を変更（重複しないようにする）
                     feed_output = get_next_available_filename(feed_output)
@@ -330,8 +390,12 @@ def main():
             args.exclude_category
         )
         
-        if debug:
-            print(f"フィルタリング後のアイテム数: {len(filtered_items)}")
+        logger.debug(f"フィルタリング後のアイテム数: {len(filtered_items)}")
+        
+        # フィルタリングの結果、アイテムがない場合は処理をスキップ
+        if not filtered_items:
+            logger.info(f"フィルタ条件に該当するアイテムがありませんでした。ファイルは出力されません。")
+            continue
         
         # RSSフィードの生成
         rss_data = generate_rss(filtered_items, url)
@@ -340,15 +404,19 @@ def main():
         csv_data = generate_csv(filtered_items)
         
         # ファイルに書き込み
-        with open(feed_output, 'w', encoding='utf-8') as f:
-            f.write(rss_data)
-        print(f"フィードデータを '{feed_output}' に出力しました。")
-        
-        with open(csv_output, 'w', encoding='utf-8') as f:
-            f.write(csv_data)
-        print(f"CSVデータを '{csv_output}' に出力しました。")
+        try:
+            with open(feed_output, 'w', encoding='utf-8') as f:
+                f.write(rss_data)
+            logger.info(f"フィードデータを '{feed_output}' に出力しました。")
+            
+            with open(csv_output, 'w', encoding='utf-8') as f:
+                f.write(csv_data)
+            logger.info(f"CSVデータを '{csv_output}' に出力しました。")
+        except Exception as e:
+            logger.error(f"ファイルの書き込み中にエラーが発生しました: {e}")
+            return_code = 1
     
-    return 0
+    return return_code
 
 if __name__ == "__main__":
     exit(main())
