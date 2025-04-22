@@ -1,105 +1,154 @@
 # Web Announcement Feed Generator
 
-A CLI tool that scrapes announcement information from specified web pages, outputs RSS feed files, and generates CSV lists of items that match filter conditions.
+A CLI tool that scrapes announcement information from specified webpages and converts them to RSS 2.0 feeds and CSV files.
 
 ## Features
 
-- **Scrapes announcements from web pages without existing RSS feeds**
-- **Only uses information available on the specified web pages**
-- Extracts date, title, content, and category information from announcements
-- Handles JavaScript-rendered content using Selenium
-- Outputs RSS 2.0 formatted feed files and CSV lists
-- Filters announcements by date, category inclusion/exclusion
-- Supports multiple websites with specialized scrapers
-- Differential mode to only process new items
+- Supported websites:
+  - Firebase Release Notes (`https://firebase.google.com/support/releases`)
+  - Monaca News (`https://ja.monaca.io/headline/`)
+- RSS 2.0 feed generation
+- CSV export of announcements
+- Date range filtering
+- Category filtering
+- Differential mode to extract only updates since the last feed
 
 ## Requirements
 
-- Ubuntu LTS (latest version)
-- Python 3.x (latest LTS version)
-- Required packages (automatically installed via requirements.txt):
-  - requests
-  - beautifulsoup4
-  - selenium
-  - webdriver-manager
+- Node.js 14.0.0 or higher
+- Chrome browser (for Selenium)
+
+## Development
+
+### Setting up the development environment
+
+1. Clone the repository:
+```bash
+git clone https://github.com/yourusername/web-announcement-feed-generator.git
+cd web-announcement-feed-generator
+```
+
+2. Install dependencies:
+```bash
+npm install
+```
+
+### Building
+
+To build the project:
+```bash
+npm run build
+```
+
+This compiles TypeScript files (.ts) to JavaScript (.js) and outputs them to the `dist` directory.
+
+### Running during development
+
+To run the application during development:
+```bash
+npm run dev -- <url> [options]
+```
+
+Or after building:
+```bash
+node dist/index.js <url> [options]
+```
 
 ## Installation
 
-1. Clone the repository
-2. Install required packages:
+### Local Installation
 
-```sh
-pip install -r requirements.txt
+This tool is not currently published to the npm registry. Please install it using the following method:
+
+```bash
+# Clone the repository
+git clone https://github.com/yourusername/get-info-from-no-feed-page.git
+cd get-info-from-no-feed-page
+
+# Install dependencies
+npm install
+
+# Build the project
+npm run build
+
+# Link the package globally (makes the development package available globally)
+npm link
 ```
+
+This will make the `web-feed` command available globally.
 
 ## Usage
 
-```
-python src/main.py [URL] [options]
+### Running from command line
+
+```bash
+# When installed globally
+web-feed <url> [options]
+
+# When installed locally
+npx web-feed <url> [options]
 ```
 
 ### Arguments
 
-- `URL`: Target webpage URL to scrape, or "all" to scrape all supported URLs
+- `<url>`: URL of the target webpage. Use "all" to process all supported sites
 
 ### Options
 
-- `--since YYYY-MM-DD`: Only include items published on or after the specified date
-- `--until YYYY-MM-DD`: Only include items published on or before the specified date
-- `--category CATEGORY`: Only include items containing the specified category
-- `--exclude-category CATEGORY`: Exclude items containing the specified category
-- `--feed-output PATH`: Specify output path for the RSS feed file
-- `--csv-output PATH`: Specify output path for the CSV file
-- `--diff-mode`: Only output items newer than the latest item in the existing feed file
-- `--with-date`: Add current date to output filenames (_YYYYMMDD format)
-- `--debug`: Enable detailed debugging output
+- `-o, --output <path>`: Output file path
+- `--with-date`: Add date to the output filename
+- `-s, --start-date <date>`: Filter announcements after specified date (YYYY-MM-DD)
+- `-e, --end-date <date>`: Filter announcements before specified date (YYYY-MM-DD)
+- `-ic, --include-category <text>`: Filter announcements where category contains specified text
+- `-ec, --exclude-category <text>`: Filter announcements where category doesn't contain specified text
+- `-d, --diff-mode`: Output only updates since the last feed
+- `--silent`: Suppress log output
+- `-h, --help`: Display help
+- `-V, --version`: Display version
 
-### Example Commands
+## Examples
 
-```sh
-# Scrape announcements from Firebase releases page
-python src/main.py https://firebase.google.com/support/releases
+### Generate feed for a specific site
 
-# Scrape all supported websites
-python src/main.py all --with-date
-
-# Get only important announcements from Firebase
-python src/main.py https://firebase.google.com/support/releases --category important
-
-# Get all announcements except deprecated ones
-python src/main.py https://firebase.google.com/support/releases --exclude-category deprecated
-
-# Get announcements published after Jan 1, 2025
-python src/main.py https://firebase.google.com/support/releases --since 2025-01-01
-
-# Differential mode: only get new items since last run
-python src/main.py https://firebase.google.com/support/releases --diff-mode
+```bash
+web-feed https://ja.monaca.io/headline/ --with-date
 ```
 
-## Supported Websites
+### Generate feeds for all sites
 
-- Firebase Release Notes: https://firebase.google.com/support/releases
-  - Extracts announcements with specific release-* class designations
-  - Categorizes based on class names and content keywords
-- Monaca Headline: https://ja.monaca.io/headline/
-  - Handles Japanese language content
-  - Extracts from headline-entry class elements
+```bash
+web-feed all --with-date
+```
 
-## Implementation Details
+### Export CSV with filtering conditions
 
-- URL-specific scraping logic is implemented in separate files to handle different site structures
-  - Scrapers are stored in the `src/scrapers/` directory with filenames based on domain names and paths
-  - Each target URL dynamically loads the appropriate scraping logic at runtime
-  - Scraper filename convention:
-    - Based on URL domain and path (e.g., firebase_google_com.py)
-    - Converted to be compatible with all OS and URL formats (replacing dots with underscores, etc.)
-  - Generic scraper is used for unsupported URLs
-- Uses Selenium with Chrome in headless mode for JavaScript-rendered content
-  - Uses chrome-aws-lambda-layer in AWS Lambda environments
-- Uses the latest Chrome User-Agent for requests
-- CSV date format is YYYY/MM/DD
-- Default output filenames are based on the URL and optionally include the current date
+```bash
+web-feed https://firebase.google.com/support/releases --start-date 2023-01-01 --include-category important
+```
+
+### Run in differential mode
+
+```bash
+web-feed https://ja.monaca.io/headline/ -d
+```
+
+## Output Files
+
+The program generates two files:
+
+1. RSS 2.0 feed (XML file)
+2. CSV file with the announcement list
+
+By default, output filenames are automatically generated based on the domain and path of the webpage.
+When using the `--with-date` option, the date is added to the filename.
 
 ## License
 
-This project is licensed under the MIT-0 License - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the MIT No Attribution License (MIT-0). See the [LICENSE](./LICENSE) file for details.
+
+The MIT-0 license allows you to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the software without attribution requirements.
+
+## Issues & Improvements
+
+- To add support for a new website, create a new scraper class in the `src/scrapers/` directory and register it in `scraper-factory.ts`.
+- If there's a version mismatch between ChromeDriver and Chrome browser, install the appropriate version of ChromeDriver.

@@ -1,105 +1,154 @@
-# Webお知らせフィード生成ツール
+# Web Announcement Feed Generator
 
-指定されたWebページからお知らせ情報をスクレイピングし、RSSフィードファイルを出力し、フィルタ条件に該当する項目のCSV一覧を生成するCLIツールです。
+指定したWebページからお知らせ情報をスクレイピングし、RSS 2.0形式のフィードとCSVファイルに変換するCLIツールです。
 
-## 機能
+## 特徴
 
-- **RSSフィードが存在しないWebページからお知らせ情報を取得**
-- **指定されたWebページにある情報のみを使用**
-- お知らせの日付、タイトル、内容、カテゴリ情報を抽出
-- JavaScriptの遅延読み込みにも対応（Seleniumを使用）
-- RSS 2.0形式のフィードファイルとCSV一覧を出力
-- 日付、カテゴリの含む/含まないによるフィルタリング
-- 複数のウェブサイトに対応した専用スクレイパー
-- 差分モードで新しい項目のみを処理
+- 対応Webサイト：
+  - Firebase リリースページ (`https://firebase.google.com/support/releases`)
+  - Monaca お知らせページ (`https://ja.monaca.io/headline/`)
+- RSS 2.0形式のフィード生成
+- お知らせ情報のCSVエクスポート
+- 日付範囲によるフィルタリング
+- カテゴリによるフィルタリング
+- 前回のフィード以降の差分のみを抽出する機能
 
 ## 必要条件
 
-- Ubuntu LTS（最新版）
-- Python 3.x（最新LTS版）
-- 必要なパッケージ（requirements.txtから自動的にインストール）:
-  - requests
-  - beautifulsoup4
-  - selenium
-  - webdriver-manager
+- Node.js 14.0.0以上
+- Chrome ブラウザ（Seleniumを使用します）
 
-## インストール
+## 開発
 
-1. リポジトリをクローン
-2. 必要なパッケージをインストール:
+### 開発環境のセットアップ
 
-```sh
-pip install -r requirements.txt
+1. リポジトリをクローン：
+```bash
+git clone https://github.com/yourusername/web-announcement-feed-generator.git
+cd web-announcement-feed-generator
 ```
 
-## 使い方
-
+2. 依存関係のインストール：
+```bash
+npm install
 ```
-python src/main.py [URL] [オプション]
+
+### ビルド方法
+
+プロジェクトをビルドするには：
+```bash
+npm run build
+```
+
+これによりTypeScriptファイル(.ts)がJavaScriptファイル(.js)にコンパイルされます。コンパイル後のJavaScriptファイルは `dist` ディレクトリに出力されます。
+
+### 開発中の実行方法
+
+開発中にアプリケーションを実行する方法：
+```bash
+npm run dev -- <url> [options]
+```
+
+またはビルド後：
+```bash
+node dist/index.js <url> [options]
+```
+
+## インストール方法
+
+### ローカルインストール
+
+このツールは現在 npm レジストリには公開されていません。以下の方法でインストールしてください：
+
+```bash
+# リポジトリをクローン
+git clone https://github.com/yourusername/get-info-from-no-feed-page.git
+cd get-info-from-no-feed-page
+
+# 依存関係のインストール
+npm install
+
+# ビルド
+npm run build
+
+# ローカルでグローバルにインストール（開発中のパッケージをグローバルにリンク）
+npm link
+```
+
+これにより `web-feed` コマンドがグローバルに使用できるようになります。
+
+## 使用方法
+
+### コマンドラインから実行
+
+```bash
+# グローバルインストール時
+web-feed <url> [options]
+
+# ローカルインストール時
+npx web-feed <url> [options]
 ```
 
 ### 引数
 
-- `URL`: スクレイピング対象のWebページURL、または「all」を指定して全ての対応URLをスクレイピング
+- `<url>`: 対象WebページのURL。"all"を指定すると全てのサイトを処理
 
 ### オプション
 
-- `--since YYYY-MM-DD`: 指定した日付以降に公開された項目のみを含める
-- `--until YYYY-MM-DD`: 指定した日付以前に公開された項目のみを含める
-- `--category CATEGORY`: 指定したカテゴリを含む項目のみを含める
-- `--exclude-category CATEGORY`: 指定したカテゴリを含む項目を除外する
-- `--feed-output PATH`: RSSフィードファイルの出力パスを指定
-- `--csv-output PATH`: CSVファイルの出力パスを指定
-- `--diff-mode`: 既存のフィードファイルの最新項目よりも新しい項目のみを出力
-- `--with-date`: 出力ファイル名に現在の日付を付加する (_YYYYMMDD形式)
-- `--debug`: 詳細なデバッグ出力を有効にする
+- `-o, --output <path>`: 出力ファイルのパス
+- `--with-date`: ファイル名に日付を付与する
+- `-s, --start-date <date>`: 指定日以降のお知らせをフィルタ (YYYY-MM-DD)
+- `-e, --end-date <date>`: 指定日以前のお知らせをフィルタ (YYYY-MM-DD)
+- `-ic, --include-category <text>`: カテゴリが指定文字列を含むお知らせをフィルタ
+- `-ec, --exclude-category <text>`: カテゴリが指定文字列を含まないお知らせをフィルタ
+- `-d, --diff-mode`: 前回のフィード以降の差分のみを出力
+- `--silent`: ログ出力を抑制
+- `-h, --help`: ヘルプを表示
+- `-V, --version`: バージョンを表示
 
-### コマンド例
+## 使用例
 
-```sh
-# Firebaseのリリースページからお知らせをスクレイピング
-python src/main.py https://firebase.google.com/support/releases
+### 特定のサイトのフィードを生成
 
-# サポートされている全てのウェブサイトをスクレイピング
-python src/main.py all --with-date
-
-# Firebaseの重要なお知らせのみを取得
-python src/main.py https://firebase.google.com/support/releases --category important
-
-# 非推奨(deprecated)以外の全てのお知らせを取得
-python src/main.py https://firebase.google.com/support/releases --exclude-category deprecated
-
-# 2025年1月1日以降に公開されたお知らせを取得
-python src/main.py https://firebase.google.com/support/releases --since 2025-01-01
-
-# 差分モード: 前回の実行以降の新しい項目のみを取得
-python src/main.py https://firebase.google.com/support/releases --diff-mode
+```bash
+web-feed https://ja.monaca.io/headline/ --with-date
 ```
 
-## 対応ウェブサイト
+### 全サイトのフィードを生成
 
-- Firebase リリースノート: https://firebase.google.com/support/releases
-  - release-* クラス指定を持つお知らせを抽出
-  - クラス名とコンテンツのキーワードに基づいてカテゴリ化
-- Monaca ヘッドライン: https://ja.monaca.io/headline/
-  - 日本語コンテンツに対応
-  - headline-entryクラスからお知らせを抽出
+```bash
+web-feed all --with-date
+```
 
-## 実装の詳細
+### フィルタリング条件を指定してCSV出力
 
-- URLごとにスクレイピングのコードは異なる実装になるため、URLごとに異なるスクレイピングのロジックのソースコードはファイルに分離
-  - `src/scrapers/` ディレクトリ内にドメイン名とパスに基づくファイル名でスクレイパーを格納
-  - ターゲットのURLごとに、適切なスクレイピングのロジックのソースコードが動的に実行される
-  - スクレイパーのファイル名の命名規則：
-    - URLのドメインとパスを元にする（例：firebase_google_com.py）
-    - 全てのOSとURLで扱えるファイル名に変換（ドットをアンダースコアに置換など）
-  - 未対応のURLには汎用スクレイパーを使用
-- JavaScriptレンダリングコンテンツのためにはSeleniumをヘッドレスモードで使用
-  - AWS Lambda環境では chrome-aws-lambda-layer を使用
-- 最新のChromeのUser-Agentを使用
-- CSV日付形式は「YYYY/MM/DD」
-- デフォルトの出力ファイル名はURLに基づき、オプションで現在の日付を含む
+```bash
+web-feed https://firebase.google.com/support/releases --start-date 2023-01-01 --include-category important
+```
+
+### 差分モードで実行
+
+```bash
+web-feed https://ja.monaca.io/headline/ -d
+```
+
+## 出力ファイル
+
+プログラムは以下のファイルを出力します：
+
+1. RSS 2.0形式のフィード (XMLファイル)
+2. お知らせ一覧のCSVファイル
+
+出力ファイル名は、デフォルトではWebページのドメインとパスに基づいて自動生成されます。
+`--with-date`オプションを指定すると、ファイル名に日付が付与されます。
 
 ## ライセンス
 
-このプロジェクトはMIT-0ライセンスの下で公開されています - 詳細は[LICENSE](LICENSE)ファイルを参照してください。
+このプロジェクトはMIT No Attribution License (MIT-0)の下でライセンスされています。詳細は[LICENSE](./LICENSE)ファイルをご参照ください。
+
+MIT-0ライセンスでは、帰属表示の要件なしにソフトウェアの使用、コピー、変更、マージ、公開、配布、サブライセンス、および販売が許可されています。
+
+## 問題点・改善点
+
+- 新しいWebサイトへの対応を追加する場合は、`src/scrapers/`ディレクトリに新たなスクレイパークラスを作成し、`scraper-factory.ts`に登録する必要があります。
+- ChromeDriverのバージョンとChromeブラウザのバージョンの不一致が発生した場合は、適切なバージョンのChromeDriverをインストールしてください。
