@@ -18,6 +18,12 @@ A CLI tool that scrapes announcement information from specified webpages and con
 - Node.js 14.0.0 or higher
 - Chrome browser (for Selenium)
 
+## Prerequisites
+
+- Make sure the `chromedriver` version in `package.json` dependencies matches your Chrome browser version
+- Install Japanese fonts if not already installed, for proper display of Japanese content
+- Run `webdriver-manager start --detach` if necessary for Selenium to work properly
+
 ## Development
 
 ### Setting up the development environment

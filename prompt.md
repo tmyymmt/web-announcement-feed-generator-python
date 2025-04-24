@@ -116,13 +116,18 @@
         - URLのドメインとパスを元にする
         - 全てのOSとURLで扱えるファイル名であること
 - SeleniumでヘッドレスChromeを使用する
-    - Lambda環境で実行する場合は https://github.com/shelfio/chrome-aws-lambda-layer を使用する
     - Seleniumが正常動作しない場合は、他の手段を用いてスクレイピングを実施する
 - 以下の実行環境を考慮した作りにすること
     - ローカル環境
     - Lambda環境
 - ログ出力にはloggerを使用する
     - サイレントオプションを指定した時は出力しないこと
+
+## 前提
+
+- `package.json`の`dependencies`の`chromedriver`のバージョンと、Chromeのバージョンを合わせる
+- 日本語フォントがインストールされていない場合は、日本語フォントをインストールして有効化にする
+- 必要に応じて`webdriver-manager start --detach`を実行する
 
 ## ドキュメンテーション
 
@@ -134,6 +139,7 @@
     - LICENSEファイルを作成する
     - ライセンス保有者は`Tomoya Yamamoto`
 - 下記も適宜記載すること
+    - 前提条件
     - 開発時の流れ
         - 依存関係のインストール方法
         - ビルド方法

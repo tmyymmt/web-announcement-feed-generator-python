@@ -18,6 +18,12 @@
 - Node.js 14.0.0以上
 - Chrome ブラウザ（Seleniumを使用します）
 
+## 前提条件
+
+- `package.json`の`dependencies`の`chromedriver`のバージョンと、Chromeのバージョンを合わせる必要があります
+- 日本語フォントがインストールされていない場合は、日本語フォントをインストールして有効化する必要があります
+- 必要に応じて`webdriver-manager start --detach`を実行してSeleniumの動作を確保してください
+
 ## 開発
 
 ### 開発環境のセットアップ
