@@ -15,50 +15,14 @@ A CLI tool that scrapes announcement information from specified web pages and co
 
 ## Requirements
 
-- Node.js 14.0.0 or higher
+- Ubuntu LTS (latest version)
+- Python 3.x (latest LTS version)
 - Chrome browser (for Selenium)
-
-## Prerequisites
-
-- Make sure the `chromedriver` version in `package.json` dependencies matches your Chrome browser version
-- Install Japanese fonts if not already installed, for proper display of Japanese content
-- Run `webdriver-manager start --detach` if necessary for Selenium to work properly
-
-## Development
-
-### Development Setup
-
-1. Clone the repository:
-```bash
-git clone https://github.com/yourusername/web-announcement-feed-generator-python.git
-cd web-announcement-feed-generator-python
-```
-
-2. Install dependencies:
-```bash
-npm install
-```
-
-### Building
-
-To build the project:
-```bash
-npm run build
-```
-
-This compiles TypeScript files (.ts) to JavaScript (.js) and outputs them to the `dist` directory.
-
-### Running during development
-
-To run the application during development:
-```bash
-npm run dev -- <url> [options]
-```
-
-Or after building:
-```bash
-node dist/index.js <url> [options]
-```
+- Required packages (automatically installed via requirements.txt):
+  - requests
+  - beautifulsoup4
+  - selenium
+  - webdriver-manager
 
 ## Installation
 
@@ -101,60 +65,62 @@ npx web-feed <url> [options]
 
 ### Options
 
-- `-o, --output <path>`: Output file path
-- `--with-date`: Add date to the output filename
-- `-s, --start-date <date>`: Filter announcements after specified date (YYYY-MM-DD)
-- `-e, --end-date <date>`: Filter announcements before specified date (YYYY-MM-DD)
-- `-ic, --include-category <text>`: Filter announcements where category contains specified text
-- `-ec, --exclude-category <text>`: Filter announcements where category doesn't contain specified text
-- `-d, --diff-mode`: Output only updates since the last feed
-- `--silent`: Suppress log output
-- `-h, --help`: Display help
-- `-V, --version`: Display version
+- `--since YYYY-MM-DD`: Only include items published on or after the specified date
+- `--until YYYY-MM-DD`: Only include items published on or before the specified date
+- `--category CATEGORY`: Only include items containing the specified category
+- `--exclude-category CATEGORY`: Exclude items containing the specified category
+- `--feed-output PATH`: Specify output path for the RSS feed file
+- `--csv-output PATH`: Specify output path for the CSV file
+- `--diff-mode`: Only output items newer than the latest item in the existing feed file
+- `--with-date`: Add current date to output filenames (_YYYYMMDD format)
+- `--debug`: Enable detailed debugging output
 
-## Examples
+### Example Commands
 
-### Generate feed for a specific site
+```sh
+# Scrape announcements from Firebase releases page
+python src/main.py https://firebase.google.com/support/releases
 
-```bash
-web-feed https://ja.monaca.io/headline/ --with-date
+# Scrape all supported websites
+python src/main.py all --with-date
+
+# Get only important announcements from Firebase
+python src/main.py https://firebase.google.com/support/releases --category important
+
+# Get all announcements except deprecated ones
+python src/main.py https://firebase.google.com/support/releases --exclude-category deprecated
+
+# Get announcements published after Jan 1, 2025
+python src/main.py https://firebase.google.com/support/releases --since 2025-01-01
+
+# Differential mode: only get new items since last run
+python src/main.py https://firebase.google.com/support/releases --diff-mode
 ```
 
-### Generate feeds for all sites
+## Supported Websites
 
-```bash
-web-feed all --with-date
-```
+- Firebase Release Notes: https://firebase.google.com/support/releases
+  - Extracts announcements with specific release-* class designations
+  - Categorizes based on class names and content keywords
+- Monaca Headline: https://ja.monaca.io/headline/
+  - Handles Japanese language content
+  - Extracts from headline-entry class elements
 
-### Export CSV with filtering conditions
+## Implementation Details
 
-```bash
-web-feed https://firebase.google.com/support/releases --start-date 2023-01-01 --include-category important
-```
-
-### Run in differential mode
-
-```bash
-web-feed https://ja.monaca.io/headline/ -d
-```
-
-## Output Files
-
-The program generates two files:
-
-1. RSS 2.0 feed (XML file)
-2. CSV file with the announcement list
-
-By default, output filenames are automatically generated based on the domain and path of the webpage.
-When using the `--with-date` option, the date is added to the filename.
+- URL-specific scraping logic is implemented in separate files to handle different site structures
+  - Scrapers are stored in the `src/scrapers/` directory with filenames based on domain names and paths
+  - Each target URL dynamically loads the appropriate scraping logic at runtime
+  - Scraper filename convention:
+    - Based on URL domain and path (e.g., firebase_google_com.py)
+    - Converted to be compatible with all OS and URL formats (replacing dots with underscores, etc.)
+  - Generic scraper is used for unsupported URLs
+- Uses Selenium with Chrome in headless mode for JavaScript-rendered content
+  - Uses chrome-aws-lambda-layer in AWS Lambda environments
+- Uses the latest Chrome User-Agent for requests
+- CSV date format is YYYY/MM/DD
+- Default output filenames are based on the URL and optionally include the current date
 
 ## License
 
-This project is licensed under the MIT No Attribution License (MIT-0). See the [LICENSE](./LICENSE) file for details.
-
-The MIT-0 license allows you to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the software without attribution requirements.
-
-## Issues & Improvements
-
-- To add support for a new website, create a new scraper class in the `src/scrapers/` directory and register it in `scraper-factory.ts`.
-- If there's a version mismatch between ChromeDriver and Chrome browser, install the appropriate version of ChromeDriver.
+This project is licensed under the MIT-0 License - see the [LICENSE](LICENSE) file for details.

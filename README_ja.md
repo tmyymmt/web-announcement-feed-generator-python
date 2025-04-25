@@ -2,6 +2,14 @@
 
 指定したWebページからお知らせ情報をスクレイピングし、RSS 2.0形式のフィードとCSVファイルに変換するCLIツールです。
 
+## 機能
+
+- RSSフィードが存在しないWebページからお知らせ情報を取得
+- お知らせの日付、タイトル、内容、カテゴリ情報を抽出
+- RSS 2.0形式のフィードファイルを出力
+- 様々な条件でフィルタリングしたCSV一覧を生成
+- 複数のウェブサイトに対応した専用スクレイパー
+- 差分モードで新しい項目のみを処理
 ## 特徴
 
 - 対応Webサイト：
@@ -15,84 +23,25 @@
 
 ## 必要条件
 
-- Node.js 14.0.0以上
+- Python 3.x
 - Chrome ブラウザ（Seleniumを使用します）
+- 必要なパッケージ:
+  - requests
+  - beautifulsoup4
 
-## 前提条件
+## インストール
 
-- `package.json`の`dependencies`の`chromedriver`のバージョンと、Chromeのバージョンを合わせる必要があります
-- 日本語フォントがインストールされていない場合は、日本語フォントをインストールして有効化する必要があります
-- 必要に応じて`webdriver-manager start --detach`を実行してSeleniumの動作を確保してください
+1. リポジトリをクローン
+2. 必要なパッケージをインストール:
 
-## 開発
-
-### 開発環境のセットアップ
-
-1. リポジトリをクローン：
-```bash
-git clone https://github.com/yourusername/web-announcement-feed-generator-python.git
-cd web-announcement-feed-generator-python
+```sh
+pip install -r requirements.txt
 ```
 
-2. 依存関係のインストール：
-```bash
-npm install
+## 使い方
+
 ```
-
-### ビルド方法
-
-プロジェクトをビルドするには：
-```bash
-npm run build
-```
-
-これによりTypeScriptファイル(.ts)がJavaScriptファイル(.js)にコンパイルされます。コンパイル後のJavaScriptファイルは `dist` ディレクトリに出力されます。
-
-### 開発中の実行方法
-
-開発中にアプリケーションを実行する方法：
-```bash
-npm run dev -- <url> [options]
-```
-
-またはビルド後：
-```bash
-node dist/index.js <url> [options]
-```
-
-## インストール方法
-
-### ローカルインストール
-
-このツールは現在 npm レジストリには公開されていません。以下の方法でインストールしてください：
-
-```bash
-# リポジトリをクローン
-git clone https://github.com/yourusername/get-info-from-no-feed-page.git
-cd get-info-from-no-feed-page
-
-# 依存関係のインストール
-npm install
-
-# ビルド
-npm run build
-
-# ローカルでグローバルにインストール（開発中のパッケージをグローバルにリンク）
-npm link
-```
-
-これにより `web-feed` コマンドがグローバルに使用できるようになります。
-
-## 使用方法
-
-### コマンドラインから実行
-
-```bash
-# グローバルインストール時
-web-feed <url> [options]
-
-# ローカルインストール時
-npx web-feed <url> [options]
+python src/main.py [URL] [オプション]
 ```
 
 ### 引数
@@ -101,60 +50,43 @@ npx web-feed <url> [options]
 
 ### オプション
 
-- `-o, --output <path>`: 出力ファイルのパス
-- `--with-date`: ファイル名に日付を付与する
-- `-s, --start-date <date>`: 指定日以降のお知らせをフィルタ (YYYY-MM-DD)
-- `-e, --end-date <date>`: 指定日以前のお知らせをフィルタ (YYYY-MM-DD)
-- `-ic, --include-category <text>`: カテゴリが指定文字列を含むお知らせをフィルタ
-- `-ec, --exclude-category <text>`: カテゴリが指定文字列を含まないお知らせをフィルタ
-- `-d, --diff-mode`: 前回のフィード以降の差分のみを出力
-- `--silent`: ログ出力を抑制
-- `-h, --help`: ヘルプを表示
-- `-V, --version`: バージョンを表示
+- `--since YYYY-MM-DD`: 指定した日付以降に公開された項目のみを含める
+- `--until YYYY-MM-DD`: 指定した日付以前に公開された項目のみを含める
+- `--category CATEGORY`: 指定したカテゴリを含む項目のみを含める
+- `--exclude-category CATEGORY`: 指定したカテゴリを含む項目を除外する
+- `--feed-output PATH`: RSSフィードファイルの出力パスを指定
+- `--csv-output PATH`: CSVファイルの出力パスを指定
+- `--diff-mode`: 既存のフィードファイルの最新項目よりも新しい項目のみを出力
+- `--with-date`: 出力ファイル名に現在の日付を付加する (_YYYYMMDD形式)
+- `--debug`: 詳細なデバッグ出力を有効にする
 
-## 使用例
+### コマンド例
 
-### 特定のサイトのフィードを生成
+```sh
+# Firebaseのリリースページからお知らせをスクレイピング
+python src/main.py https://firebase.google.com/support/releases
 
-```bash
-web-feed https://ja.monaca.io/headline/ --with-date
+# サポートされている全てのウェブサイトをスクレイピング
+python src/main.py all --with-date
+
+# Firebaseの重要なお知らせのみを取得
+python src/main.py https://firebase.google.com/support/releases --category important
+
+# 非推奨(deprecated)以外の全てのお知らせを取得
+python src/main.py https://firebase.google.com/support/releases --exclude-category deprecated
+
+# 2025年1月1日以降に公開されたお知らせを取得
+python src/main.py https://firebase.google.com/support/releases --since 2025-01-01
+
+# 差分モード: 前回の実行以降の新しい項目のみを取得
+python src/main.py https://firebase.google.com/support/releases --diff-mode
 ```
 
-### 全サイトのフィードを生成
+## 対応ウェブサイト
 
-```bash
-web-feed all --with-date
-```
-
-### フィルタリング条件を指定してCSV出力
-
-```bash
-web-feed https://firebase.google.com/support/releases --start-date 2023-01-01 --include-category important
-```
-
-### 差分モードで実行
-
-```bash
-web-feed https://ja.monaca.io/headline/ -d
-```
-
-## 出力ファイル
-
-プログラムは以下のファイルを出力します：
-
-1. RSS 2.0形式のフィード (XMLファイル)
-2. お知らせ一覧のCSVファイル
-
-出力ファイル名は、デフォルトではWebページのドメインとパスに基づいて自動生成されます。
-`--with-date`オプションを指定すると、ファイル名に日付が付与されます。
+- Firebase リリースノート: https://firebase.google.com/support/releases
+- Monaca ヘッドライン: https://ja.monaca.io/headline/
 
 ## ライセンス
 
-このプロジェクトはMIT No Attribution License (MIT-0)の下でライセンスされています。詳細は[LICENSE](./LICENSE)ファイルをご参照ください。
-
-MIT-0ライセンスでは、帰属表示の要件なしにソフトウェアの使用、コピー、変更、マージ、公開、配布、サブライセンス、および販売が許可されています。
-
-## 問題点・改善点
-
-- 新しいWebサイトへの対応を追加する場合は、`src/scrapers/`ディレクトリに新たなスクレイパークラスを作成し、`scraper-factory.ts`に登録する必要があります。
-- ChromeDriverのバージョンとChromeブラウザのバージョンの不一致が発生した場合は、適切なバージョンのChromeDriverをインストールしてください。
+詳細は[LICENSE](LICENSE)ファイルを参照してください。
