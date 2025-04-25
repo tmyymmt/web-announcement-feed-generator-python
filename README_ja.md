@@ -1,4 +1,4 @@
-# Web Announcement Feed Generator
+# Web Announcement Feed Generator Python
 
 指定したWebページからお知らせ情報をスクレイピングし、RSS 2.0形式のフィードとCSVファイルに変換するCLIツールです。
 
@@ -30,8 +30,8 @@
 
 1. リポジトリをクローン：
 ```bash
-git clone https://github.com/yourusername/web-announcement-feed-generator.git
-cd web-announcement-feed-generator
+git clone https://github.com/yourusername/web-announcement-feed-generator-python.git
+cd web-announcement-feed-generator-python
 ```
 
 2. 依存関係のインストール：
