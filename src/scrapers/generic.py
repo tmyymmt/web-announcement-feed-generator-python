@@ -6,6 +6,10 @@ import requests
 from bs4 import BeautifulSoup
 from typing import List, Dict, Any
 import urllib.parse
+import logging
+
+# ロガーの設定
+logger = logging.getLogger(__name__)
 
 def extract_date(text: str) -> str:
     """テキストから日付パターンを抽出する"""
@@ -46,7 +50,13 @@ def detect_categories(text: str) -> List[str]:
         'security': 'Security',
         'notice': 'Notice',
         'announcement': 'Announcement',
-        'maintenance': 'Maintenance'
+        'maintenance': 'Maintenance',
+        # 日本語のキーワード
+        '重要': 'Important',
+        '提供終了': 'Deprecated',
+        '廃止': 'Deprecated',
+        'サービス終了': 'Shutdown',
+        '終了': 'Shutdown'
     }
     
     text_lower = text.lower()
@@ -61,14 +71,24 @@ def detect_categories(text: str) -> List[str]:
     
     return list(set(categories))  # 重複を削除
 
-def scrape(url: str) -> List[Dict[str, Any]]:
+def scrape(url: str, debug: bool = False, silent: bool = False) -> List[Dict[str, Any]]:
     """汎用的なスクレイピング関数"""
+    if not silent:
+        logger.info(f"汎用スクレイパーを使用して {url} をスクレイピングします。")
+    
     # URLからHTMLを取得
     headers = {
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'
     }
-    response = requests.get(url, headers=headers)
-    response.raise_for_status()
+    
+    try:
+        response = requests.get(url, headers=headers)
+        response.raise_for_status()
+        if debug:
+            logger.debug(f"ページの取得に成功しました。ステータスコード: {response.status_code}")
+    except Exception as e:
+        logger.error(f"ページの取得中にエラーが発生しました: {e}")
+        raise
     
     # HTMLをパース
     soup = BeautifulSoup(response.text, 'html.parser')
@@ -80,21 +100,31 @@ def scrape(url: str) -> List[Dict[str, Any]]:
     # 1. ニュース/お知らせリスト
     news_elements = soup.select('article, .news-item, .notice, .announcement, .post, .entry, div[class*="news"], div[class*="notice"], div[class*="announcement"]')
     
+    if debug:
+        logger.debug(f"ニュース要素を {len(news_elements)} 個検出しました。")
+    
     # 2. 日付とタイトルのペアを含む要素
     if not news_elements:
         news_elements = soup.select('ul li, div.row, div.list-item')
+        if debug:
+            logger.debug(f"リスト要素を {len(news_elements)} 個検出しました。")
     
     # 3. 要素が見つからない場合は、テキスト内容で判断
     if not news_elements:
         # すべての段落要素を取得
         paragraphs = soup.select('p')
         
+        temp_elements = []
         for p in paragraphs:
             text = p.get_text(strip=True)
             
             # 日付パターンを含み、最低限の長さがある段落を取得
             if extract_date(text) != "不明" and len(text) > 50:
-                news_elements.append(p)
+                temp_elements.append(p)
+        
+        news_elements = temp_elements
+        if debug:
+            logger.debug(f"日付を含む段落要素を {len(news_elements)} 個検出しました。")
     
     # ベースURLの取得
     parsed_url = urllib.parse.urlparse(url)
@@ -131,5 +161,10 @@ def scrape(url: str) -> List[Dict[str, Any]]:
         }
         
         items.append(item)
+        if debug:
+            logger.debug(f"アイテムを追加しました: {title} (日付: {date_str}, カテゴリ: {', '.join(categories)})")
+    
+    if not silent:
+        logger.info(f"合計 {len(items)} 個のアイテムを取得しました。")
     
     return items

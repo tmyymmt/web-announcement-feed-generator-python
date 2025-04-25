@@ -100,7 +100,9 @@
 ## 許可
 
 - aptで足りないものをインストールして良い
+    - 何をインストールしたかは README の前提に記載すること
 - pipで足りないものをインストールして良い
+    - requirements.txt を使用すること
 
 ## 環境
 
@@ -115,6 +117,18 @@
         - 全てのOSとURLで扱えるファイル名であること
 - SeleniumでヘッドレスChromeを使用する
     - Seleniumが正常動作しない場合は、他の手段を用いてスクレイピングを実施する
+    - chromeのoptionsには以下を指定すること
+        - `--headless=new`
+        - `--no-sandbox`
+        - `--disable-gpu`
+        - `--window-size=1920x1920`
+        - `--disable-dev-shm-usage`
+        - `--disable-dev-tools`
+        - `--no-zygote`
+        - `--user-data-dir={mkdtemp()}`
+        - `--data-path={mkdtemp()}`
+        - `--disk-cache-dir={mkdtemp()}`
+        - `--remote-debugging-port=9222`
 - 以下の実行環境を考慮した作りにすること
     - ローカル環境
     - Lambda環境
@@ -123,9 +137,8 @@
 
 ## 前提
 
-- `package.json`の`dependencies`の`chromedriver`のバージョンと、Chromeのバージョンを合わせる
-- 日本語フォントがインストールされていない場合は、日本語フォントをインストールして有効化にする
-- 必要に応じて`webdriver-manager start --detach`を実行する
+- 対象のページで使用されている言語のフォントがインストールされていない場合は、インストールして有効化する
+- `webdriver-manager`の`chromedriver`のバージョンと、Chromeのバージョンを合わせる
 
 ## ドキュメンテーション
 

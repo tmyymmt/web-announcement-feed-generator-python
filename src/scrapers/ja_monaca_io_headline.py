@@ -6,11 +6,18 @@ from bs4 import BeautifulSoup
 from typing import List, Dict, Any
 import re
 import urllib.parse
+import logging
+from tempfile import mkdtemp
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from webdriver_manager.chrome import ChromeDriverManager
+
+# ロガーの設定
+logger = logging.getLogger(__name__)
 
 def parse_date(date_text: str) -> datetime.datetime:
     """日付テキストを解析してdatetimeオブジェクトに変換する"""
@@ -57,7 +64,11 @@ def detect_categories(text: str) -> List[str]:
         '提供終了': 'Deprecated',
         '終了': 'End of Service',
         'サポート終了': 'End of Support',
-        'サービス終了': 'End of Service'
+        'サービス終了': 'End of Service',
+        # 英語キーワードも追加
+        'deprecated': 'Deprecated',
+        'shutdown': 'End of Service',
+        'important': 'Important'
     }
     
     text_lower = text.lower()
@@ -72,42 +83,66 @@ def detect_categories(text: str) -> List[str]:
     
     return list(set(categories))  # 重複を削除
 
-def scrape(url: str) -> List[Dict[str, Any]]:
+def scrape(url: str, debug: bool = False, silent: bool = False) -> List[Dict[str, Any]]:
     """Monacaのヘッドラインページからお知らせをスクレイピングする"""
-    print(f"Monaca ヘッドラインスクレイパーを実行中: {url}")
+    if not silent:
+        logger.info(f"Monaca ヘッドラインスクレイパーを実行中: {url}")
     
     # JavaScriptの遅延読み込みに対応するためSeleniumを使用
     chrome_options = Options()
-    chrome_options.add_argument("--headless")
+    chrome_options.add_argument("--headless=new")
     chrome_options.add_argument("--no-sandbox")
-    chrome_options.add_argument("--disable-dev-shm-usage")
     chrome_options.add_argument("--disable-gpu")
-    chrome_options.add_argument("--window-size=1920,1080")
+    chrome_options.add_argument("--window-size=1280x1696")
+    chrome_options.add_argument("--disable-dev-shm-usage")
+    chrome_options.add_argument("--disable-dev-tools")
+    chrome_options.add_argument("--no-zygote")
+    chrome_options.add_argument(f"--user-data-dir={mkdtemp()}")
+    chrome_options.add_argument(f"--data-path={mkdtemp()}")
+    chrome_options.add_argument(f"--disk-cache-dir={mkdtemp()}")
+    chrome_options.add_argument("--remote-debugging-port=9222")
     chrome_options.add_argument("--user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36")
     
     try:
+        # webdriver-managerを使用してChromeDriverをインストール
+        if debug:
+            logger.debug("webdriver-managerを使用してChromeDriverをインストール中...")
+        service = Service(ChromeDriverManager().install())
+        
         # WebDriverを初期化
-        driver = webdriver.Chrome(options=chrome_options)
+        driver = webdriver.Chrome(service=service, options=chrome_options)
         driver.get(url)
         
         # ページが完全に読み込まれるまで待機
+        if debug:
+            logger.debug("ページの読み込みを待機中...")
+        
         WebDriverWait(driver, 10).until(
             EC.presence_of_element_located((By.CLASS_NAME, "headline-entry"))
         )
         
+        if debug:
+            logger.debug("ページの読み込みが完了しました。")
+        
         # ページのHTMLを取得
         html = driver.page_source
     except Exception as e:
-        print(f"Seleniumでのページ取得中にエラーが発生: {e}")
-        print("代替方法としてrequestsを使用します")
+        logger.warning(f"Seleniumでのページ取得中にエラーが発生: {e}")
+        logger.info("代替方法としてrequestsを使用します")
         
         # 失敗した場合は通常のrequestsでの取得を試みる
         headers = {
             'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36'
         }
-        response = requests.get(url, headers=headers)
-        response.raise_for_status()
-        html = response.text
+        try:
+            response = requests.get(url, headers=headers)
+            response.raise_for_status()
+            html = response.text
+            if debug:
+                logger.debug("requestsを使用してページを取得しました。")
+        except Exception as e:
+            logger.error(f"ページの取得に失敗しました: {e}")
+            raise
     finally:
         if 'driver' in locals():
             driver.quit()
@@ -120,7 +155,8 @@ def scrape(url: str) -> List[Dict[str, Any]]:
     
     # headline-entryクラスを持つ要素を検索（お知らせの項目）
     headline_entries = soup.select('.headline-entry')
-    print(f"{len(headline_entries)}件のヘッドラインエントリーを検出しました")
+    if debug:
+        logger.debug(f"{len(headline_entries)}件のヘッドラインエントリーを検出しました")
     
     for entry in headline_entries:
         # 日付を取得
@@ -133,7 +169,7 @@ def scrape(url: str) -> List[Dict[str, Any]]:
                 date_obj = parse_date(date_str)
                 formatted_pub_date = date_obj.strftime('%a, %d %b %Y %H:%M:%S +0000')
             except Exception as e:
-                print(f"日付のパースに失敗: {date_str}, エラー: {e}")
+                logger.error(f"日付のパースに失敗: {date_str}, エラー: {e}")
                 formatted_pub_date = datetime.datetime.now().strftime('%a, %d %b %Y %H:%M:%S +0000')
         else:
             formatted_pub_date = datetime.datetime.now().strftime('%a, %d %b %Y %H:%M:%S +0000')
@@ -172,11 +208,12 @@ def scrape(url: str) -> List[Dict[str, Any]]:
         }
         
         items.append(item)
-        print(f"アイテムを追加しました: {title} (カテゴリ: {', '.join(categories)})")
+        if debug:
+            logger.debug(f"アイテムを追加しました: {title} (カテゴリ: {', '.join(categories)})")
     
     # お知らせが見つからない場合の代替処理
     if not items:
-        print("headline-entryクラスが見つかりませんでした。代替方法で検索します...")
+        logger.warning("headline-entryクラスが見つかりませんでした。代替方法で検索します...")
         
         # 他の可能性のあるセレクタで検索
         alternative_entries = soup.select('div.news-item, article, .entry, .post')
@@ -225,7 +262,9 @@ def scrape(url: str) -> List[Dict[str, Any]]:
             }
             
             items.append(item)
-            print(f"代替方法でアイテムを追加しました: {title} (カテゴリ: {', '.join(categories)})")
+            if debug:
+                logger.debug(f"代替方法でアイテムを追加しました: {title} (カテゴリ: {', '.join(categories)})")
     
-    print(f"合計 {len(items)} 個のアイテムを取得しました。")
+    if not silent:
+        logger.info(f"合計 {len(items)} 個のアイテムを取得しました。")
     return items

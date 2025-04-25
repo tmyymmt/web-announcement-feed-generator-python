@@ -5,6 +5,10 @@ import datetime
 import requests
 from bs4 import BeautifulSoup
 from typing import List, Dict, Any
+import logging
+
+# ロガーの設定
+logger = logging.getLogger(__name__)
 
 def extract_date(date_str: str) -> datetime.datetime:
     """日付文字列をパースしてdatetimeオブジェクトに変換する"""
@@ -104,9 +108,10 @@ def detect_categories(title: str, description: str, class_names: List[str] = Non
     
     return list(set(categories))  # 重複を削除
 
-def scrape(url: str) -> List[Dict[str, Any]]:
+def scrape(url: str, debug: bool = False, silent: bool = False) -> List[Dict[str, Any]]:
     """Firebaseのリリースページからリリースノートをスクレイピングする"""
-    print(f"Firebase スクレイパーを実行中: {url}")
+    if not silent:
+        logger.info(f"Firebase スクレイパーを実行中: {url}")
     
     # URLからHTMLを取得
     try:
@@ -115,9 +120,10 @@ def scrape(url: str) -> List[Dict[str, Any]]:
         }
         response = requests.get(url, headers=headers)
         response.raise_for_status()
-        print(f"ページの取得に成功しました。ステータスコード: {response.status_code}")
+        if debug:
+            logger.debug(f"ページの取得に成功しました。ステータスコード: {response.status_code}")
     except Exception as e:
-        print(f"ページの取得中にエラーが発生しました: {e}")
+        logger.error(f"ページの取得中にエラーが発生しました: {e}")
         raise
     
     # HTMLをパース
@@ -128,7 +134,8 @@ def scrape(url: str) -> List[Dict[str, Any]]:
     
     # リリースヘッダーを探す - Firebaseのリリースページでは通常 h2 (日付) と h3 (製品名) が使われる
     release_headers = soup.select('h2[id], h3[id]')
-    print(f"見出し要素を {len(release_headers)} 個検出しました。")
+    if debug:
+        logger.debug(f"見出し要素を {len(release_headers)} 個検出しました。")
     
     if release_headers:
         current_date = None
@@ -144,15 +151,17 @@ def scrape(url: str) -> List[Dict[str, Any]]:
                 current_date_str = header_text
                 try:
                     current_date = extract_date(current_date_str)
-                    print(f"日付ヘッダーを検出: {current_date_str} (パース結果: {current_date})")
+                    if debug:
+                        logger.debug(f"日付ヘッダーを検出: {current_date_str} (パース結果: {current_date})")
                 except Exception as e:
-                    print(f"日付のパースに失敗: {current_date_str}, エラー: {e}")
+                    logger.error(f"日付のパースに失敗: {current_date_str}, エラー: {e}")
                     current_date = datetime.datetime.now()
             
             elif header.name == 'h3':
                 # これは製品ヘッダー (例: "Firebase Studio")
                 current_product = header_text
-                print(f"製品ヘッダーを検出: {current_product}")
+                if debug:
+                    logger.debug(f"製品ヘッダーを検出: {current_product}")
                 
                 # 製品ヘッダーの次の要素から内容を取得（通常はul要素）
                 next_elem = header.find_next_sibling()
@@ -200,17 +209,19 @@ def scrape(url: str) -> List[Dict[str, Any]]:
                         }
                         
                         items.append(item)
-                        print(f"アイテムを追加しました: {title} (カテゴリ: {', '.join(categories)})")
+                        if debug:
+                            logger.debug(f"アイテムを追加しました: {title} (カテゴリ: {', '.join(categories)})")
     
     # 見出しが見つからない場合、別のアプローチを試す
     if not items:
-        print("標準の見出し形式が見つかりませんでした。代替方法を試みます...")
+        logger.info("標準の見出し形式が見つかりませんでした。代替方法を試みます...")
         
         # リリースのセクションを直接探す
         release_sections = soup.select('.changelog > ul > li, .devsite-article-body ul > li')
         
         if release_sections:
-            print(f"リリースセクションを {len(release_sections)} 個検出しました。")
+            if debug:
+                logger.debug(f"リリースセクションを {len(release_sections)} 個検出しました。")
             
             for section in release_sections:
                 # リリースタイプ (feature, fixed, deprecated など)を検出
@@ -260,7 +271,9 @@ def scrape(url: str) -> List[Dict[str, Any]]:
                 }
                 
                 items.append(item)
-                print(f"代替方法でアイテムを追加しました: {title} (カテゴリ: {', '.join(categories)})")
+                if debug:
+                    logger.debug(f"代替方法でアイテムを追加しました: {title} (カテゴリ: {', '.join(categories)})")
     
-    print(f"合計 {len(items)} 個のアイテムを取得しました。")
+    if not silent:
+        logger.info(f"合計 {len(items)} 個のアイテムを取得しました。")
     return items

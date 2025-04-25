@@ -5,10 +5,34 @@ import argparse
 import datetime
 import os
 import importlib
+import importlib.util
 import urllib.parse
 import xml.etree.ElementTree as ET
 import re
+import sys
+import logging
 from typing import Optional, List, Dict, Any
+
+# ロガーの設定
+logger = logging.getLogger(__name__)
+
+def setup_logger(debug_mode: bool, silent_mode: bool):
+    """ロガーを設定する"""
+    if silent_mode:
+        # サイレントモードでは何も出力しない
+        logging.basicConfig(level=logging.CRITICAL + 1)
+    elif debug_mode:
+        # デバッグモードでは詳細なログを出力
+        logging.basicConfig(
+            level=logging.DEBUG,
+            format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
+        )
+    else:
+        # 通常モードでは警告以上のログを出力
+        logging.basicConfig(
+            level=logging.INFO,
+            format='%(message)s'
+        )
 
 def parse_args():
     """コマンドライン引数を解析する"""
@@ -23,16 +47,56 @@ def parse_args():
     parser.add_argument('--diff-mode', action='store_true', help='差分モード: 既存フィードデータの最新日時以降の項目のみを出力')
     parser.add_argument('--with-date', action='store_true', help='出力ファイル名に日付を付加する')
     parser.add_argument('--debug', action='store_true', help='デバッグモード: 詳細なログを出力')
+    parser.add_argument('--silent', action='store_true', help='サイレントモード: ログを出力しない')
     
     return parser.parse_args()
 
 def get_scraper_module_name(url: str) -> str:
-    """URLからスクレイパーのモジュール名を取得する"""
+    """URLからスクレイパーのモジュール名を取得する
+    
+    ドメインとパス情報を元に、すべてのOSとURLで扱えるファイル名を生成する
+    例: https://firebase.google.com/support/releases → firebase_google_com_support_releases
+    """
     parsed_url = urllib.parse.urlparse(url)
     hostname = parsed_url.netloc
+    path = parsed_url.path
     
-    # ドメイン名をスネークケースに変換してモジュール名として使用
-    module_name = hostname.replace('.', '_').replace('-', '_')
+    # パスから末尾のスラッシュ、ファイル拡張子を削除
+    if path.endswith('/'):
+        path = path[:-1]
+    
+    # ファイル拡張子を持つパスから拡張子を削除
+    path = os.path.splitext(path)[0]
+    
+    # ホスト名をアンダースコア区切りに変換
+    hostname = hostname.replace('.', '_')
+    
+    # パスをスネークケース形式に変換
+    path = path.replace('/', '_')
+    if path and path.startswith('_'):
+        path = path[1:]
+    
+    # ホスト名とパス部分を結合（パスがある場合のみ）
+    if path:
+        module_name = f"{hostname}_{path}"
+    else:
+        module_name = hostname
+    
+    # ファイル名として無効な文字をすべて置換
+    module_name = re.sub(r'[^a-zA-Z0-9_]', '_', module_name)
+    
+    # 連続したアンダースコアを1つに置換
+    module_name = re.sub(r'_+', '_', module_name)
+    
+    # 先頭や末尾のアンダースコアを削除
+    module_name = module_name.strip('_')
+    
+    # ファイル名が長すぎる場合は切り詰める（最大64文字に制限）
+    if len(module_name) > 64:
+        module_name = module_name[:64]
+        # 途中で切れた場合に末尾のアンダースコアを削除
+        module_name = module_name.rstrip('_')
+    
     return module_name
 
 def filter_items(items: List[Dict[str, Any]], since: Optional[str], until: Optional[str], 
@@ -233,7 +297,7 @@ def get_latest_date_from_feed(feed_file: str) -> Optional[datetime.datetime]:
         
         return None
     except Exception as e:
-        print(f"フィードファイルの解析中にエラーが発生しました: {e}")
+        logger.error(f"フィードファイルの解析中にエラーが発生しました: {e}")
         return None
 
 def get_target_urls() -> List[str]:
@@ -246,47 +310,100 @@ def get_target_urls() -> List[str]:
 def main():
     args = parse_args()
     
-    # デバッグモードのログ設定
-    debug = args.debug
+    # ロガーの設定
+    setup_logger(args.debug, args.silent)
+    
+    # モジュールのインポートパスを設定
+    script_dir = os.path.dirname(os.path.abspath(__file__))
+    if script_dir not in sys.path:
+        sys.path.insert(0, script_dir)
     
     # 「all」が指定された場合は、全ての対象URLに対して実行
     if args.url.lower() == 'all':
         target_urls = get_target_urls()
-        if debug:
-            print(f"全対象URL ({len(target_urls)}件) に対して実行します")
+        logger.info(f"全対象URL ({len(target_urls)}件) に対して実行します")
     else:
         target_urls = [args.url]
     
     # 各URLに対して処理を実行
     for url in target_urls:
-        if debug:
-            print(f"\n=== URLの処理を開始: {url} ===")
+        logger.info(f"\n=== URLの処理を開始: {url} ===")
         
         # URLからスクレイパーモジュール名を取得
         scraper_module_name = get_scraper_module_name(url)
         
+        # デバッグ情報を出力
+        logger.debug(f"スクレイパーモジュール名: {scraper_module_name}")
+        logger.debug(f"インポートパス: scrapers.{scraper_module_name}")
+        
+        # スクレイパーのファイルパスを構築
+        scraper_file_path = os.path.join(script_dir, "scrapers", f"{scraper_module_name}.py")
+        
+        # スクレイパーのファイルが存在するか確認
+        if os.path.isfile(scraper_file_path):
+            logger.debug(f"スクレイパーファイルが見つかりました: {scraper_file_path}")
+        else:
+            logger.debug(f"スクレイパーファイルが見つかりません: {scraper_file_path}")
+            
+            # ディレクトリ内の利用可能なスクレイパーを確認
+            scrapers_dir = os.path.join(script_dir, "scrapers")
+            logger.debug(f"利用可能なスクレイパーファイル:")
+            for filename in os.listdir(scrapers_dir):
+                if filename.endswith(".py") and filename != "__init__.py":
+                    logger.debug(f"  - {filename}")
+        
         try:
-            # スクレイパーモジュールを動的にインポート
-            scraper_module = importlib.import_module(f'scrapers.{scraper_module_name}')
-            if debug:
-                print(f"スクレイパーモジュール '{scraper_module_name}' を読み込みました")
-        except ImportError:
+            # スクレイパーモジュールを動的にインポート (複数の方法を試す)
+            try:
+                # 方法1: 絶対パスでインポート
+                logger.debug(f"方法1: 絶対パスでのインポートを試みます")
+                scraper_module = importlib.import_module(f'scrapers.{scraper_module_name}')
+            except (ImportError, ModuleNotFoundError) as e:
+                logger.debug(f"方法1失敗: {e}")
+                try:
+                    # 方法2: 相対パスでインポート
+                    logger.debug(f"方法2: 相対パスでのインポートを試みます")
+                    scraper_module = importlib.import_module(f'.scrapers.{scraper_module_name}', package='src')
+                except (ImportError, ModuleNotFoundError) as e:
+                    logger.debug(f"方法2失敗: {e}")
+                    # 方法3: spec_from_file_locationを使用
+                    logger.debug(f"方法3: spec_from_file_locationを使用します")
+                    if os.path.exists(scraper_file_path):
+                        try:
+                            spec = importlib.util.spec_from_file_location(scraper_module_name, scraper_file_path)
+                            scraper_module = importlib.util.module_from_spec(spec)
+                            spec.loader.exec_module(scraper_module)
+                            logger.debug(f"方法3成功: モジュールをロードしました")
+                        except Exception as e:
+                            logger.error(f"方法3失敗: {e}")
+                            raise ImportError(f"スクレイパーモジュールのロード中にエラー発生: {e}")
+                    else:
+                        raise ImportError(f"スクレイパーファイルが見つかりません: {scraper_file_path}")
+            
+            logger.debug(f"スクレイパーモジュール '{scraper_module_name}' を読み込みました")
+            # モジュールの属性を表示
+            logger.debug(f"モジュール属性: {dir(scraper_module)}")
+            # scrape関数が存在するか確認
+            if hasattr(scraper_module, 'scrape'):
+                logger.debug(f"scrape関数が見つかりました")
+            else:
+                logger.debug(f"scrape関数が見つかりません！モジュール内の利用可能な関数: {[attr for attr in dir(scraper_module) if callable(getattr(scraper_module, attr)) and not attr.startswith('__')]}")
+        except ImportError as e:
             # 特定のURLに対応するスクレイパーが見つからない場合は汎用スクレイパーを使用
+            logger.warning(f"インポートエラー: {e}")
             try:
                 scraper_module = importlib.import_module('scrapers.generic')
-                if debug:
-                    print(f"'{url}'に対応するスクレイパーが見つからないため、汎用スクレイパーを使用します")
+                logger.info(f"'{url}'に対応するスクレイパーが見つからないため、汎用スクレイパーを使用します")
             except ImportError:
-                print(f"エラー: '{url}'に対応するスクレイパーが見つかりません。")
+                logger.error(f"エラー: '{url}'に対応するスクレイパーが見つかりません。")
                 continue
         
         # スクレイピングを実行
         try:
-            items = scraper_module.scrape(url)
-            if debug:
-                print(f"スクレイピングが完了しました。{len(items)}件のアイテムを取得しました")
+            items = scraper_module.scrape(url, args.debug, args.silent)
+            logger.info(f"スクレイピングが完了しました。{len(items)}件のアイテムを取得しました")
         except Exception as e:
-            print(f"スクレイピング中にエラーが発生しました: {e}")
+            logger.error(f"スクレイピング中にエラーが発生しました: {e}")
             continue
         
         # デフォルトのファイル名を生成
@@ -314,8 +431,7 @@ def main():
                 if latest_date:
                     # 最新の日付をフィルタの条件に設定
                     since_date = latest_date.strftime('%Y-%m-%d')
-                    if debug:
-                        print(f"差分モード: {since_date} 以降の項目のみを取得します")
+                    logger.info(f"差分モード: {since_date} 以降の項目のみを取得します")
                     
                     # 出力ファイル名を変更（重複しないようにする）
                     feed_output = get_next_available_filename(feed_output)
@@ -330,8 +446,7 @@ def main():
             args.exclude_category
         )
         
-        if debug:
-            print(f"フィルタリング後のアイテム数: {len(filtered_items)}")
+        logger.debug(f"フィルタリング後のアイテム数: {len(filtered_items)}")
         
         # RSSフィードの生成
         rss_data = generate_rss(filtered_items, url)
@@ -342,11 +457,11 @@ def main():
         # ファイルに書き込み
         with open(feed_output, 'w', encoding='utf-8') as f:
             f.write(rss_data)
-        print(f"フィードデータを '{feed_output}' に出力しました。")
+        logger.info(f"フィードデータを '{feed_output}' に出力しました。")
         
         with open(csv_output, 'w', encoding='utf-8') as f:
             f.write(csv_data)
-        print(f"CSVデータを '{csv_output}' に出力しました。")
+        logger.info(f"CSVデータを '{csv_output}' に出力しました。")
     
     return 0
 

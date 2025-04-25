@@ -1,100 +1,145 @@
 # Web Announcement Feed Generator Python
 
-A CLI tool that scrapes announcement information from specified web pages and converts it into RSS 2.0 feed and CSV file formats.
+A command-line tool that scrapes announcement information from specified websites, generates RSS feed files, and outputs a CSV list of items that match filtering criteria.
 
 ## Features
 
-- Supported websites:
-  - Firebase Release Notes (`https://firebase.google.com/support/releases`)
-  - Monaca News (`https://ja.monaca.io/headline/`)
-- RSS 2.0 feed generation
-- CSV export of announcements
-- Date range filtering
-- Category filtering
-- Differential mode to extract only updates since the last feed
+- Scrapes announcement information from specified URLs
+- Converts announcement data into RSS 2.0 format feed
+- Creates CSV files with filtered items based on specified criteria
+- Supports incremental updates with diff mode
+- Handles JavaScript-loaded content with Selenium
+- Supports date filtering, category filtering, and customizable output file naming
 
-## Requirements
+## Prerequisites
 
-- Ubuntu LTS (latest version)
-- Python 3.x (latest LTS version)
-- Chrome browser (for Selenium)
-- Required packages (automatically installed via requirements.txt):
-  - requests
+- Ubuntu (Latest LTS version)
+- Python 3 (Latest LTS version)
+- Chrome browser
+- The following Python packages (installed via requirements.txt):
   - beautifulsoup4
+  - requests
+  - selenium
+  - webdriver-manager
 
 ## Installation
 
-### Local Installation
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/username/web-announcement-feed-generator-python.git
+   cd web-announcement-feed-generator-python
+   ```
 
-This tool is not currently published to the npm registry. Please install it using the following method:
-
-```bash
-# Clone the repository
-git clone https://github.com/yourusername/get-info-from-no-feed-page.git
-cd get-info-from-no-feed-page
-
-# Install dependencies
-npm install
-
-# Build the project
-npm run build
-
-# Link the package globally (makes the development package available globally)
-npm link
-```
-
-This will make the `web-feed` command available globally.
+2. Install required Python packages:
+   ```bash
+   pip install -r requirements.txt
+   ```
 
 ## Usage
 
-### Running from command line
+Basic usage:
 
 ```bash
-# When installed globally
-web-feed <url> [options]
-
-# When installed locally
-npx web-feed <url> [options]
+python src/main.py <url> [options]
 ```
 
 ### Arguments
 
-- `<url>`: URL of the target webpage. Use "all" to process all supported sites
+- `url`: The URL of the webpage to scrape, or "all" to process all supported URLs
 
 ### Options
 
-- `--since YYYY-MM-DD`: Only include items published on or after the specified date
-- `--until YYYY-MM-DD`: Only include items published on or before the specified date
-- `--category CATEGORY`: Only include items containing the specified category
-- `--exclude-category CATEGORY`: Exclude items containing the specified category
-- `--feed-output PATH`: Specify output path for the RSS feed file
-- `--csv-output PATH`: Specify output path for the CSV file
-- `--diff-mode`: Only output items newer than the latest item in the existing feed file
-- `--with-date`: Add current date to output filenames (_YYYYMMDD format)
-- `--debug`: Enable detailed debugging output
+- `--since YYYY-MM-DD`: Only process items on or after this date
+- `--until YYYY-MM-DD`: Only process items on or before this date
+- `--category TEXT`: Only process items containing this category text
+- `--exclude-category TEXT`: Exclude items containing this category text
+- `--feed-output PATH`: Custom path for the RSS feed output file
+- `--csv-output PATH`: Custom path for the CSV output file
+- `--diff-mode`: Incremental update mode (only process items newer than the existing feed)
+- `--with-date`: Add current date to the output filename
+- `--debug`: Enable detailed debug logging
+- `--silent`: Suppress all output
 
-### Example Commands
+### Examples
 
-```sh
-# Scrape announcements from Firebase releases page
+Scrape a specific URL:
+```bash
 python src/main.py https://firebase.google.com/support/releases
+```
 
-# Scrape all supported websites
-python src/main.py all --with-date
+Scrape all supported URLs:
+```bash
+python src/main.py all
+```
 
-# Get only important announcements from Firebase
+Filter by date range:
+```bash
+python src/main.py https://firebase.google.com/support/releases --since 2025-01-01 --until 2025-03-31
+```
+
+Filter by category:
+```bash
 python src/main.py https://firebase.google.com/support/releases --category important
+```
 
-# Get all announcements except deprecated ones
-python src/main.py https://firebase.google.com/support/releases --exclude-category deprecated
-
-# Get announcements published after Jan 1, 2025
-python src/main.py https://firebase.google.com/support/releases --since 2025-01-01
-
-# Differential mode: only get new items since last run
+Use diff mode to only process new items:
+```bash
 python src/main.py https://firebase.google.com/support/releases --diff-mode
+```
+
+## Supported Websites
+
+The following websites are currently supported:
+
+- Firebase Release Notes: https://firebase.google.com/support/releases
+- Monaca Headline (Japanese): https://ja.monaca.io/headline/
+
+## Development
+
+### Project Structure
+
+```
+.
+├── LICENSE
+├── README.md
+├── README_ja.md
+├── requirements.txt
+└── src/
+    ├── main.py
+    └── scrapers/
+        ├── __init__.py
+        ├── firebase_google_com_support_releases.py
+        ├── generic.py
+        └── ja_monaca_io_headline.py
+```
+
+### Adding Support for New Websites
+
+To add support for a new website:
+
+1. Create a new scraper file in the `src/scrapers/` directory
+   - The file should be named based on the URL (e.g., `example_com_news.py`)
+2. Implement the `scrape(url, debug=False, silent=False)` function that:
+   - Takes a URL as input
+   - Returns a list of announcement items as dictionaries
+   - Each dictionary should include:
+     - `title`: The announcement title
+     - `description`: The announcement content
+     - `link`: URL to the full announcement
+     - `pubDate`: Publication date (RFC 822 format)
+     - `categories`: List of category strings
+     - `guid`: Globally unique identifier for the item
+
+### Testing
+
+Test and debug the scraper against all supported URLs:
+
+```bash
+python src/main.py all --debug
 ```
 
 ## License
 
-See [LICENSE](LICENSE) file for details.
+MIT-0 License. See the [LICENSE](LICENSE) file for details.
+
+Copyright (c) 2025 Tomoya Yamamoto
