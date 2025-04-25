@@ -4,7 +4,6 @@ A CLI tool that scrapes announcement information from specified web pages and co
 
 ## Features
 
-<<<<<<< HEAD
 - Supported websites:
   - Firebase Release Notes (`https://firebase.google.com/support/releases`)
   - Monaca News (`https://ja.monaca.io/headline/`)
@@ -20,19 +19,6 @@ A CLI tool that scrapes announcement information from specified web pages and co
 - Python 3.x (latest LTS version)
 - Chrome browser (for Selenium)
 - Required packages (automatically installed via requirements.txt):
-=======
-- Scrapes announcements from web pages without existing RSS feeds
-- Extracts date, title, content, and category information from announcements
-- Outputs RSS 2.0 formatted feed files
-- Generates CSV lists filtered by various conditions
-- Supports multiple websites with specialized scrapers
-- Differential mode to only process new items
-
-## Requirements
-
-- Python 3.x
-- Required packages:
->>>>>>> parent of f034961 (fixed prompt.md, and effect it for all files.)
   - requests
   - beautifulsoup4
 
@@ -108,11 +94,6 @@ python src/main.py https://firebase.google.com/support/releases --since 2025-01-
 # Differential mode: only get new items since last run
 python src/main.py https://firebase.google.com/support/releases --diff-mode
 ```
-
-## Supported Websites
-
-- Firebase Release Notes: https://firebase.google.com/support/releases
-- Monaca Headline: https://ja.monaca.io/headline/
 
 ## License
 

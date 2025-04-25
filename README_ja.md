@@ -2,14 +2,6 @@
 
 指定したWebページからお知らせ情報をスクレイピングし、RSS 2.0形式のフィードとCSVファイルに変換するCLIツールです。
 
-## 機能
-
-- RSSフィードが存在しないWebページからお知らせ情報を取得
-- お知らせの日付、タイトル、内容、カテゴリ情報を抽出
-- RSS 2.0形式のフィードファイルを出力
-- 様々な条件でフィルタリングしたCSV一覧を生成
-- 複数のウェブサイトに対応した専用スクレイパー
-- 差分モードで新しい項目のみを処理
 ## 特徴
 
 - 対応Webサイト：
@@ -24,10 +16,7 @@
 ## 必要条件
 
 - Python 3.x
-<<<<<<< HEAD
 - Chrome ブラウザ（Seleniumを使用します）
-=======
->>>>>>> parent of f034961 (fixed prompt.md, and effect it for all files.)
 - 必要なパッケージ:
   - requests
   - beautifulsoup4
@@ -84,11 +73,6 @@ python src/main.py https://firebase.google.com/support/releases --since 2025-01-
 # 差分モード: 前回の実行以降の新しい項目のみを取得
 python src/main.py https://firebase.google.com/support/releases --diff-mode
 ```
-
-## 対応ウェブサイト
-
-- Firebase リリースノート: https://firebase.google.com/support/releases
-- Monaca ヘッドライン: https://ja.monaca.io/headline/
 
 ## ライセンス
 
