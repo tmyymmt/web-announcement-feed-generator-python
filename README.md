@@ -4,6 +4,7 @@ A CLI tool that scrapes announcement information from specified web pages and co
 
 ## Features
 
+<<<<<<< HEAD
 - Supported websites:
   - Firebase Release Notes (`https://firebase.google.com/support/releases`)
   - Monaca News (`https://ja.monaca.io/headline/`)
@@ -19,10 +20,21 @@ A CLI tool that scrapes announcement information from specified web pages and co
 - Python 3.x (latest LTS version)
 - Chrome browser (for Selenium)
 - Required packages (automatically installed via requirements.txt):
+=======
+- Scrapes announcements from web pages without existing RSS feeds
+- Extracts date, title, content, and category information from announcements
+- Outputs RSS 2.0 formatted feed files
+- Generates CSV lists filtered by various conditions
+- Supports multiple websites with specialized scrapers
+- Differential mode to only process new items
+
+## Requirements
+
+- Python 3.x
+- Required packages:
+>>>>>>> parent of f034961 (fixed prompt.md, and effect it for all files.)
   - requests
   - beautifulsoup4
-  - selenium
-  - webdriver-manager
 
 ## Installation
 
@@ -100,27 +112,8 @@ python src/main.py https://firebase.google.com/support/releases --diff-mode
 ## Supported Websites
 
 - Firebase Release Notes: https://firebase.google.com/support/releases
-  - Extracts announcements with specific release-* class designations
-  - Categorizes based on class names and content keywords
 - Monaca Headline: https://ja.monaca.io/headline/
-  - Handles Japanese language content
-  - Extracts from headline-entry class elements
-
-## Implementation Details
-
-- URL-specific scraping logic is implemented in separate files to handle different site structures
-  - Scrapers are stored in the `src/scrapers/` directory with filenames based on domain names and paths
-  - Each target URL dynamically loads the appropriate scraping logic at runtime
-  - Scraper filename convention:
-    - Based on URL domain and path (e.g., firebase_google_com.py)
-    - Converted to be compatible with all OS and URL formats (replacing dots with underscores, etc.)
-  - Generic scraper is used for unsupported URLs
-- Uses Selenium with Chrome in headless mode for JavaScript-rendered content
-  - Uses chrome-aws-lambda-layer in AWS Lambda environments
-- Uses the latest Chrome User-Agent for requests
-- CSV date format is YYYY/MM/DD
-- Default output filenames are based on the URL and optionally include the current date
 
 ## License
 
-This project is licensed under the MIT-0 License - see the [LICENSE](LICENSE) file for details.
+See [LICENSE](LICENSE) file for details.

@@ -24,7 +24,10 @@
 ## 必要条件
 
 - Python 3.x
+<<<<<<< HEAD
 - Chrome ブラウザ（Seleniumを使用します）
+=======
+>>>>>>> parent of f034961 (fixed prompt.md, and effect it for all files.)
 - 必要なパッケージ:
   - requests
   - beautifulsoup4
