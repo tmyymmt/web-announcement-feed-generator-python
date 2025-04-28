@@ -10,7 +10,7 @@ readme = "README.md"
 requires-python = ">=3.13"
 license = {file = "LICENSE"}
 authors = [
-    {name = "Tomoya Yamamoto", email = ""}
+    {name = "Tomoya Yamamoto", email = "tmyymmt+github@gmail.com"}
 ]
 classifiers = [
     "Programming Language :: Python :: 3",
