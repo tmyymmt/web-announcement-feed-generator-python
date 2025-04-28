@@ -1,0 +1,55 @@
+[build-system]
+requires = ["setuptools>=42", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "web-announcement-feed-generator"
+version = "0.1.0"
+description = "A tool that scrapes announcement information from websites and generates RSS feeds and CSV files"
+readme = "README.md"
+requires-python = ">=3.13"
+license = {file = "LICENSE"}
+authors = [
+    {name = "Tomoya Yamamoto", email = ""}
+]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.13",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Environment :: Console",
+    "Topic :: Internet :: WWW/HTTP :: Dynamic Content",
+    "Topic :: Utilities",
+]
+dependencies = [
+    "beautifulsoup4==4.12.3",
+    "requests==2.32.3",
+    "selenium==4.31.0",
+    "webdriver-manager==4.0.2",
+]
+
+[project.urls]
+"Homepage" = "https://github.com/username/web-announcement-feed-generator-python"
+"Bug Tracker" = "https://github.com/username/web-announcement-feed-generator-python/issues"
+
+[project.scripts]
+feed-generator = "src.main:main"
+
+[tool.setuptools]
+package-dir = {"" = "."}
+packages = ["src", "src.scrapers"]
+
+[tool.setuptools.package-data]
+src = ["scrapers/*.py"]
+
+[tool.black]
+line-length = 88
+target-version = ["py313"]
+
+[tool.isort]
+profile = "black"
+line_length = 88
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = "test_*.py"
