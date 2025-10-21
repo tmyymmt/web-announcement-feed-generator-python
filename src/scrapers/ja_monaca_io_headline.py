@@ -110,43 +110,53 @@ def scrape(url: str, debug: bool = False, silent: bool = False) -> List[Dict[str
     chrome_options.add_argument(f"--disk-cache-dir={mkdtemp()}")
     chrome_options.add_argument("--remote-debugging-port=9222")
     chrome_options.add_argument("--user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36")
+    # SSL/TLS証明書エラーを無視
+    chrome_options.add_argument("--ignore-certificate-errors")
+    chrome_options.add_argument("--ignore-ssl-errors")
+    chrome_options.add_argument("--allow-insecure-localhost")
     
     driver = None
     html = None
     
     try:
-        # webdriver-managerを使用してChromeDriverをインストール
+        # ChromeDriverを初期化（システムにインストール済みのものを使用）
         if debug:
-            logger.debug("webdriver-managerを使用してChromeDriverをインストール中...")
-        service = Service(ChromeDriverManager().install())
+            logger.debug("ChromeDriverを初期化中...")
         
-        # WebDriverを初期化
-        driver = webdriver.Chrome(service=service, options=chrome_options)
+        # まずシステムのchromedriverを使用
+        try:
+            service = Service('/usr/bin/chromedriver')
+            driver = webdriver.Chrome(service=service, options=chrome_options)
+            if debug:
+                logger.debug("システムのchromedriverを使用します。")
+        except Exception as e:
+            if debug:
+                logger.debug(f"システムのchromedriver使用失敗: {e}")
+                logger.debug("webdriver-managerを使用してChromeDriverをダウンロード中...")
+            service = Service(ChromeDriverManager().install())
+            driver = webdriver.Chrome(service=service, options=chrome_options)
         driver.get(url)
         
         # ページが完全に読み込まれるまで待機
         if debug:
             logger.debug("ページの読み込みを待機中...")
         
-        # 複数のセレクタパターンで待機を試みる
-        selectors_to_try = [
-            (By.CLASS_NAME, "headline-entry"),
-            (By.CLASS_NAME, "news-item"),
-            (By.TAG_NAME, "article"),
-            (By.CLASS_NAME, "entry"),
-            (By.CLASS_NAME, "post")
-        ]
+        # JavaScriptでコンテンツが読み込まれるまで待機（最大10秒）
+        # .headline-entries内にコンテンツが追加されるのを待つ
+        try:
+            WebDriverWait(driver, 10).until(
+                lambda d: len(d.find_element(By.CLASS_NAME, "headline-entries").find_elements(By.CSS_SELECTOR, "div, article, a")) > 0
+            )
+            if debug:
+                logger.debug("JavaScriptによるコンテンツの読み込みが完了しました。")
+        except Exception as e:
+            if debug:
+                logger.debug(f"JavaScriptコンテンツの読み込み待機中にタイムアウト: {e}")
+                logger.debug("現在のページ状態で処理を継続します。")
         
-        for by, selector in selectors_to_try:
-            try:
-                WebDriverWait(driver, 3).until(
-                    EC.presence_of_element_located((by, selector))
-                )
-                if debug:
-                    logger.debug(f"セレクタ '{selector}' でページ要素を検出しました。")
-                break
-            except Exception:
-                continue
+        # 追加で少し待機（JavaScriptアニメーションなどのため）
+        import time
+        time.sleep(2)
         
         if debug:
             logger.debug("ページの読み込みが完了しました。")
