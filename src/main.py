@@ -48,6 +48,10 @@ def parse_args():
     parser.add_argument('--with-date', action='store_true', help='出力ファイル名に日付を付加する')
     parser.add_argument('--debug', action='store_true', help='デバッグモード: 詳細なログを出力')
     parser.add_argument('--silent', action='store_true', help='サイレントモード: ログを出力しない')
+    parser.add_argument('--selenium-wait', type=int, help='Seleniumの待機時間（秒）を指定')
+    parser.add_argument('--post-load-wait', type=int, help='ページロード後の追加待機時間（秒）を指定')
+    parser.add_argument('--lambda-optimized', action='store_true', help='Lambda最適化モードを明示的に有効化')
+    parser.add_argument('--debug-selenium', action='store_true', help='Seleniumの詳細ログを出力')
     
     return parser.parse_args()
 
@@ -400,7 +404,29 @@ def main():
         
         # スクレイピングを実行
         try:
-            items = scraper_module.scrape(url, args.debug, args.silent)
+            # scrape関数のシグネチャを確認して、新しい引数をサポートしているか確認
+            import inspect
+            scrape_signature = inspect.signature(scraper_module.scrape)
+            scrape_params = scrape_signature.parameters
+            
+            # 基本的な引数
+            scrape_kwargs = {
+                'url': url,
+                'debug': args.debug,
+                'silent': args.silent,
+            }
+            
+            # 新しい引数が利用可能な場合のみ追加
+            if 'selenium_wait' in scrape_params:
+                scrape_kwargs['selenium_wait'] = args.selenium_wait
+            if 'post_load_wait' in scrape_params:
+                scrape_kwargs['post_load_wait'] = args.post_load_wait
+            if 'lambda_optimized' in scrape_params:
+                scrape_kwargs['lambda_optimized'] = args.lambda_optimized
+            if 'debug_selenium' in scrape_params:
+                scrape_kwargs['debug_selenium'] = args.debug_selenium
+            
+            items = scraper_module.scrape(**scrape_kwargs)
             logger.info(f"スクレイピングが完了しました。{len(items)}件のアイテムを取得しました")
         except Exception as e:
             logger.error(f"スクレイピング中にエラーが発生しました: {e}")

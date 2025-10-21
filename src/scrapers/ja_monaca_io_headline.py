@@ -3,18 +3,12 @@
 import datetime
 import requests
 from bs4 import BeautifulSoup
-from typing import List, Dict, Any
+from typing import List, Dict, Any, Optional
 import re
 import urllib.parse
 import logging
 from tempfile import mkdtemp
-from selenium import webdriver
-from selenium.webdriver.chrome.options import Options
-from selenium.webdriver.chrome.service import Service
-from selenium.webdriver.common.by import By
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
-from webdriver_manager.chrome import ChromeDriverManager
+import time
 
 # ロガーの設定
 logger = logging.getLogger(__name__)
@@ -91,136 +85,227 @@ def detect_categories(text: str) -> List[str]:
     
     return list(set(categories))  # 重複を削除
 
-def scrape(url: str, debug: bool = False, silent: bool = False) -> List[Dict[str, Any]]:
-    """Monacaのヘッドラインページからお知らせをスクレイピングする"""
-    if not silent:
-        logger.info(f"Monaca ヘッドラインスクレイパーを実行中: {url}")
+def scrape_with_selenium(
+    url: str,
+    wait_time: int = 20,
+    post_load_wait: int = 8,
+    use_lambda_optimization: bool = False,
+    debug: bool = False,
+    debug_selenium: bool = False
+) -> Optional[str]:
+    """Seleniumを使用してページをスクレイピングする
     
-    # JavaScriptの遅延読み込みに対応するためSeleniumを使用
-    chrome_options = Options()
-    chrome_options.add_argument("--headless=new")
-    chrome_options.add_argument("--no-sandbox")
-    chrome_options.add_argument("--disable-gpu")
-    chrome_options.add_argument("--window-size=1280x1696")
-    chrome_options.add_argument("--disable-dev-shm-usage")
-    chrome_options.add_argument("--disable-dev-tools")
-    chrome_options.add_argument("--no-zygote")
-    chrome_options.add_argument(f"--user-data-dir={mkdtemp()}")
-    chrome_options.add_argument(f"--data-path={mkdtemp()}")
-    chrome_options.add_argument(f"--disk-cache-dir={mkdtemp()}")
-    chrome_options.add_argument("--remote-debugging-port=9222")
-    chrome_options.add_argument("--user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36")
-    # SSL/TLS証明書エラーを無視
-    chrome_options.add_argument("--ignore-certificate-errors")
-    chrome_options.add_argument("--ignore-ssl-errors")
-    chrome_options.add_argument("--allow-insecure-localhost")
-    
-    driver = None
-    html = None
+    Args:
+        url: スクレイピング対象のURL
+        wait_time: Seleniumの待機時間（秒）
+        post_load_wait: ページロード後の追加待機時間（秒）
+        use_lambda_optimization: Lambda最適化を使用するか
+        debug: デバッグモード
+        debug_selenium: Seleniumの詳細ログを出力するか
+        
+    Returns:
+        取得したHTMLまたはNone（失敗時）
+    """
+    try:
+        from selenium import webdriver
+        from selenium.webdriver.chrome.options import Options
+        from selenium.webdriver.chrome.service import Service
+        from selenium.webdriver.common.by import By
+        from selenium.webdriver.support.ui import WebDriverWait
+        from selenium.webdriver.support import expected_conditions as EC
+        from webdriver_manager.chrome import ChromeDriverManager
+    except ImportError as e:
+        logger.error(f"Seleniumのインポートに失敗しました: {e}")
+        return None
     
     try:
-        # ChromeDriverを初期化（システムにインストール済みのものを使用）
+        # config.pyから設定を取得
+        try:
+            from .config import (
+                is_lambda_environment,
+                get_chrome_options_for_lambda,
+                get_chrome_options_for_local
+            )
+        except ImportError:
+            # config.pyが利用できない場合はローカル関数を使用
+            def is_lambda_environment():
+                import os
+                return bool(os.environ.get('AWS_LAMBDA_FUNCTION_NAME') or 
+                           os.environ.get('LAMBDA_TASK_ROOT'))
+            
+            def get_chrome_options_for_lambda():
+                return [
+                    '--headless=new', '--no-sandbox', '--disable-gpu',
+                    '--window-size=1280x1696', '--disable-dev-shm-usage',
+                    '--disable-dev-tools', '--no-zygote', '--single-process',
+                    '--disable-software-rasterizer', '--disable-extensions',
+                    '--remote-debugging-port=9222',
+                ]
+            
+            def get_chrome_options_for_local():
+                return [
+                    '--headless=new', '--no-sandbox', '--disable-gpu',
+                    '--window-size=1280x1696', '--disable-dev-shm-usage',
+                    '--remote-debugging-port=9222',
+                ]
+        
+        # Lambda環境を自動検出
+        is_lambda = is_lambda_environment() or use_lambda_optimization
+        
         if debug:
+            logger.debug(f"Lambda環境: {is_lambda}")
+            logger.debug(f"待機時間: {wait_time}秒、ポストロード待機: {post_load_wait}秒")
+        
+        # Chrome optionsを設定
+        chrome_options = Options()
+        
+        if is_lambda:
+            option_list = get_chrome_options_for_lambda()
+            if debug:
+                logger.debug("Lambda最適化モードを使用")
+        else:
+            option_list = get_chrome_options_for_local()
+            if debug:
+                logger.debug("ローカルモードを使用")
+        
+        # Optionsにオプションを追加
+        for option in option_list:
+            chrome_options.add_argument(option)
+        
+        # 一時ディレクトリを作成
+        chrome_options.add_argument(f"--user-data-dir={mkdtemp()}")
+        chrome_options.add_argument(f"--data-path={mkdtemp()}")
+        chrome_options.add_argument(f"--disk-cache-dir={mkdtemp()}")
+        
+        # User-Agentを設定
+        chrome_options.add_argument("--user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36")
+        
+        # SSL/TLS証明書エラーを無視
+        chrome_options.add_argument("--ignore-certificate-errors")
+        chrome_options.add_argument("--ignore-ssl-errors")
+        chrome_options.add_argument("--allow-insecure-localhost")
+        chrome_options.add_argument("--ignore-certificate-errors-spki-list")
+        chrome_options.add_argument("--allow-running-insecure-content")
+        
+        # SSL証明書の検証を無効化（Seleniumレベル）
+        chrome_options.set_capability('acceptInsecureCerts', True)
+        
+        # パフォーマンス最適化：不要なリソースの読み込みを無効化
+        prefs = {
+            "profile.managed_default_content_settings.images": 2,  # 画像を無効化
+            "profile.managed_default_content_settings.stylesheets": 2,  # CSSを無効化
+        }
+        chrome_options.add_experimental_option("prefs", prefs)
+        
+        driver = None
+        
+        if debug_selenium or debug:
             logger.debug("ChromeDriverを初期化中...")
         
         # まずシステムのchromedriverを使用
         try:
             service = Service('/usr/bin/chromedriver')
             driver = webdriver.Chrome(service=service, options=chrome_options)
-            if debug:
+            if debug_selenium or debug:
                 logger.debug("システムのchromedriverを使用します。")
         except Exception as e:
-            if debug:
+            if debug_selenium or debug:
                 logger.debug(f"システムのchromedriver使用失敗: {e}")
                 logger.debug("webdriver-managerを使用してChromeDriverをダウンロード中...")
             service = Service(ChromeDriverManager().install())
             driver = webdriver.Chrome(service=service, options=chrome_options)
+        
+        if debug_selenium or debug:
+            logger.debug(f"URLにアクセス中: {url}")
+        
         driver.get(url)
         
         # ページが完全に読み込まれるまで待機
-        if debug:
-            logger.debug("ページの読み込みを待機中...")
+        if debug_selenium or debug:
+            logger.debug(f"ページの読み込みを待機中（最大{wait_time}秒）...")
         
-        # JavaScriptでコンテンツが読み込まれるまで待機（最大10秒）
+        # JavaScriptでコンテンツが読み込まれるまで待機
         # .headline-entries内にコンテンツが追加されるのを待つ
         try:
-            WebDriverWait(driver, 10).until(
+            WebDriverWait(driver, wait_time).until(
                 lambda d: len(d.find_element(By.CLASS_NAME, "headline-entries").find_elements(By.CSS_SELECTOR, "div, article, a")) > 0
             )
-            if debug:
+            if debug_selenium or debug:
                 logger.debug("JavaScriptによるコンテンツの読み込みが完了しました。")
         except Exception as e:
-            if debug:
+            if debug_selenium or debug:
                 logger.debug(f"JavaScriptコンテンツの読み込み待機中にタイムアウト: {e}")
                 logger.debug("現在のページ状態で処理を継続します。")
         
-        # 追加で少し待機（JavaScriptアニメーションなどのため）
-        import time
-        time.sleep(2)
+        # 追加で待機（JavaScriptアニメーションなどのため）
+        if post_load_wait > 0:
+            if debug_selenium or debug:
+                logger.debug(f"追加で{post_load_wait}秒待機中...")
+            time.sleep(post_load_wait)
         
-        if debug:
+        if debug_selenium or debug:
             logger.debug("ページの読み込みが完了しました。")
         
         # ページのHTMLを取得
         html = driver.page_source
+        
+        driver.quit()
+        return html
+        
     except Exception as e:
         logger.warning(f"Seleniumでのページ取得中にエラーが発生: {e}")
-        logger.info("代替方法としてrequestsを使用します")
-        
-        # 失敗した場合は通常のrequestsでの取得を試みる
-        headers = {
-            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36'
-        }
-        try:
-            response = requests.get(url, headers=headers)
-            response.raise_for_status()
-            html = response.text
-            if debug:
-                logger.debug("requestsを使用してページを取得しました。")
-        except Exception as e:
-            logger.error(f"ページの取得に失敗しました: {e}")
-            raise
-    finally:
-        if driver is not None:
-            driver.quit()
+        if driver:
+            try:
+                driver.quit()
+            except:
+                pass
+        return None
+
+def scrape_with_requests(url: str, debug: bool = False) -> Optional[str]:
+    """requestsを使用してページをスクレイピングする
     
+    Args:
+        url: スクレイピング対象のURL
+        debug: デバッグモード
+        
+    Returns:
+        取得したHTMLまたはNone（失敗時）
+    """
+    headers = {
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36'
+    }
+    try:
+        response = requests.get(url, headers=headers)
+        response.raise_for_status()
+        if debug:
+            logger.debug("requestsを使用してページを取得しました。")
+        return response.text
+    except Exception as e:
+        logger.warning(f"requestsでのページ取得中にエラーが発生: {e}")
+        return None
+
+def parse_html_content(
+    html: str,
+    url: str,
+    selector_patterns: List[Dict[str, Optional[str]]],
+    debug: bool = False
+) -> List[Dict[str, Any]]:
+    """HTMLをパースしてアイテムを抽出する
+    
+    Args:
+        html: パース対象のHTML
+        url: ベースURL
+        selector_patterns: CSSセレクターパターンのリスト
+        debug: デバッグモード
+        
+    Returns:
+        抽出されたアイテムのリスト
+    """
     # HTMLをパース
     soup = BeautifulSoup(html, 'html.parser')
     
     # お知らせの項目を格納するリスト
     items = []
-    
-    # 複数のセレクタパターンを試す
-    selector_patterns = [
-        {
-            'entry': '.headline-entry',
-            'date': '.headline-entry-date',
-            'category': '.headline-entry-type-badge',
-            'content': '.headline-entry-content',
-            'title': None
-        },
-        {
-            'entry': '.news-item, article.news-item',
-            'date': '.date, time, .news-date',
-            'category': '.badge, .category, .news-category',
-            'content': '.content, .news-content, .description',
-            'title': 'a, h1, h2, h3, .title'
-        },
-        {
-            'entry': 'article',
-            'date': 'time, .date, .published',
-            'category': '.badge, .tag, .category',
-            'content': '.content, .body, p',
-            'title': 'a, h1, h2, h3, h4, .title'
-        },
-        {
-            'entry': '.entry, .post',
-            'date': '.date, time, .entry-date',
-            'category': '.category, .tag',
-            'content': '.entry-content, .post-content',
-            'title': 'h1, h2, h3, .title, a'
-        }
-    ]
     
     for pattern_idx, pattern in enumerate(selector_patterns):
         headline_entries = soup.select(pattern['entry'])
@@ -326,6 +411,163 @@ def scrape(url: str, debug: bool = False, silent: bool = False) -> List[Dict[str
         if items:
             break
     
+    return items
+
+def scrape(
+    url: str,
+    debug: bool = False,
+    silent: bool = False,
+    selenium_wait: Optional[int] = None,
+    post_load_wait: Optional[int] = None,
+    lambda_optimized: bool = False,
+    debug_selenium: bool = False
+) -> List[Dict[str, Any]]:
+    """Monacaのヘッドラインページからお知らせをスクレイピングする
+    
+    Args:
+        url: スクレイピング対象のURL
+        debug: デバッグモード
+        silent: サイレントモード
+        selenium_wait: Seleniumの待機時間（秒）
+        post_load_wait: ページロード後の追加待機時間（秒）
+        lambda_optimized: Lambda最適化モードを明示的に有効化
+        debug_selenium: Seleniumの詳細ログを出力
+        
+    Returns:
+        スクレイピングされたアイテムのリスト
+    """
+    if not silent:
+        logger.info(f"Monaca ヘッドラインスクレイパーを実行中: {url}")
+    
+    # サイト設定を取得
+    try:
+        from .config import get_site_config, is_lambda_environment
+        site_config = get_site_config(url)
+        is_lambda = is_lambda_environment() or lambda_optimized
+    except ImportError:
+        # config.pyが利用できない場合はデフォルト値を使用
+        site_config = {
+            'selenium_wait_time': 20,
+            'post_load_wait': 8,
+            'min_items_threshold': 2,
+        }
+        import os
+        is_lambda = bool(os.environ.get('AWS_LAMBDA_FUNCTION_NAME')) or lambda_optimized
+    
+    # コマンドライン引数で指定された値を優先
+    wait_time = selenium_wait if selenium_wait is not None else site_config.get('selenium_wait_time', 20)
+    post_wait = post_load_wait if post_load_wait is not None else site_config.get('post_load_wait', 8)
+    min_items = site_config.get('min_items_threshold', 2)
+    
+    if debug:
+        logger.debug(f"設定: 待機時間={wait_time}秒, ポストロード待機={post_wait}秒, 最小アイテム数={min_items}")
+        logger.debug(f"Lambda環境: {is_lambda}")
+    
+    # CSSセレクターパターン
+    selector_patterns = [
+        {
+            'entry': '.headline-entry',
+            'date': '.headline-entry-date',
+            'category': '.headline-entry-type-badge',
+            'content': '.headline-entry-content',
+            'title': None
+        },
+        {
+            'entry': '.news-item, article.news-item',
+            'date': '.date, time, .news-date',
+            'category': '.badge, .category, .news-category',
+            'content': '.content, .news-content, .description',
+            'title': 'a, h1, h2, h3, .title'
+        },
+        {
+            'entry': '.headline-item',
+            'date': 'time, .date, .headline-date',
+            'category': '.badge, .tag',
+            'content': '.content, .body',
+            'title': 'a, h1, h2, h3'
+        },
+        {
+            'entry': 'article',
+            'date': 'time, .date, .published',
+            'category': '.badge, .tag, .category',
+            'content': '.content, .body, p',
+            'title': 'a, h1, h2, h3, h4, .title'
+        },
+    ]
+    
+    items = []
+    
+    # 手法1: Selenium最適版
+    if debug:
+        logger.info("手法1: Selenium最適版を試行中...")
+    
+    html = scrape_with_selenium(
+        url=url,
+        wait_time=wait_time,
+        post_load_wait=post_wait,
+        use_lambda_optimization=is_lambda or lambda_optimized,
+        debug=debug,
+        debug_selenium=debug_selenium
+    )
+    
+    if html:
+        items = parse_html_content(html, url, selector_patterns, debug)
+        if debug:
+            logger.info(f"Selenium最適版で {len(items)} 個のアイテムを取得しました。")
+        
+        # 十分なアイテムが取得できた場合は成功
+        if len(items) >= min_items:
+            if not silent:
+                logger.info(f"合計 {len(items)} 個のアイテムを取得しました。")
+            return items
+    
+    # 手法2: Selenium標準版（待機時間を短くして再試行）
+    if debug:
+        logger.info("手法2: Selenium標準版を試行中...")
+    
+    html = scrape_with_selenium(
+        url=url,
+        wait_time=10,
+        post_load_wait=2,
+        use_lambda_optimization=False,
+        debug=debug,
+        debug_selenium=debug_selenium
+    )
+    
+    if html:
+        items2 = parse_html_content(html, url, selector_patterns, debug)
+        if debug:
+            logger.info(f"Selenium標準版で {len(items2)} 個のアイテムを取得しました。")
+        
+        # より多くのアイテムを取得できた方を使用
+        if len(items2) > len(items):
+            items = items2
+        
+        if len(items) >= min_items:
+            if not silent:
+                logger.info(f"合計 {len(items)} 個のアイテムを取得しました。")
+            return items
+    
+    # 手法3: requests + BeautifulSoup
+    if debug:
+        logger.info("手法3: requests + BeautifulSoupを試行中...")
+    
+    html = scrape_with_requests(url, debug)
+    
+    if html:
+        items3 = parse_html_content(html, url, selector_patterns, debug)
+        if debug:
+            logger.info(f"requests + BeautifulSoupで {len(items3)} 個のアイテムを取得しました。")
+        
+        # より多くのアイテムを取得できた方を使用
+        if len(items3) > len(items):
+            items = items3
+    
+    # すべての手法を試した後
+    if len(items) < min_items:
+        logger.warning(f"警告: 取得できたアイテム数（{len(items)}個）が最小しきい値（{min_items}個）を下回っています。")
+    
     if not silent:
         logger.info(f"合計 {len(items)} 個のアイテムを取得しました。")
+    
     return items
