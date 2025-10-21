@@ -59,6 +59,10 @@ python src/main.py <url> [オプション]
 - `--with-date`: 出力ファイル名に現在の日付を追加
 - `--debug`: 詳細なデバッグログの有効化
 - `--silent`: すべての出力を抑制
+- `--selenium-wait 秒数`: Seleniumの待機時間を上書き（読み込みが遅いページに有用）
+- `--post-load-wait 秒数`: ページロード後の追加待機時間
+- `--lambda-optimized`: Lambda最適化Chromeセッティングを有効化
+- `--debug-selenium`: Seleniumの詳細ログを有効化
 
 ### 使用例
 
@@ -86,6 +90,21 @@ python src/main.py https://firebase.google.com/support/releases --category impor
 ```bash
 python src/main.py https://firebase.google.com/support/releases --diff-mode
 ```
+
+Lambda最適化モードをテスト（AWS Lambdaデプロイ用）：
+```bash
+python src/main.py https://ja.monaca.io/headline/ --lambda-optimized --selenium-wait 30
+```
+
+## AWS Lambda デプロイメント
+
+このツールはAWS Lambdaデプロイメント用に最適化されています。詳細については[LAMBDA_FIX_DOCUMENTATION.md](LAMBDA_FIX_DOCUMENTATION.md)を参照してください：
+
+- Lambda環境の自動検出
+- Lambda用に最適化されたChrome設定
+- 信頼性の高いスクレイピングのためのフォールバックメカニズム
+- サイト固有の設定
+- トラブルシューティングのヒント
 
 ## 対応サイト
 

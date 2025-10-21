@@ -59,6 +59,10 @@ python src/main.py <url> [options]
 - `--with-date`: Add current date to the output filename
 - `--debug`: Enable detailed debug logging
 - `--silent`: Suppress all output
+- `--selenium-wait SECONDS`: Override Selenium wait time (useful for slow-loading pages)
+- `--post-load-wait SECONDS`: Additional wait time after page load
+- `--lambda-optimized`: Enable Lambda-optimized Chrome settings
+- `--debug-selenium`: Enable detailed Selenium logging
 
 ### Examples
 
@@ -86,6 +90,21 @@ Use diff mode to only process new items:
 ```bash
 python src/main.py https://firebase.google.com/support/releases --diff-mode
 ```
+
+Test Lambda-optimized mode (for AWS Lambda deployment):
+```bash
+python src/main.py https://ja.monaca.io/headline/ --lambda-optimized --selenium-wait 30
+```
+
+## AWS Lambda Deployment
+
+This tool has been optimized for AWS Lambda deployment. See [LAMBDA_FIX_DOCUMENTATION.md](LAMBDA_FIX_DOCUMENTATION.md) for detailed information about:
+
+- Lambda environment auto-detection
+- Optimized Chrome settings for Lambda
+- Fallback mechanisms for reliable scraping
+- Site-specific configuration
+- Troubleshooting tips
 
 ## Supported Websites
 
